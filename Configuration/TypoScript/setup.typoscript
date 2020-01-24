@@ -1,0 +1,46 @@
+
+plugin.tx_nsrevolutionslider_slider {
+    view {
+        templateRootPaths {
+            0 = EXT:{extension.shortExtensionKey}/Resources/Private/Templates/
+            1 = {$plugin.tx_nsrevolutionslider_slider.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:ns_revolution_slider/Resources/Private/Partials/
+            1 = {$plugin.tx_nsrevolutionslider_slider.view.partialRootPath}
+        }
+        layoutRootPaths {
+            0 = EXT:tx_nsrevolutionslider/Resources/Private/Layouts/
+            1 = {$plugin.tx_nsrevolutionslider_slider.view.layoutRootPath}
+        }
+    }
+    persistence {
+        storagePid = {$plugin.tx_nsrevolutionslider_slider.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        # skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plug-in are uncached
+        requireCHashArgumentForActionArguments = 1
+    }
+    settings {
+        # jQuery enable & file path
+        includeJquery = {$plugin.tx_nsrevolutionslider_slider.settings.includeJquery}
+        jQueryFile = typo3conf/ext/ns_revolution_slider/Resources/Public/Js/jquery-2.1.4.min.js
+        customStyleFilePath = {$plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath}
+        # Revolution slider CSS & JS path
+        jsFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath}
+        cssFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.cssFolderPath}
+        # Global settings
+        slideDuration = {$plugin.tx_nsrevolutionslider_slider.settings.slideDuration}
+        slideEffect = {$plugin.tx_nsrevolutionslider_slider.settings.slideEffect}
+    }
+}
+page {
+    includeCSS {
+        # Custom CSS
+        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
+    }
+}

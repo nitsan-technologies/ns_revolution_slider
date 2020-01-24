@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-12-30T06:22:47Z" product-name="ns_revolution_slider">
+		<header/>
+		<body>
+            <trans-unit id="tx_ns_revolution_slider_slider.pluginName">
+                <source>[NITSAN] Revolution Slider</source>
+            </trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
+				<source>Slide Item</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_effect">
+				<source>Slide Effect</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
+				<source>Slide Duration</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_animation">
+				<source>Headline Animation</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_animation">
+				<source>Description Animation</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text">
+				<source>Button Text</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_link">
+				<source>Button Link</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_animation">
+				<source>Button Animation</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slider">
+				<source>Slider</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slider.slides">
+				<source>Slides</source>
+			</trans-unit>
+			<trans-unit id="pi1_title">
+				<source>Revolution slider</source>
+			</trans-unit>
+			<trans-unit id="backend.slides">
+				<source>Slides</source>
+			</trans-unit>
+			<trans-unit id="backend.slider">
+				<source>Slider ID</source>
+			</trans-unit>
+			<trans-unit id="backend.slide_duration">
+				<source>Slide duration</source>
+			</trans-unit>
+			<trans-unit id="backend.slide_effect">
+				<source>Slide effect</source>
+			</trans-unit>
+			<trans-unit id="backend.headline_animation">
+				<source>Headline animation</source>
+			</trans-unit>
+			<trans-unit id="backend.description_animation">
+				<source>Description animation</source>
+			</trans-unit>
+			<trans-unit id="backend.button_animation">
+				<source>Button animation</source>
+			</trans-unit>
+			<trans-unit id="backend.animation.bounce">
+                <source>Bounce</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.zoom">
+                <source>Zoom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fade">
+                <source>Fade In</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.flip">
+                <source>Flip</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slideup">
+                <source>Slide To Top</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slidedown">
+                <source>Slide To Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideright">
+                <source>Slide To Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideleft">
+                <source>Slide To Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideoverup">
+                <source>Slide Over To Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideoverdown">
+                <source>Slide Over To Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideoverright">
+                <source>Slide Over To Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideoverleft">
+                <source>Slide Over To Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideremoveup">
+                <source>Slide Remove To Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideremovedown">
+                <source>Slide Remove To Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideremoveright">
+                <source>Slide Remove To Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slideremoveleft">
+                <source>Slide Remove To Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.boxslide">
+                <source>Slide Boxes</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slotslide-horizontal">
+                <source>Slide Slots Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slotslide-vertical">
+                <source>Slide Slots Vertical</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.boxfade">
+                <source>Fade Boxes</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slotfade-horizontal">
+                <source>Fade Slots Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.slotfade-vertical">
+                <source>Fade Slots Vertical</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadefromright">
+                <source>Fade And Slide From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadefromleft">
+                <source>Fade And Slide From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadefromtop">
+                <source>Fade And Slide From Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadefrombottom">
+                <source>Fade And Slide From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadetoleftfadefromright">
+                <source>To Left From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadetorightfadefromleft">
+                <source>To Right From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadetotopfadefrombottom">
+                <source>To Top From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.fadetobottomfadefromtop">
+                <source>To Bottom From Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.parallaxtoright">
+                <source>Parallax To Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.parallaxtoleft">
+                <source>Parallax To Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.parallaxtotop">
+                <source>Parallax To Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.parallaxtobottom">
+                <source>Parallax To Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.scaledownfromright">
+                <source>Zoom Out And Fade From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.scaledownfromleft">
+                <source>Zoom Out And Fade From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.scaledownfromtop">
+                <source>Zoom Out And Fade From Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.scaledownfrombottom">
+                <source>Zoom Out And Fade From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.curtain-1">
+                <source>Curtain From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.curtain-2">
+                <source>Curtain From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.curtain-3">
+                <source>Curtain From Middle</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.3dcurtain-horizontal">
+                <source>3D Curtain Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.3dcurtain-vertical">
+                <source>3D Curtain Vertical</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.cube">
+                <source>Cube Vertical</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.cube-horizontal">
+                <source>Cube Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.incube">
+                <source>In Cube Vertical</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.incube-horizontal">
+                <source>In Cube Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.turnoff">
+                <source>Turn Off Horizontal</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.turnoff-vertical">
+                <source>Turn Off Vertical</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.papercut">
+                <source>Paper Cut</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.flyin">
+                <source>Fly In</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.sortfromtop">
+                <source>Short From Top</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.sortfrombottom">
+                <source>Short From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.sortfromleft">
+                <source>Short From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.sortfromright">
+                <source>Short From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.longfromright">
+                <source>Long From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.longfromleft">
+                <source>Long From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.longfromtop">
+                <source>Long From Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.longfrombottom">
+                <source>Long From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.skewfromlongleft">
+                <source>Skew From Long Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.skewfromlongright">
+                <source>Skew From Long Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.skewfromshortleft">
+                <source>Skew From Short Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.skewfromshortright">
+                <source>Skew From Short Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.randomrotatescale">
+                <source>Random Rotate And Scale</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.letterflyinfrombottom">
+                <source>Letter Fly In From Bottom</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.letterflyinfromleft">
+                <source>Letter Fly In From Left</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.letterflyinfromright">
+                <source>Letter Fly In From Right</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.letterflyinfromtop">
+                <source>Letter Fly In From Top</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.maskedzoomout">
+                <source>Masked Zoom Out</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.popupsmooth">
+                <source>Popup Smooth</source>
+            </trans-unit> 
+            <trans-unit id="backend.animation.rotateinfrombottom">
+                <source>Rotate In From Bottom</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.rotateinfromzero">
+                <source>Rotate In From Zero</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slidemaskfrombottom">
+                <source>Slide Mask From Bottom</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slidemaskfromleft">
+                <source>Slide Mask From Left</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slidemaskfromright">
+                <source>Slide Mask From Right</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.slidemaskfromtop">
+                <source>Slide Mask From Top</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.smoothpopupone">
+                <source>Smooth Popup One</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.smoothpopuptwo">
+                <source>Smooth Popup Two</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.smoothmaskfromright">
+                <source>Smooth Mask From Right</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.smoothmaskfromleft">
+                <source>Smooth Mask From Left</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.smoothslidefrombottom">
+                <source>Smooth Slide From Bottom</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.noanimation">
+                <source>No Animation</source>
+            </trans-unit>
+            <trans-unit id="backend.animation.none">
+                <source>As per global setting</source>
+            </trans-unit>
+            <trans-unit id="backend.globalSetting">
+                <source>As per global setting</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

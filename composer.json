@@ -1,0 +1,37 @@
+{
+    "name": "nitsan/ns-revolution-slider",
+    "type": "typo3-cms-extension",
+    "description": "World's most pupular revolution slider is now available in TYPO3 CMS too. Live-Demo: https://demo.t3terminal.com/t3t-extensions/sliders/revolution-slider You can download PRO version for more-features & free-support at https://t3terminal.com/typo3-extensions/revolution-slider-typo3-plugin-pro",
+    "homepage": "https://extensions.typo3.org/extension/ns_revolution_slider/",
+    "license": "GPL-2.0+",
+    "keywords": [
+      "TYPO3 CMS",
+      "Revolution",
+      "Slider"
+    ],
+    "support": {
+      "issues": "https://github.com/nitsan-technologies/ns_revolution_slider/issues"
+    },
+    "require": {
+        "typo3/cms-core": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NITSAN\\NsRevolutionSlider\\": "Classes"
+        }
+    },
+    "replace": {
+        "nitsan/ns-revolution-slider": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor/",
+        "bin-dir": ".Build/bin/"
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/public",
+            "extension-key": "ns_revolution_slider"
+        }
+    }
+}

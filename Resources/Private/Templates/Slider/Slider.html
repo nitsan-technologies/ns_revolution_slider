@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:layout name="Default" />
+
+	<f:section name="content">
+		<f:if condition="{slides}">
+            <div class="rev_slider_wrapper">
+                <div id="rev_slider_{uid}" class="rev_slider" data-version="5.4.8" style="display:none">
+                    <ul>
+                    	<f:for each="{slides}" as="slide" iteration="i">
+                    		<f:variable name="navTitle" value="{slide.image.originalResource.title}" />
+                    		<f:if condition="!{navTitle}">
+                    			<f:then><f:variable name="navTitle" value="Slide-{i.cycle}" /></f:then>
+                    		</f:if>
+	                        <li data-transition="{slide.slideEffect}" data-title="{navTitle}" data-duration="{f:if(condition: slide.dataDuration, then: slide.dataDuration, else: 3000)}">
+	                        	<f:if condition="{slide.image}">
+	                        		<f:image image="{slide.image}" maxWidth="1920" maxHeight="1080" class="rev-slidebg" treatIdAsReference="1" />
+	                        	</f:if>
+	                        	<f:if condition="{slide.headline}">
+							        <div class="tp-caption" data-x="center" data-hoffset="" data-y="bottom" data-voffset="480"
+								        data-width="['842','842','481','360']" data-height="none" data-fontsize="[50,45,40,30]"
+								        data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
+								        data-responsive_offset="on" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
+							            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+								        style="z-index: 5; white-space: nowrap; color: #fff;">
+								        {slide.headline}
+							        </div>
+							    </f:if>
+							    <f:if condition="{slide.description}">
+							        <div class="tp-caption" data-x="center" data-hoffset="" data-y="bottom" data-voffset="370"
+							            data-width="['942','942','481','360']" data-height="none" data-fontsize="[28,26,24,22]"
+							            data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
+							            data-responsive_offset="on" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
+							            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+							            style="z-index: 5; white-space: nowrap; color: #fff;}">
+							            <f:format.nl2br>{slide.description}</f:format.nl2br>
+							        </div>
+							    </f:if>
+							    <f:if condition="{slide.buttonText} && {slide.buttonLink}">
+						            <div class="tp-caption Photography-Button rev-btn  tp-withaction rs-hover-ready" data-x="['center','center','center','center']" data-hoffset="" data-y="['top','top','bottom','bottom']" data-voffset="['500','300','280','280']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-responsive_offset="on" data-responsive="off" data-textalign="['center','center','center','center']" data-paddingtop="[13,13,13,13]" data-paddingright="[35,35,35,35]" data-paddingbottom="[13,13,13,13]" data-paddingleft="[35,35,35,35]" data-fontsize="[18,18,16,16]" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' >
+						        		<f:link.typolink parameter="{slide.buttonLink}">
+						        			<span style="color: #fff;">{slide.buttonText}</span>
+						        		</f:link.typolink>
+								    </div>
+							    </f:if>
+	                        </li>
+                    	</f:for>
+                    </ul>
+	            </div>
+	        </div>
+		</f:if>
+	</f:section>
+</html>

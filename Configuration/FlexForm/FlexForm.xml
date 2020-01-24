@@ -1,0 +1,469 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<!--
+			################################
+			  SHEET General Settings
+			################################
+		-->
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSettings</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+                    <settings.slides_type>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.sliderType</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="1">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.sliderType.preselected</numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.sliderType.selectslide</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.slides_type>
+                    <settings.slider>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.slider</label>
+                            <displayCond>FIELD:settings.slides_type:!=:1</displayCond>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>tx_nsrevolutionslider_domain_model_slider</allowed>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+                        </TCEforms>
+                    </settings.slider>
+					<settings.slides>
+						<TCEforms>
+							<label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem</label>
+                            <displayCond>FIELD:settings.slides_type:=:1</displayCond>
+		                    <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>tx_nsrevolutionslider_domain_model_slideitem</allowed>
+                                <minitems>0</minitems>
+                                <maxitems>999</maxitems>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+		                </TCEforms>
+					</settings.slides>
+					<settings.slide_duration>
+						<TCEforms>
+							<label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.slide_duration</label>
+		                    <config>
+		                        <type>input</type>
+                                <placeholder>3000</placeholder>
+		                        <size>15</size>
+		                        <eval>trim</eval>
+		                    </config>
+		                </TCEforms>
+					</settings.slide_duration>
+					<settings.slide_effect>
+						<TCEforms>
+							<label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.slide_effect</label>
+		                    <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                	<numIndex index="-1" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade</numIndex>
+                                        <numIndex index="1">fade</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideup</numIndex>
+                                        <numIndex index="1">slideup</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideright</numIndex>
+                                        <numIndex index="1">slideright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideleft</numIndex>
+                                        <numIndex index="1">slideleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverup</numIndex>
+                                        <numIndex index="1">slideoverup</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverdown</numIndex>
+                                        <numIndex index="1">slideoverdown</numIndex>
+                                    </numIndex>
+                                    <numIndex index="6" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverright</numIndex>
+                                        <numIndex index="1">slideoverright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="7" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverleft</numIndex>
+                                        <numIndex index="1">slideoverleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="8" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideremoveup</numIndex>
+                                        <numIndex index="1">slideremoveup</numIndex>
+                                    </numIndex>
+                                    <numIndex index="9" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideremovedown</numIndex>
+                                        <numIndex index="1">slideremovedown</numIndex>
+                                    </numIndex>
+                                    <numIndex index="10" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideremoveright</numIndex>
+                                        <numIndex index="1">slideremoveright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="11" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideremoveleft</numIndex>
+                                        <numIndex index="1">slideremoveleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="12" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.boxslide</numIndex>
+                                        <numIndex index="1">boxslide</numIndex>
+                                    </numIndex>
+                                    <numIndex index="13" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slotslide-horizontal</numIndex>
+                                        <numIndex index="1">slotslide-horizontal</numIndex>
+                                    </numIndex>
+                                    <numIndex index="14" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slotslide-vertical</numIndex>
+                                        <numIndex index="1">slotslide-vertical</numIndex>
+                                    </numIndex>
+                                    <numIndex index="15" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.boxfade</numIndex>
+                                        <numIndex index="1">boxfade</numIndex>
+                                    </numIndex>
+                                    <numIndex index="16" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slotfade-horizontal</numIndex>
+                                        <numIndex index="1">slotfade-horizontal</numIndex>
+                                    </numIndex>
+                                    <numIndex index="17" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slotfade-vertical</numIndex>
+                                        <numIndex index="1">slotfade-vertical</numIndex>
+                                    </numIndex>
+                                    <numIndex index="18" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadefromright</numIndex>
+                                        <numIndex index="1">fadefromright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="19" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadefromleft</numIndex>
+                                        <numIndex index="1">fadefromleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="20" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadefromtop</numIndex>
+                                        <numIndex index="1">fadefromtop</numIndex>
+                                    </numIndex>
+                                    <numIndex index="21" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadefrombottom</numIndex>
+                                        <numIndex index="1">fadefrombottom</numIndex>
+                                    </numIndex>
+                                    <numIndex index="22" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadetoleftfadefromright</numIndex>
+                                        <numIndex index="1">fadetoleftfadefromright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="23" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadetorightfadefromleft</numIndex>
+                                        <numIndex index="1">fadetorightfadefromleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="24" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadetotopfadefrombottom</numIndex>
+                                        <numIndex index="1">fadetotopfadefrombottom</numIndex>
+                                    </numIndex>
+                                    <numIndex index="25" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fadetobottomfadefromtop</numIndex>
+                                        <numIndex index="1">fadetobottomfadefromtop</numIndex>
+                                    </numIndex>
+                                    <numIndex index="26" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.parallaxtoright</numIndex>
+                                        <numIndex index="1">parallaxtoright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="27" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.parallaxtoleft</numIndex>
+                                        <numIndex index="1">parallaxtoleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="28" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.parallaxtotop</numIndex>
+                                        <numIndex index="1">parallaxtotop</numIndex>
+                                    </numIndex>
+                                    <numIndex index="29" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.parallaxtobottom</numIndex>
+                                        <numIndex index="1">parallaxtobottom</numIndex>
+                                    </numIndex>
+                                    <numIndex index="30" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.scaledownfromright</numIndex>
+                                        <numIndex index="1">scaledownfromright</numIndex>
+                                    </numIndex>
+                                    <numIndex index="31" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.scaledownfromleft</numIndex>
+                                        <numIndex index="1">scaledownfromleft</numIndex>
+                                    </numIndex>
+                                    <numIndex index="32" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.scaledownfromtop</numIndex>
+                                        <numIndex index="1">scaledownfromtop</numIndex>
+                                    </numIndex>
+                                    <numIndex index="33" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.scaledownfrombottom</numIndex>
+                                        <numIndex index="1">scaledownfrombottom</numIndex>
+                                    </numIndex>
+                                    <numIndex index="34" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.curtain-1</numIndex>
+                                        <numIndex index="1">curtain-1</numIndex>
+                                    </numIndex>
+                                    <numIndex index="35" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.curtain-2</numIndex>
+                                        <numIndex index="1">curtain-2</numIndex>
+                                    </numIndex>
+                                    <numIndex index="36" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.curtain-3</numIndex>
+                                        <numIndex index="1">curtain-3</numIndex>
+                                    </numIndex>
+                                    <numIndex index="37" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.3dcurtain-horizontal</numIndex>
+                                        <numIndex index="1">3dcurtain-horizontal</numIndex>
+                                    </numIndex>
+                                    <numIndex index="38" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.3dcurtain-vertical</numIndex>
+                                        <numIndex index="1">3dcurtain-vertical</numIndex>
+                                    </numIndex>
+                                    <numIndex index="39" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.cube</numIndex>
+                                        <numIndex index="1">cube</numIndex>
+                                    </numIndex>
+                                    <numIndex index="40" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.cube-horizontal</numIndex>
+                                        <numIndex index="1">cube-horizontal</numIndex>
+                                    </numIndex>
+                                    <numIndex index="41" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.incube</numIndex>
+                                        <numIndex index="1">incube</numIndex>
+                                    </numIndex>
+                                    <numIndex index="42" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.incube-horizontal</numIndex>
+                                        <numIndex index="1">incube-horizontal</numIndex>
+                                    </numIndex>
+                                    <numIndex index="43" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.turnoff</numIndex>
+                                        <numIndex index="1">turnoff</numIndex>
+                                    </numIndex>
+                                    <numIndex index="44" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.turnoff-vertical</numIndex>
+                                        <numIndex index="1">turnoff-vertical</numIndex>
+                                    </numIndex>
+                                    <numIndex index="45" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.papercut</numIndex>
+                                        <numIndex index="1">papercut</numIndex>
+                                    </numIndex>
+                                    <numIndex index="46" type="array">
+                                        <numIndex index="0">LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.flyin</numIndex>
+                                        <numIndex index="1">flyin</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>1</minitems>
+                                <maxitems>1</maxitems>
+                            </config>
+	                    </TCEforms>
+					</settings.slide_effect>
+				</el>
+			</ROOT>
+		</sDEF>
+        <general>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.generalSettings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.shadow>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.shadow</label>
+                            <config>
+                                <type>input</type>
+                                <default>0</default>
+                                <placeholder>0</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.shadow>
+                    <settings.spinner>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.spinner</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </settings.spinner>
+                    <settings.stopLoop>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopLoop</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </settings.stopLoop>
+                    <settings.stopAtSlide>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopAtSlide</label>
+                            <config>
+                                <type>input</type>
+                                <default>-1</default>
+                                <placeholder>-1</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.stopAtSlide>
+                    <settings.stopAfterLoops>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopAfterLoops</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </settings.stopAfterLoops>
+                    <settings.slideDelay>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.slideDelay</label>
+                            <config>
+                                <type>input</type>
+                                <default>9000</default>
+                                <placeholder>9000</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.slideDelay>
+                    <settings.responsiveLevels>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.responsiveLevels</label>
+                            <config>
+                                <type>input</type>
+                                <default>1240, 1024, 778, 480</default>
+                                <placeholder>1240, 1024, 778, 480</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.responsiveLevels>
+                    <settings.visibilityLevels>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.visibilityLevels</label>
+                            <config>
+                                <type>input</type>
+                                <default>1240, 1024, 778, 480</default>
+                                <placeholder>1240, 1024, 778, 480</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.visibilityLevels>
+                    <settings.gridwidth>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.gridwidth</label>
+                            <config>
+                                <type>input</type>
+                                <default>1240, 1024, 778, 480</default>
+                                <placeholder>1240, 1024, 778, 480</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.gridwidth>
+                    <settings.gridheight>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.gridheight</label>
+                            <config>
+                                <type>input</type>
+                                <default>800, 800, 800, 800</default>
+                                <placeholder>800, 800, 800, 800</placeholder>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.gridheight>
+                    <settings.hideSliderAtLimit>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.hideSliderAtLimit</label>
+                            <config>
+                                <type>input</type>
+                                <default>0</default>
+                                <size>15</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.hideSliderAtLimit>
+                    <settings.debugMode>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.debugMode</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.debugMode>
+                </el>
+            </ROOT>
+        </general>
+        <navigationStyles>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.navigationStyles</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.mouseScrollNavigation>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.mouseScrollNavigation</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.mouseScrollNavigation>
+                    <settings.onHoverStop>
+                        <TCEforms>
+                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.onHoverStop</label>
+                            <config>
+                                <type>check</type>
+                                <eval>boolean</eval>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.onHoverStop>
+                </el>
+            </ROOT>
+        </navigationStyles>
+	</sheets>
+</T3DataStructure>

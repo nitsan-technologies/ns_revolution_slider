@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-12-30T06:22:47Z" product-name="ns_revolution_slider">
+        <header/>
+        <body>
+            <trans-unit id="tx_ns_revolution_slider_slider.pluginName">
+                <source>[NITSAN] Revolution Slider</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
+                <source>Slide Item</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_effect">
+                <source>Slide Effect</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
+                <source>Slide Duration</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
+                <source>Slide Duration</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.data_duration">
+                <source>Data Duration</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline">
+                <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text">
+                <source>Button Text</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_link">
+                <source>Button Link</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider">
+                <source>Slider</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.hidden">
+                <source>Visibility of content element</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slider_name">
+                <source>Slider Name</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slider">
+                <source>Slider</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slides">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.name">
+                <source>Revolution slider</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.sliderType">
+                <source>Select Slider By</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.sliderType.preselected">
+                <source>Select Whole Slider</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.sliderType.selectslide">
+                <source>Select Individual Slide Items</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.description">
+                <source>Integrate world's most popular revolution slider</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.bounce">
+                <source>Bounce</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.zoom">
+                <source>Zoom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fade">
+                <source>Fade In</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.flip">
+                <source>Flip</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideup">
+                <source>Slide To Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slidedown">
+                <source>Slide To Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideright">
+                <source>Slide To Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideleft">
+                <source>Slide To Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideoverup">
+                <source>Slide Over To Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideoverdown">
+                <source>Slide Over To Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideoverright">
+                <source>Slide Over To Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideoverleft">
+                <source>Slide Over To Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideremoveup">
+                <source>Slide Remove To Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideremovedown">
+                <source>Slide Remove To Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideremoveright">
+                <source>Slide Remove To Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slideremoveleft">
+                <source>Slide Remove To Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.boxslide">
+                <source>Slide Boxes</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slotslide-horizontal">
+                <source>Slide Slots Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slotslide-vertical">
+                <source>Slide Slots Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.boxfade">
+                <source>Fade Boxes</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slotfade-horizontal">
+                <source>Fade Slots Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slotfade-vertical">
+                <source>Fade Slots Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadefromright">
+                <source>Fade And Slide From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadefromleft">
+                <source>Fade And Slide From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadefromtop">
+                <source>Fade And Slide From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadefrombottom">
+                <source>Fade And Slide From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadetoleftfadefromright">
+                <source>To Left From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadetorightfadefromleft">
+                <source>To Right From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadetotopfadefrombottom">
+                <source>To Top From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.fadetobottomfadefromtop">
+                <source>To Bottom From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.parallaxtoright">
+                <source>Parallax To Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.parallaxtoleft">
+                <source>Parallax To Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.parallaxtotop">
+                <source>Parallax To Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.parallaxtobottom">
+                <source>Parallax To Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.scaledownfromright">
+                <source>Zoom Out And Fade From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.scaledownfromleft">
+                <source>Zoom Out And Fade From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.scaledownfromtop">
+                <source>Zoom Out And Fade From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.scaledownfrombottom">
+                <source>Zoom Out And Fade From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.curtain-1">
+                <source>Curtain From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.curtain-2">
+                <source>Curtain From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.curtain-3">
+                <source>Curtain From Middle</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.3dcurtain-horizontal">
+                <source>3D Curtain Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.3dcurtain-vertical">
+                <source>3D Curtain Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.cube">
+                <source>Cube Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.cube-horizontal">
+                <source>Cube Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.incube">
+                <source>In Cube Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.incube-horizontal">
+                <source>In Cube Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.turnoff">
+                <source>Turn Off Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.turnoff-vertical">
+                <source>Turn Off Vertical</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.papercut">
+                <source>Paper Cut</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.flyin">
+                <source>Fly In</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.sortfromtop">
+                <source>Short From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.sortfrombottom">
+                <source>Short From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.sortfromleft">
+                <source>Short From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.sortfromright">
+                <source>Short From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.longfromright">
+                <source>Long From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.longfromleft">
+                <source>Long From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.longfromtop">
+                <source>Long From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.longfrombottom">
+                <source>Long From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.skewfromlongleft">
+                <source>Skew From Long Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.skewfromlongright">
+                <source>Skew From Long Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.skewfromshortleft">
+                <source>Skew From Short Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.skewfromshortright">
+                <source>Skew From Short Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.randomrotatescale">
+                <source>Random Rotate And Scale</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.letterflyinfrombottom">
+                <source>Letter Fly In From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.letterflyinfromleft">
+                <source>Letter Fly In From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.letterflyinfromright">
+                <source>Letter Fly In From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.letterflyinfromtop">
+                <source>Letter Fly In From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.maskedzoomout">
+                <source>Masked Zoom Out</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.popupsmooth">
+                <source>Pop-up Smooth</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.rotateinfrombottom">
+                <source>Rotate In From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.rotateinfromzero">
+                <source>Rotate In From Zero</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slidemaskfrombottom">
+                <source>Slide Mask From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slidemaskfromleft">
+                <source>Slide Mask From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slidemaskfromright">
+                <source>Slide Mask From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.slidemaskfromtop">
+                <source>Slide Mask From Top</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.smoothpopupone">
+                <source>Smooth Pop-up One</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.smoothpopuptwo">
+                <source>Smooth Pop-up Two</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.smoothmaskfromright">
+                <source>Smooth Mask From Right</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.smoothmaskfromleft">
+                <source>Smooth Mask From Left</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.smoothslidefrombottom">
+                <source>Smooth Slide From Bottom</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animation.noanimation">
+                <source>No Animation</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.globalSetting">
+                <source>As per global setting</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.globalSetting.true">
+                <source>True</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.globalSetting.false">
+                <source>False</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slide.slideSelection">
+                <source>Slide Selection</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.includeJquery">
+                <source>Include jQuery (2.1.4)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.jqueryFile">
+                <source>jQuery file</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.websiteConfiguration">
+                <source>Website configuration</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.storageConfiguration">
+                <source>Storage configuration</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.animationConfiguration">
+                <source>Plug-in configuration (Design and Animation)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.jsFolderPath">
+                <source>Path to revolution JS(s) [Purchased revolution JS folder Path]</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.cssFolderPath">
+                <source>Path to revolution CSS(s) [Purchased revolution CSS folder Path]</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.defaultStoragePID">
+                <source>Default storage PID</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.templateRoot">
+                <source>Path to template root (FE)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.templatePartials">
+                <source>Path to template partials (FE)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.templateLayouts">
+                <source>Path to template layouts (FE)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.globalSettings">
+                <source>Main Settings</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.customStyle">
+                <source>Custom style (CSS)</source>
+            </trans-unit>
+            
+            <!-- Navigation styles-->
+            <trans-unit id="tx_ns_revolution_slider_slider.generalSettings">
+                <source>General Settings</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.shadow">
+                <source>Shadow (1-6 drop-shadow options)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.spinner">
+                <source>Spinner</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.stopLoop">
+                <source>Stop loop</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.stopAfterLoops">
+                <source>Stop after loops</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.stopAtSlide">
+                <source>Stop at slide (Depend on stopAfterLoops)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.slideDelay">
+                <source>Delay</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.responsiveLevels">
+                <source>Responsive levels</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.visibilityLevels">
+                <source>Visibility levels</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.gridwidth">
+                <source>Grid width</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.gridheight">
+                <source>Grid height</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.hideSliderAtLimit">
+                <source>Hide Slider At Limit (Hide the entire slider below a certain screen size. e.g. 414)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.hideCaptionAtLimit">
+                <source>Hide Caption At Limit (Hide specific Layers below a certain screen size. e.g. 414)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.hideAllCaptionAtLilmit">
+                <source>Hide All Caption At Limit (Hide all Layers below a certain screensize. e.g. 414)</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.debugMode">
+                <source>Debug mode</source>
+            </trans-unit>
+
+            <!-- Navigation styles-->
+            <trans-unit id="tx_ns_revolution_slider_slider.navigationStyles">
+                <source>Navigation Settings</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.mouseScrollNavigation">
+                <source>Mouse scroll navigation enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.onHoverStop">
+                <source>onHover stop</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.bulletsEnable">
+                <source>Bullets enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.bulletsStyle">
+                <source>Bullets Style</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.thumbsEnable">
+                <source>Thumbs enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.thumbsStyle">
+                <source>Thumbs Style</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.hesperiden">
+                <source>Hesperiden</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.gyges">
+                <source>Gyges</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.hades">
+                <source>Hades</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.ares">
+                <source>Ares</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.hebe">
+                <source>Hebe</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.hermes">
+                <source>Hermes</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.persephone">
+                <source>Persephone</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.erinyen">
+                <source>Erinyen</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.zeus">
+                <source>Zeus</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.metis">
+                <source>Metis</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.dione">
+                <source>Dione</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.navStyle.uranus">
+                <source>Uranus</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.fontStyles">
+                <source>Font Style Settings</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-12-30T06:22:47Z" product-name="ns_revolution_slider">
+		<header/>
+		<body>
+			<trans-unit id="slides.description">
+				<source>Slides</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
