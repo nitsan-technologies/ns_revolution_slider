@@ -322,6 +322,7 @@
                     <settings.stopLoop>
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopLoop</label>
+                            <onChange>reload</onChange>
                             <config>
                                 <type>check</type>
                                 <eval>boolean</eval>
@@ -332,37 +333,16 @@
                     <settings.stopAtSlide>
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopAtSlide</label>
+                            <displayCond>FIELD:settings.stopLoop:=:1</displayCond>
                             <config>
                                 <type>input</type>
-                                <default>-1</default>
-                                <placeholder>-1</placeholder>
+                                <default>1</default>
+                                <placeholder>1</placeholder>
                                 <size>15</size>
                                 <eval>trim</eval>
                             </config>
                         </TCEforms>
                     </settings.stopAtSlide>
-                    <settings.stopAfterLoops>
-                        <TCEforms>
-                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopAfterLoops</label>
-                            <config>
-                                <type>check</type>
-                                <eval>boolean</eval>
-                                <default>1</default>
-                            </config>
-                        </TCEforms>
-                    </settings.stopAfterLoops>
-                    <settings.slideDelay>
-                        <TCEforms>
-                            <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.slideDelay</label>
-                            <config>
-                                <type>input</type>
-                                <default>9000</default>
-                                <placeholder>9000</placeholder>
-                                <size>15</size>
-                                <eval>trim</eval>
-                            </config>
-                        </TCEforms>
-                    </settings.slideDelay>
                     <settings.responsiveLevels>
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.responsiveLevels</label>

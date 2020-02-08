@@ -369,7 +369,7 @@
                 <source>General Settings</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.shadow">
-                <source>Shadow (1-6 drop-shadow options)</source>
+                <source>Slider Shadow (1-6 drop-shadow options)</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.spinner">
                 <source>Spinner</source>
@@ -381,7 +381,7 @@
                 <source>Stop after loops</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.stopAtSlide">
-                <source>Stop at slide (Depend on stopAfterLoops)</source>
+                <source>Stop at slide</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.slideDelay">
                 <source>Delay</source>

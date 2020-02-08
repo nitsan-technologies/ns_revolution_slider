@@ -148,17 +148,16 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     sliderLayout: 'auto',
                     sliderType: 'standard',
                     shadow: " . (isset($settings['shadow']) && $settings['shadow'] !== '' ? $settings['shadow'] : 0) . ",
-                    spinner: '" . ($settings['spinner'] ? 'on' : 'off') . "',
+                    spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
                     stopLoop: '" . ($settings['stopLoop'] ? 'on' : 'off') . "',
-                    stopAfterLoops: " . ($settings['stopAfterLoops'] ? 0 : -1) . ',
-                    stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' ? $settings['stopAtSlide'] : -1) . ',
-                    ' . (isset($settings['slideDelay']) && $settings['slideDelay'] !== '' ? 'delay: ' . $settings['slideDelay'] . ',': '') . '
-                    responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
-                    visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
-                    gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
-                    gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
-                    hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
-                    debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
+                    stopAtSlide: " . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '0' && $settings['stopAtSlide'] !== '-1' ? $settings['stopAtSlide'] : 0) . ",
+                    " . (isset($settings['slideDelay']) && $settings['slideDelay'] !== '' ? 'delay: ' . $settings['slideDelay'] . ',': '') . "
+                    responsiveLevels: [" . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . "],
+                    visibilityLevels: [" . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . "],
+                    gridwidth: [" . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . "],
+                    gridheight: [" . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . "],
+                    hideSliderAtLimit: " . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ",
+                    debugMode: " . ($settings['debugMode'] ? 'true' : 'false') . ",
                     
                     /* basic navigation arrows and bullets */
                     navigation: {

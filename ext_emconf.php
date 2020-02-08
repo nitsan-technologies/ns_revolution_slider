@@ -19,4 +19,12 @@ $EM_CONF[$_EXTKEY] = [
         'conflicts' => [],
         'suggests' => [],
     ],
+    'autoload' => [
+       'classmap' => [
+          'Classes'
+       ],
+       'psr-4' => [
+            'NITSAN\\NsRevolutionSlider\\' => 'Classes'
+        ]
+    ],
 ];

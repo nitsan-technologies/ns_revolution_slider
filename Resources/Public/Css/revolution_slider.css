@@ -5,7 +5,27 @@
 	visibility: inherit;
 	transition: none 0s ease 0s;
 	text-align: left;
+	border: 2px white;
 }
 .tx-ns-revolution-slider .tp-parallax-wrap .tp-caption a:hover{
 	text-decoration: none;
+}
+.tx-ns-revolution-slider .rev_slider .tp-mask-wrap .tp-caption{
+	text-shadow: 3px 2px 7px black;
+}
+.tx-ns-revolution-slider .rev_slider .tp-mask-wrap .tp-caption.rs-hover-ready {
+	border-width: 2px;
+	border-color: #fff;
+}
+.tx-ns-revolution-slider .rev_slider .tp-mask-wrap .tp-caption.rs-hover-ready:hover {
+	border-color: thistle;
+}
+.tp-loader.spinner3 .bounce1, .tp-loader.spinner3 .bounce2, .tp-loader.spinner3 .bounce3 {
+	box-shadow: 0 0 20px 0 blanchedalmond;
+}
+.ares.tparrows:hover {
+	background: #ffffff !important;
+}
+.ares .tp-title-wrap {
+	line-height: 59px !important;
 }
