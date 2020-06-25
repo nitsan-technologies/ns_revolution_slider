@@ -44,12 +44,12 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
                 31 => 'backend.animation.smoothslidefrombottom',
                 32 => 'backend.animation.noanimation'
             ];
-            $headerContent =
+            $itemContent =
                 "<table class='table table-condensed table-hover news-table'><thead><tr><th colspan='2'>" . LocalizationUtility::translate('pi1_title', 'ns_revolution_slider') . '</th></tr></thead>';
 
             $ffXml = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($row['pi_flexform']);
 
-            $itemContent= '<tbody>';
+            $itemContent .= '<tbody>';
 
             if ($ffXml['data']['sDEF']['lDEF']['settings.slides']['vDEF'] != '' && $ffXml['data']['sDEF']['lDEF']['settings.slides_type']['vDEF'] == 0) {
                 $itemContent .= '<tr>
