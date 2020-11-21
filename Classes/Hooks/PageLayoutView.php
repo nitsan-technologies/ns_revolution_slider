@@ -1,5 +1,5 @@
 <?php
-namespace Nitsan\NsRevolutionSlider\Hooks;
+namespace NITSAN\NsRevolutionSlider\Hooks;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
