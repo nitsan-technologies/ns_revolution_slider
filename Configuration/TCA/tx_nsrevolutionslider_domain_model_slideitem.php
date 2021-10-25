@@ -22,14 +22,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'slide_effect,data_duration,headline,description,button_text,button_link',
+        'searchFields' => 'slide_effect,data_duration,headline,headline_animation,description,description_animation,button_text,button_link,button_animation',
         'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/tx_nsrevolutionslider_domain_model_slideitem.png'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slide_effect, data_duration, image, headline, description, button_text, button_link',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slide_effect, data_duration, image, headline, headline_animation, description, description_animation, button_text, button_link, button_animation, box_check, box_animation, box_width, box_height, box_bg_color, box_text_color, box_bg_trans_opacity, box_position_x, box_position_y, headline_position_x, headline_position_y, description_position_x, description_position_y, button_position_x, button_position_y',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slide_effect, data_duration, image, headline, description, button_text, button_link, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slide_effect, data_duration, image, headline, headline_animation, description, description_animation, button_text, button_link, button_animation, box_check, box_animation, box_width, box_height, box_bg_color, box_text_color, box_bg_trans_opacity, box_position_x, box_position_y, headline_position_x, headline_position_y, description_position_x, description_position_y, button_position_x, button_position_y, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -248,6 +248,50 @@ return [
                 'eval' => 'trim'
             ],
         ],
+        'headline_animation' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_animation',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 0],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 1],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop', 2],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom', 3],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft', 4],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright', 5],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright', 6],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft', 7],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop', 8],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom', 9],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongleft', 10],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongright', 11],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortleft', 12],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortright', 13],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.randomrotatescale', 14],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfrombottom', 15],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromleft', 16],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromright', 17],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromtop', 18],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.maskedzoomout', 19],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.popupsmooth', 20],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfrombottom', 21],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfromzero', 22],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfrombottom', 23],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromleft', 24],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromright', 25],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromtop', 26],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopupone', 27],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopuptwo', 28],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromright', 29],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromleft', 30],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothslidefrombottom', 31],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.noanimation', 32]
+                ],
+                'default' => 0,
+            ],
+        ],
         'description' => [
             'exclude' => true,
             'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description',
@@ -258,6 +302,50 @@ return [
                 'eval' => 'trim',
             ],
 
+        ],
+        'description_animation' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_animation',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 0],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 1],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop', 2],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom', 3],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft', 4],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright', 5],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright', 6],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft', 7],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop', 8],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom', 9],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongleft', 10],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongright', 11],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortleft', 12],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortright', 13],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.randomrotatescale', 14],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfrombottom', 15],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromleft', 16],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromright', 17],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromtop', 18],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.maskedzoomout', 19],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.popupsmooth', 20],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfrombottom', 21],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfromzero', 22],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfrombottom', 23],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromleft', 24],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromright', 25],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromtop', 26],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopupone', 27],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopuptwo', 28],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromright', 29],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromleft', 30],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothslidefrombottom', 31],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.noanimation', 32]
+                ],
+                'default' => 0,
+            ],
         ],
         'button_text' => [
             'exclude' => true,
@@ -278,5 +366,245 @@ return [
                 'eval' => 'trim'
             ],
         ],
+        'button_animation' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_animation',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 0],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 1],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop', 2],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom', 3],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft', 4],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright', 5],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright', 6],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft', 7],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop', 8],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom', 9],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongleft', 10],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongright', 11],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortleft', 12],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortright', 13],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.randomrotatescale', 14],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfrombottom', 15],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromleft', 16],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromright', 17],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromtop', 18],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.maskedzoomout', 19],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.popupsmooth', 20],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfrombottom', 21],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfromzero', 22],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfrombottom', 23],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromleft', 24],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromright', 25],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromtop', 26],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopupone', 27],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopuptwo', 28],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromright', 29],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromleft', 30],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothslidefrombottom', 31],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.noanimation', 32]
+                ],
+                'default' => 0,
+            ],
+        ],
+        'box_check' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_check',
+            'onChange' => 'reload',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'box_animation' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_animation',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 0],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 1],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop', 2],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom', 3],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft', 4],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright', 5],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright', 6],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft', 7],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop', 8],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom', 9],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongleft', 10],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongright', 11],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortleft', 12],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortright', 13],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.randomrotatescale', 14],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfrombottom', 15],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromleft', 16],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromright', 17],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromtop', 18],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.maskedzoomout', 19],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.popupsmooth', 20],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfrombottom', 21],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfromzero', 22],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfrombottom', 23],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromleft', 24],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromright', 25],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromtop', 26],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopupone', 27],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopuptwo', 28],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromright', 29],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromleft', 30],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothslidefrombottom', 31],
+                    ['LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.noanimation', 32]
+                ],
+                'default' => 0,
+            ],
+        ],
+        'box_bg_color' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_bg_color',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'colorpicker',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'box_text_color' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_font_color',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'colorpicker',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'box_bg_trans_opacity' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_bg_trans_opacity',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,float',
+                'range' => [
+                    'lower' => 0,
+                    'upper' => 1,
+                ],
+                'default' => 0,
+                'slider' => [
+                    'step' => 0.1,
+                    'width' => 200,
+                ],
+            ],
+        ],
+        'box_width' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_width',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number,required'
+            ],
+        ],
+        'box_height' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_height',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number,required'
+            ],
+        ],
+        'box_position_x' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_position_x',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number,required'
+            ],
+        ],
+        'box_position_y' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_position_y',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number,required'
+            ],
+        ],
+        'headline_position_x' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_position_x',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+        'headline_position_y' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_position_y',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+        'description_position_x' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_position_x',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+        'description_position_y' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_position_y',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+        'button_position_x' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_position_x',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+        'button_position_y' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_position_y',
+            'displayCond' => 'FIELD:box_check:=:1',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,number'
+            ],
+        ],
+
     ],
 ];

@@ -1,58 +1,103 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2019-12-30T06:22:47Z" product-name="ns_revolution_slider">
-        <header/>
-        <body>
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-12-30T06:22:47Z" product-name="ns_revolution_slider">
+		<header/>
+		<body>
             <trans-unit id="tx_ns_revolution_slider_slider.pluginName">
                 <source>[NITSAN] Revolution Slider</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
-                <source>Slide Item</source>
-            </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_effect">
-                <source>Slide Effect</source>
-            </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
-                <source>Slide Duration</source>
-            </trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
+				<source>Slide Item</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_effect">
+				<source>Slide Effect</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
+				<source>Slide Duration</source>
+			</trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.slide_duration">
                 <source>Slide Duration</source>
             </trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.data_duration">
                 <source>Data Duration</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.image">
-                <source>Image</source>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_animation">
+				<source>Headline Animation</source>
+			</trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_color">
+                <source>Headline Font Color</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline">
-                <source>Headline</source>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_size_desktop">
+                <source>Headline Font Size (Desktop view)</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description">
-                <source>Description</source>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_size_tablet">
+                <source>Headline Font Size (Tablet view)</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text">
-                <source>Button Text</source>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_size_mobile">
+                <source>Headline Font Size (Mobile view)</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_link">
-                <source>Button Link</source>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_animation">
+				<source>Description Animation</source>
+			</trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_color">
+                <source>Description Font Color</source>
             </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slider">
-                <source>Slider</source>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_size_desktop">
+                <source>Description Font Size (Desktop view)</source>
             </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_size_tablet">
+                <source>Description Font Size (Tablet view)</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_size_mobile">
+                <source>Description Font Size (Mobile view)</source>
+            </trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text">
+				<source>Button Text</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_link">
+				<source>Button Link</source>
+			</trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text_color">
+                <source>Button Text Font Color</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text_size_desktop">
+                <source>Button Text Font Size (Desktop view)</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text_size_tablet">
+                <source>Button Text Font Size (Tablet view)</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_text_size_mobile">
+                <source>Button Text Font Size (Mobile view)</source>
+            </trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_animation">
+				<source>Button Animation</source>
+			</trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slider">
+				<source>Slider</source>
+			</trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.hidden">
                 <source>Visibility of content element</source>
             </trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slider_name">
                 <source>Slider Name</source>
             </trans-unit>
+			<trans-unit id="tx_nsrevolutionslider_domain_model_slider.slides">
+				<source>Slides</source>
+			</trans-unit>
+			<trans-unit id="tx_ns_revolution_slider_slider.name">
+				<source>Revolution slider</source>
+			</trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slider">
                 <source>Slider</source>
-            </trans-unit>
-            <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slides">
-                <source>Slides</source>
-            </trans-unit>
-            <trans-unit id="tx_ns_revolution_slider_slider.name">
-                <source>Revolution slider</source>
             </trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.sliderType">
                 <source>Select Slider By</source>
@@ -63,10 +108,10 @@
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.sliderType.selectslide">
                 <source>Select Individual Slide Items</source>
             </trans-unit>
-            <trans-unit id="tx_ns_revolution_slider_slider.description">
-                <source>Integrate world's most popular revolution slider</source>
-            </trans-unit>
-            <trans-unit id="tx_ns_revolution_slider_slider.animation.bounce">
+			<trans-unit id="tx_ns_revolution_slider_slider.description">
+				<source>Integrate world's most popular revolution slider</source>
+			</trans-unit>
+			<trans-unit id="tx_ns_revolution_slider_slider.animation.bounce">
                 <source>Bounce</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.animation.zoom">
@@ -368,8 +413,20 @@
             <trans-unit id="tx_ns_revolution_slider_slider.generalSettings">
                 <source>General Settings</source>
             </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.sliderLayout">
+                <source>Slider layout</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.sliderLayout.auto">
+                <source>Auto</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.sliderLayout.fullwidth">
+                <source>Full width</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.sliderLayout.fullscreen">
+                <source>Full screen</source>
+            </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.shadow">
-                <source>Slider Shadow (1-6 drop-shadow options)</source>
+                <source>Slide Shadow (1-6 drop-shadow options)</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.spinner">
                 <source>Spinner</source>
@@ -379,6 +436,9 @@
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.stopAfterLoops">
                 <source>Stop after loops</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.stopAfterLoopsEnable">
+                <source>Stop after loops enabled</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.stopAtSlide">
                 <source>Stop at slide</source>
@@ -412,6 +472,21 @@
             </trans-unit>
 
             <!-- Navigation styles-->
+            <trans-unit id="tx_ns_revolution_slider_slider.touchenabled">
+                <source>Touch enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.keyboardNavigation">
+                <source>Keyboard navigation enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.keyboard_direction">
+                <source>Keyboard direction</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.keyboard_direction.horizontal">
+                <source>Horizontal</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.keyboard_direction.vertical">
+                <source>Vertical</source>
+            </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.navigationStyles">
                 <source>Navigation Settings</source>
             </trans-unit>
@@ -420,6 +495,15 @@
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.onHoverStop">
                 <source>onHover stop</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.arrowsEnable">
+                <source>Arrows enabled</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.arrowsStyle">
+                <source>Arrows style</source>
+            </trans-unit>
+            <trans-unit id="tx_ns_revolution_slider_slider.arrowsHideOnleave">
+                <source>Arrows Hide On leave</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.bulletsEnable">
                 <source>Bullets enabled</source>
@@ -472,6 +556,51 @@
             <trans-unit id="tx_ns_revolution_slider_slider.fontStyles">
                 <source>Font Style Settings</source>
             </trans-unit>
-        </body>
-    </file>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_bg_color">
+                <source>Box Background Color</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_font_color">
+                <source>Box Text Color</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_bg_trans_opacity">
+                <source>Box Background Transparency Opacity</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_position_x">
+                <source>Box X Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_position_y">
+                <source>Box Y Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_animation">
+                <source>Select Box Animation Effect</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_height">
+                <source>Box Height (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_position_x">
+                <source>Headline X Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.headline_position_y">
+                <source>Headline Y Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_position_x">
+                <source>Description X Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.description_position_y">
+                <source>Description Y Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_position_x">
+                <source>Button X Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.button_position_y">
+                <source>Button Y Position (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_width">
+                <source>Box Width (Ex:'Desktop','Laptop','Tablet','Mobile')</source>
+            </trans-unit>
+            <trans-unit id="tx_nsrevolutionslider_domain_model_slideitem.box_check">
+                <source>Enable the content box in slide</source>
+            </trans-unit>
+		</body>
+	</file>
 </xliff>

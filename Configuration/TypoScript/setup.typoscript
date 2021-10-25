@@ -28,7 +28,7 @@ plugin.tx_nsrevolutionslider_slider {
     settings {
         # jQuery enable & file path
         includeJquery = {$plugin.tx_nsrevolutionslider_slider.settings.includeJquery}
-        jQueryFile = EXT:ns_revolution_slider/Resources/Public/Js/jquery-2.1.4.min.js
+        jQueryFile = typo3conf/ext/ns_revolution_slider/Resources/Public/Js/jquery-2.1.4.min.js
         customStyleFilePath = {$plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath}
         # Revolution slider CSS & JS path
         jsFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath}
@@ -36,11 +36,22 @@ plugin.tx_nsrevolutionslider_slider {
         # Global settings
         slideDuration = {$plugin.tx_nsrevolutionslider_slider.settings.slideDuration}
         slideEffect = {$plugin.tx_nsrevolutionslider_slider.settings.slideEffect}
+        headlineAnimation = {$plugin.tx_nsrevolutionslider_slider.settings.headlineAnimation}
+        descriptionAnimation = {$plugin.tx_nsrevolutionslider_slider.settings.descriptionAnimation}
+        buttonAnimation = {$plugin.tx_nsrevolutionslider_slider.settings.buttonAnimation}
     }
 }
 page {
     includeCSS {
         # Custom CSS
         revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
+
     }
+   
 }
+lib.replaceSpace = TEXT
+lib.replaceSpace {
+    current = 1
+    stdWrap.trim = 1
+}
+

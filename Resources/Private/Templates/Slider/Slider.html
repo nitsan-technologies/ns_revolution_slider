@@ -3,8 +3,8 @@
 
 	<f:section name="content">
 		<f:if condition="{slides}">
-            <div class="rev_slider_wrapper">
-                <div id="rev_slider_{uid}" class="rev_slider" data-version="5.4.8" style="display:none">
+            <div class="rev_slider_wrapper {feSettings.sliderLayout.outerWrapClass}">
+                <div id="rev_slider_{uid}" class="rev_slider {feSettings.sliderLayout.innerWrapClass}" data-version="5.4.8" style="display:none">
                     <ul>
                     	<f:for each="{slides}" as="slide" iteration="i">
                     		<f:variable name="navTitle" value="{slide.image.originalResource.title}" />
@@ -15,38 +15,397 @@
 	                        	<f:if condition="{slide.image}">
 	                        		<f:image image="{slide.image}" maxWidth="1920" maxHeight="1080" class="rev-slidebg" treatIdAsReference="1" />
 	                        	</f:if>
-	                        	<f:if condition="{slide.headline}">
-							        <div class="tp-caption" data-x="center" data-hoffset="" data-y="bottom" data-voffset="480"
-								        data-width="['842','842','481','360']" data-height="none" data-fontsize="[50,45,40,30]"
-								        data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
-								        data-responsive_offset="on" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
-							            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-								        style="z-index: 5; white-space: nowrap; color: #fff;">
-								        {slide.headline}
-							        </div>
-							    </f:if>
-							    <f:if condition="{slide.description}">
-							        <div class="tp-caption" data-x="center" data-hoffset="" data-y="bottom" data-voffset="370"
-							            data-width="['942','942','481','360']" data-height="none" data-fontsize="[28,26,24,22]"
-							            data-whitespace="['nowrap','nowrap','normal','normal']" data-type="text"
-							            data-responsive_offset="on" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
-							            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-							            style="z-index: 5; white-space: nowrap; color: #fff;}">
-							            <f:format.nl2br>{slide.description}</f:format.nl2br>
-							        </div>
-							    </f:if>
-							    <f:if condition="{slide.buttonText} && {slide.buttonLink}">
-						            <div class="tp-caption Photography-Button rev-btn  tp-withaction rs-hover-ready" data-x="['center','center','center','center']" data-hoffset="" data-y="['top','top','bottom','bottom']" data-voffset="['500','300','280','280']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-responsive_offset="on" data-responsive="off" data-textalign="['center','center','center','center']" data-paddingtop="[13,13,13,13]" data-paddingright="[35,35,35,35]" data-paddingbottom="[13,13,13,13]" data-paddingleft="[35,35,35,35]" data-fontsize="[18,18,16,16]" data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' >
-						        		<f:link.typolink parameter="{slide.buttonLink}">
-						        			<span style="color: #fff;">{slide.buttonText}</span>
-						        		</f:link.typolink>
-								    </div>
-							    </f:if>
+
+	                        	<f:if condition="{slide.boxCheck}">
+	                        		<f:then>
+	                        			<f:variable name="one" value='{f:render(section:"box",arguments:"{var:slide.boxAnimation}")}' />
+			                        	<f:variable name="two" value='{f:render(section:"ops",arguments:"{var:slide.boxAnimation}")}' />
+
+			                        	<div class="tp-caption tp-box" data-opacity="{slide.boxBgTransOpacity}" data-bg="{slide.boxBgColor}" data-width="[{slide.boxWidth}]" data-height="[{slide.boxHeight}]" data-x="[{slide.boxPositionX}]" data-y="[{slide.boxPositionY}]" data-hoffset="" data-voffset="" data-responsive="off" data-responsive_offset="off"  data-whitespace="nowrap" data-paddingtop="" data-paddingright="" data-paddingbottom="" data-paddingleft="" <f:format.htmlentitiesDecode keepQuotes="true">{f:cObject(typoscriptObjectPath:"lib.replaceSpace",data:"{one}")}{slide.boxBgTransOpacity}{f:cObject(typoscriptObjectPath:"lib.replaceSpace",data:"{two}")}</f:format.htmlentitiesDecode> style="z-index: 1; background-color: {slide.boxBgColor};"> </div>
+			                        	<f:if condition="{slide.headline}">
+								        	<div class="tp-caption" data-x="[{slide.headlinePositionX}]" data-y="[{slide.headlinePositionY}]" data-hoffset="" data-voffset="" data-width="['842','842','481','360']" data-height="none" data-fontsize="{slide.headlineSize}" data-lineheight="['normal','normal','normal','normal']" data-whitespace="['normal','normal','normal','normal']" data-type="text" data-responsive="off" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-paddingtop="" data-paddingright="" data-paddingbottom="" data-paddingleft="" <f:render section="variation" arguments="{var:slide.headlineAnimation}" /> style="z-index: 5; white-space: nowrap; {f:if(condition:  slide.boxTextColor, then: 'color: {slide.boxTextColor};',else:'color: {slide.buttonTextColor};')}">
+										        {slide.headline}
+									        </div>
+									    </f:if>
+									    <f:if condition="{slide.description}">
+								            <div class="tp-caption" data-x="[{slide.descriptionPositionX}]" data-hoffset="" data-y="[{slide.descriptionPositionY}]" data-voffset=""
+									            data-width="[{slide.boxWidth}]" data-lineheight="['normal','normal','normal','normal']" data-height="none" data-fontsize="{slide.descriptionSize}"
+									            data-whitespace="['normal','normal','normal','normal']" data-type="text"
+									            data-responsive="off" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-paddingtop="" data-paddingright="" data-paddingbottom="" data-paddingleft="" style="z-index: 5; {f:if(condition: slide.boxTextColor, then: 'color: {slide.boxTextColor};',else:'color: {slide.buttonTextColor};')}"
+									            <f:render section="variation" arguments="{var:slide.descriptionAnimation}" /> >
+									            <f:format.nl2br>{slide.description}</f:format.nl2br>
+									        </div>
+									    </f:if>
+									    <f:if condition="{slide.buttonText} && {slide.buttonLink}">
+									    	<div class="tp-caption Photography-Button rev-btn tp-withaction rs-hover-ready" data-x="[{slide.buttonPositionX}]" data-hoffset="" data-y="[{slide.buttonPositionY}]" data-voffset="" data-width="none" data-height="none" data-fontsize="{slide.buttonTextSize}" data-whitespace="nowrap" data-type="button" data-responsive_offset="on" data-responsive="off" data-textalign="['center','center','center','center']" data-paddingtop="[13,13,13,13]" data-paddingright="[35,35,35,35]" data-paddingbottom="[13,13,13,13]" data-paddingleft="[35,35,35,35]" data-borderwidth="" <f:render section="variation" arguments="{var:slide.buttonAnimation}" /> >
+								            	<f:if condition="{slide.boxTextColor} || {slide.buttonTextColor}">
+										        	<f:then>
+										        		<f:link.typolink parameter="{slide.buttonLink}">
+										        			<span style="{f:if(condition: slide.boxTextColor, then: 'color: {slide.boxTextColor};',else:'color: {slide.buttonTextColor};')}">{slide.buttonText}</span>
+										        		</f:link.typolink>
+										        	</f:then>
+										        	<f:else>
+										        		<f:link.typolink parameter="{slide.buttonLink}"><span>{slide.buttonText}</span></f:link.typolink>
+										        	</f:else>
+										        </f:if>
+										    </div>
+									    </f:if>
+	                        		</f:then>
+	                        		<f:else>
+	                        			<f:if condition="{slide.headline}">
+									        <div class="tp-caption" data-x="['center','center','center','center']" data-hoffset="" data-y="['bottom','bottom','bottom','bottom']" data-voffset="480"
+										        data-width="['842','842','481','360']" data-height="none" data-fontsize="{slide.headlineSize}" data-lineheight="['normal','normal','normal','normal']"
+										        data-whitespace="['normal','normal','normal','normal']" data-type="text"
+										        data-responsive="off" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
+									            data-paddingright="[0,0,0,0]" data-paddingbottom="[20,0,0,0]" data-paddingleft="[0,0,0,0]"
+									            <f:render section="variation" arguments="{var:slide.headlineAnimation}" />
+										        style="z-index: 5; white-space: nowrap; {f:if(condition: slide.headlineColor, then: ' color: {slide.headlineColor};')}">
+										        {slide.headline}
+									        </div>
+									    </f:if>
+									    <f:if condition="{slide.description}">
+									        <div class="tp-caption" data-x="['center','center','center','center']" data-hoffset="" data-y="['bottom','bottom','bottom','bottom']" data-voffset="370"
+									            data-width="['942','942','481','360']" data-lineheight="['normal','normal','normal','normal']" data-height="none" data-fontsize="{slide.descriptionSize}"
+									            data-whitespace="['normal','normal','normal','normal']" data-type="text"
+									            data-responsive="off" data-responsive_offset="on" data-textAlign="['center','center','center','center']" data-paddingtop="[20,0,0,0]"
+									            data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+									            style="z-index: 5; {f:if(condition: slide.descriptionColor, then: ' color: {slide.descriptionColor};')}"
+									            <f:render section="variation" arguments="{var:slide.descriptionAnimation}" /> >
+									            <f:format.nl2br>{slide.description}</f:format.nl2br>
+									        </div>
+									    </f:if>
+									    <f:if condition="{slide.buttonText} && {slide.buttonLink}">
+								            <div class="tp-caption Photography-Button rev-btn  tp-withaction rs-hover-ready" data-x="['center','center','center','center']" data-hoffset="" data-y="['top','top','bottom','bottom']" data-voffset="['500','300','280','280']" data-width="none" data-height="none" data-fontsize="{slide.buttonTextSize}" data-whitespace="nowrap" data-type="button" data-responsive_offset="on" data-responsive="off" data-textalign="['center','center','center','center']" data-paddingtop="[13,13,13,13]" data-paddingright="[35,35,35,35]" data-paddingbottom="[13,13,13,13]" data-paddingleft="[35,35,35,35]" data-borderwidth="[2,2,2,2]" <f:render section="variation" arguments="{var:slide.buttonAnimation}" /> >
+								            	<f:if condition="{slide.buttonTextColor}">
+										        	<f:then>
+										        		<f:link.typolink parameter="{slide.buttonLink}">
+										        			<span style="{f:if(condition: slide.buttonTextColor, then: 'color: {slide.buttonTextColor};')}">{slide.buttonText}</span>
+										        		</f:link.typolink>
+										        	</f:then>
+										        	<f:else>
+										        		<f:link.typolink parameter="{slide.buttonLink}"><span>{slide.buttonText}</span></f:link.typolink>
+										        	</f:else>
+										        </f:if>
+										    </div>
+									    </f:if>
+	                        		</f:else>
+	                        	</f:if>
+
+	                        	
 	                        </li>
                     	</f:for>
                     </ul>
 	            </div>
 	        </div>
 		</f:if>
+	</f:section>
+	<f:section name="variation">
+	    <f:switch expression="{var}">
+	        <f:case value="1">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="2">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="3">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="4">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="5">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="6">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:right;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="7">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:left;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="8">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:top;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="9">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:bottom;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="10">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:left;skX:45px;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="11">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:right;skX:-85px;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="12">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:-200px;skX:85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="13">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="14">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:{-250,250};y:{-150,150};rX:{-90,90};rY:{-90,90};rZ:{-360,360};sX:0;sY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="15">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[100%];z:0;rZ:-35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="16">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="17">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="18">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[-100%];z:0;rZ:35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="19">
+	            data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="20">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="21">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="22">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="23">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="24">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="25">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="26">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="27">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="28">
+	            data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="29">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="30">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="31">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="32">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:defaultCase>
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:defaultCase>
+	    </f:switch>
+	</f:section>
+	<f:section name="box">
+	    <f:switch expression="{var}">
+	        <f:case value="1">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="2">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="3">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="4">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="5">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="6">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:right;","to":"o:
+	        </f:case>
+	        <f:case value="7">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:left;","to":"o:
+	        </f:case>
+	        <f:case value="8">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:top;","to":"o:
+	        </f:case>
+	        <f:case value="9">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:bottom;","to":"o:
+	        </f:case>
+	        <f:case value="10">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:left;skX:45px;","to":"o:
+	        </f:case>
+	        <f:case value="11">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:right;skX:-85px;","to":"o:
+	        </f:case>
+	        <f:case value="12">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:-200px;skX:85px;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="13">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="14">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"x:{-250,250};y:{-150,150};rX:{-90,90};rY:{-90,90};rZ:{-360,360};sX:0;sY:0;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="15">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[100%];z:0;rZ:-35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="16">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.1,"speed":2000,"frame":"0","from":"x:[-105%];z:0;rX:0deg;rY:0deg;rZ:-90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="17">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"x:[105%];z:0;rX:45deg;rY:0deg;rZ:90deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="18">
+	            data-frames='[{"delay":500,"split":"chars","splitdelay":0.05,"speed":2000,"frame":"0","from":"y:[-100%];z:0;rZ:35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="19">
+	            data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="20">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="21">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:bottom;rZ:90deg;sX:2;sY:2;","to":"o:
+	        </f:case>
+	        <f:case value="22">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:
+	        </f:case>
+	        <f:case value="23">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="24">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="25">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="26">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="27">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.8;sY:0.8;skX:0;skY:0;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="28">
+	            data-frames='[{"delay":500,"speed":1000,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="29">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="30">
+	            data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:
+	        </f:case>
+	        <f:case value="31">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:
+	        </f:case>
+	        <f:case value="32">
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","to":"o:
+	        </f:case>
+	        <f:defaultCase>
+	            data-frames='[{"delay":500,"speed":2000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:
+	        </f:defaultCase>
+	    </f:switch>
+	</f:section>
+	<f:section name="ops">
+	    <f:switch expression="{var}">
+	        <f:case value="1">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="2">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="3">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="4">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="5">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"x:50px;opacity:0;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="6">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="7">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="8">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="9">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="10">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="11">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="12">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="13">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="14">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="15">
+	            ;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="16">
+	            ;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="17">
+	            ;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="18">
+	            ;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="19">
+	            ;","ease":"Power2.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="20">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="21">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="22">
+	            ;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="23">
+	            ;","ease":"Power2.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="24">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="25">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="26">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="27">
+	            ;","ease":"Power4.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="28">
+	            ;","ease":"Power2.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="29">
+	            ;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="30">
+	            ;","ease":"Power3.easeOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="31">
+	            ;","ease":"Power4.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:case value="32">
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":2000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:case>
+	        <f:defaultCase>
+	            ;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+	        </f:defaultCase>
+	    </f:switch>
 	</f:section>
 </html>

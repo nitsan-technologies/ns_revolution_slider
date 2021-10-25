@@ -26,6 +26,22 @@
 .ares.tparrows:hover {
 	background: #ffffff !important;
 }
-.ares .tp-title-wrap {
-	line-height: 59px !important;
+
+.rev_slider_box {
+	color: #fff;
+	text-align: center;
+}
+
+.rev_slider_box h1 {
+	text-shadow: 3px 2px 7px black;
+}
+
+.rev_slider_box p { 
+    text-shadow: 3px 2px 7px black;
+}
+
+.rev_slider_link {
+	display: inline-block;
+	border: 2px solid #fff;
+    padding: 13px 35px;
 }

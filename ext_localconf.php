@@ -3,15 +3,20 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
     function () {
+        if (version_compare(TYPO3_branch, '10.0', '>=')) {
+            $controller = \NITSAN\NsRevolutionSlider\Controller\SliderController::class;
+        } else {
+            $controller = 'Slider';
+        }
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'NITSAN.NsRevolutionSlider',
             'Slider',
             [
-                'Slider' => 'slider'
+                $controller => 'slider'
             ],
             // non-cacheable actions
             [
-                'Slider' => 'slider'
+                $controller => 'slider'
             ]
         );
 
