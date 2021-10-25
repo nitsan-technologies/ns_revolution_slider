@@ -9,7 +9,7 @@ $_EXTKEY = 'ns_revolution_slider';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NITSAN.NsRevolutionSlider',
     'Slider',
-    'NS Revolution slider'
+    'NS Slider Revolution'
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_nsrevolutionslider_domain_model_slideitem', 'EXT:ns_revolution_slider/Resources/Private/Language/locallang_csh_tx_nsrevolutionslider_domain_model_slideitem.xlf');

@@ -4,7 +4,7 @@
 		<header/>
 		<body>
             <trans-unit id="tx_ns_revolution_slider_slider.pluginName">
-                <source>[NITSAN] Revolution Slider</source>
+                <source>[NITSAN] Slider Revolution</source>
             </trans-unit>
 			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
 				<source>Slide Item</source>
@@ -46,7 +46,7 @@
 				<source>Slides</source>
 			</trans-unit>
 			<trans-unit id="pi1_title">
-				<source>Revolution slider</source>
+				<source>Slider Revolution</source>
 			</trans-unit>
 			<trans-unit id="backend.slides">
 				<source>Slides</source>

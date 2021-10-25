@@ -30,7 +30,7 @@ plugin.tx_nsrevolutionslider_slider {
         includeJquery = {$plugin.tx_nsrevolutionslider_slider.settings.includeJquery}
         jQueryFile = typo3conf/ext/ns_revolution_slider/Resources/Public/Js/jquery-2.1.4.min.js
         customStyleFilePath = {$plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath}
-        # Revolution slider CSS & JS path
+        # Slider Revolution CSS & JS path
         jsFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath}
         cssFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.cssFolderPath}
         # Global settings

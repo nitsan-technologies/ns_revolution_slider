@@ -1,17 +1,17 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => '[NITSAN] Revolution Slider',
-    'description' => 'World\'s most pupular revolution slider is now available in TYPO3 CMS too. Plug-n-play with Buy license https://revolution.themepunch.com/jquery/ Live-Demo: https://demo.t3terminal.com/t3t-extensions/sliders/revolution-slider/ You can download PRO version for more-features & free-support at https://t3terminal.com/typo3-revolution-slider-extension-pro',
+    'title' => '[NITSAN] Slider Revolution',
+    'description' => 'World\'s most popular WordPress slider revolution is now available in TYPO3. We recommend to try our premium version, which includes backend slider revolution mdoule https://t3terminal.com/revolution-slider-typo3-extension',
     'category' => 'plugin',
-    'author' => 'NITSAN Technologies Pvt Ltd',
+    'author' => 'Team NITSAN',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'author_email' => 'sanjay@nitsan.in',
     'state' => 'stable',
     'uploadfolder' => 1,
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.0.0',
+    'version' => '1.1.0',
     'constraints' => [
         'depends' => [
             'typo3' => '8.0.0-11.5.99',

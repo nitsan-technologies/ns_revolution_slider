@@ -4,7 +4,7 @@
 		<header/>
 		<body>
             <trans-unit id="tx_ns_revolution_slider_slider.pluginName">
-                <source>[NITSAN] Revolution Slider</source>
+                <source>[NITSAN] Slider Revolution</source>
             </trans-unit>
 			<trans-unit id="tx_nsrevolutionslider_domain_model_slideitem">
 				<source>Slide Item</source>
@@ -94,7 +94,7 @@
 				<source>Slides</source>
 			</trans-unit>
 			<trans-unit id="tx_ns_revolution_slider_slider.name">
-				<source>Revolution slider</source>
+				<source>Slider Revolution</source>
 			</trans-unit>
             <trans-unit id="tx_nsrevolutionslider_domain_model_slider.slider">
                 <source>Slider</source>
@@ -109,7 +109,7 @@
                 <source>Select Individual Slide Items</source>
             </trans-unit>
 			<trans-unit id="tx_ns_revolution_slider_slider.description">
-				<source>Integrate world's most popular revolution slider</source>
+				<source>Integrate world's most popular Slider Revolution</source>
 			</trans-unit>
 			<trans-unit id="tx_ns_revolution_slider_slider.animation.bounce">
                 <source>Bounce</source>
