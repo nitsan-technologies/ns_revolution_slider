@@ -21,7 +21,7 @@
         }
     },
     "replace": {
-        "nitsan/ns-revolution-slider": "self.version"
+        "typo3-ter/ns-revolution-slider": "self.version"
     },
     "config": {
         "vendor-dir": ".Build/vendor/",
