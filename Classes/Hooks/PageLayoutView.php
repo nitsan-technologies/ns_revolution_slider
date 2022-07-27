@@ -50,7 +50,7 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
             $ffXml = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($row['pi_flexform']);
 
             $itemContent .= '<tbody>';
-
+            $ffXml['data']['sDEF']['lDEF']['settings.slides']['vDEF'] = isset($ffXml['data']['sDEF']['lDEF']['settings.slides']['vDEF']) ? $ffXml['data']['sDEF']['lDEF']['settings.slides']['vDEF'] : '';
             if ($ffXml['data']['sDEF']['lDEF']['settings.slides']['vDEF'] != '' && $ffXml['data']['sDEF']['lDEF']['settings.slides_type']['vDEF'] == 0) {
                 $itemContent .= '<tr>
                                     <th>' . LocalizationUtility::translate('backend.slides', 'ns_revolution_slider') . "</th>

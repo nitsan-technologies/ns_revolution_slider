@@ -148,6 +148,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $slideData->setButtonAnimation(($slideData->getButtonAnimation() ? $slideData->getButtonAnimation() : $settings['buttonAnimation']));
                         $slideData->setButtonTextSize($settings['buttonTextSize']);
                         $slideData->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        if($slides == false){
+                            $slides = array();
+                        }
                         $slides[] = $slideData;
                     }
                 }
@@ -171,6 +174,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
                     $slide->setButtonTextSize($settings['buttonTextSize']);
                     $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                    if($slides == false){
+                        $slides = array();
+                    }
                     $slides[] = $slide;
                 }
             }
@@ -183,11 +189,13 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'slides' => $slides
             ]
         );
+        $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
         if ($settings['customStyle']) {
             $GLOBALS['TSFE']->additionalHeaderData[$this->request->getControllerExtensionKey() . '_' . $uid . '_style'] .= "<style type='text/css'>"
             . $settings['customStyle'] .
             '</style>';
         }
+        $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] = isset($GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid]) ? $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] : '';
         $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] .= "
             <script type='text/javascript'>
                 jQuery('#rev_slider_" . $uid . "').show().revolution({
