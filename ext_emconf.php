@@ -2,7 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => '[NITSAN] Slider Revolution',
-    'description' => 'World\'s most popular WordPress slider revolution is now available in TYPO3. We recommend to try our premium version, which includes backend slider revolution mdoule https://t3terminal.com/revolution-slider-typo3-extension',
+    'description' => 'World\'s most popular WordPress slider revolution is now available in TYPO3. We recommend to try our premium version, which includes backend slider revolution mdoule https://t3planet.com/revolution-slider-typo3-extension',
     'category' => 'plugin',
     'author' => 'Team NITSAN',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
