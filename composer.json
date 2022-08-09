@@ -1,7 +1,7 @@
 {
     "name": "nitsan/ns-revolution-slider",
     "type": "typo3-cms-extension",
-    "description": "World's most pupular revolution slider is now available in TYPO3 CMS too. Live-Demo: https://demo.t3terminal.com/t3t-extensions/sliders/revolution-slider You can download PRO version for more-features & free-support at https://t3terminal.com/typo3-extensions/revolution-slider-typo3-plugin-pro",
+    "description": "World's most pupular revolution slider is now available in TYPO3 CMS too. Live-Demo: https://demo.t3planet.com/t3t-extensions/sliders/revolution-slider You can download PRO version for more-features & free-support at https://t3planet.com/typo3-slider-revolution-extension",
     "homepage": "https://extensions.typo3.org/extension/ns_revolution_slider/",
     "license": "GPL-2.0+",
     "keywords": [
