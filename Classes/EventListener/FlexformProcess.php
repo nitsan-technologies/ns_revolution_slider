@@ -1,14 +1,18 @@
 <?php
-namespace NITSAN\NsRevolutionSlider\Hooks;
 
+declare(strict_types=1);
+
+namespace NITSAN\NsRevolutionSlider\EventListener;
+
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface
+final class FlexformProcess
 {
-    public function preProcess(\TYPO3\CMS\Backend\View\PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-        if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider') {
-            $drawItem = false;
+        $row = $event->getRecord();
+        if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider'){
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',
@@ -87,5 +91,6 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
 
             $itemContent .= '</tbody></table>';
         }
+        $event->setPreviewContent($itemContent);
     }
 }

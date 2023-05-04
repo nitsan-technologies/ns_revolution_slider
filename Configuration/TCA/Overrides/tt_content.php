@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $_EXTKEY = 'ns_revolution_slider';
 
@@ -7,7 +7,7 @@ $_EXTKEY = 'ns_revolution_slider';
  * Plugin
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    'NITSAN.NsRevolutionSlider',
+    'NsRevolutionSlider',
     'Slider',
     'NS Slider Revolution'
 );

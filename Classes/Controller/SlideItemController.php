@@ -16,6 +16,20 @@ namespace NITSAN\NsRevolutionSlider\Controller;
  */
 class SlideItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    /**
+     * slideItemRepository
+     *
+     * @var SlideItemRepository
+     */
+    protected $slideItemRepository = null;
+
+    /**
+     * @param slideItemRepository $slideItemRepository
+     */
+    public function injectSlideItemRepository(\NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository $slideItemRepository)
+    {
+        $this->slideItemRepository = $slideItemRepository;
+    }
 
     /**
      * action list

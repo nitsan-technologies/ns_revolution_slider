@@ -67,16 +67,10 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         //Plug-in settings
         $settings = $this->settings;
         //Javascript and CSS files fetch from folder
-
-        if (version_compare(TYPO3_branch, '9.0', '>')) {
-            $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
-            $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
-        } else {
-            $javascript = GeneralUtility::getFilesInDir(PATH_site . $settings['jsFolderPath']);
-            $css = GeneralUtility::getFilesInDir(PATH_site . $settings['cssFolderPath']);
-        }
-        $jsFiles = [];
-        $cssFiles = [];
+        
+        $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
+        $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
+        
         if ($settings['includeJquery']) {
             $this->pageRenderer->addJsFooterFile($settings['jQueryFile']);
         }
@@ -109,8 +103,8 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function sliderAction()
     {
-        $this->contentObj = $this->configurationManager->getContentObject();
-        $uid = $this->contentObj->data['uid'];
+        $contentObj = $this->configurationManager->getContentObject();
+        $uid = $contentObj->data['uid'];
         //Plug-in settings
         $settings = $this->settings;
         $customSettings = $this->customSettings($settings);
@@ -159,25 +153,29 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             //Slider type => Whole Slider
             if ($settings['slider']) {
                 $slideData = $this->sliderRepository->findByUid($settings['slider']);
-                foreach ($slideData->getSlides() as $slide) {
-                    //Animation Configuration updated base on Slide
-                    $slide->setSlideEffect(($slide->getSlideEffect() ? $slide->getSlideEffect() : $settings['slideEffect']));
-                    //Headline Configuration
-                    $slide->setHeadlineAnimation(($slide->getHeadlineAnimation() ? $slide->getHeadlineAnimation() : $settings['headlineAnimation']));
-                    $slide->setHeadlineSize($settings['headlineSize']);
-                    $slide->setHeadlineColor(($settings['headline_color'] !== '' ? $settings['headline_color'] : '#fff'));
-                    //Description Configuration
-                    $slide->setDescriptionAnimation(($slide->getDescriptionAnimation() ? $slide->getDescriptionAnimation() : $settings['descriptionAnimation']));
-                    $slide->setDescriptionSize($settings['descriptionSize']);
-                    $slide->setDescriptionColor(($settings['description_color'] !== '' ? $settings['description_color'] : '#fff'));
-                    //Button Configuration
-                    $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
-                    $slide->setButtonTextSize($settings['buttonTextSize']);
-                    $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
-                    if($slides == false){
-                        $slides = array();
+                if($slideData){
+                    foreach ($slideData->getSlides() as $slide) {
+                        //Animation Configuration updated base on Slide
+                        $slide->setSlideEffect(($slide->getSlideEffect() ? $slide->getSlideEffect() : $settings['slideEffect']));
+                        //Headline Configuration
+                        $slide->setHeadlineAnimation(($slide->getHeadlineAnimation() ? $slide->getHeadlineAnimation() : $settings['headlineAnimation']));
+                        $slide->setHeadlineSize($settings['headlineSize']);
+                        $slide->setHeadlineColor(($settings['headline_color'] !== '' ? $settings['headline_color'] : '#fff'));
+                        //Description Configuration
+                        $slide->setDescriptionAnimation(($slide->getDescriptionAnimation() ? $slide->getDescriptionAnimation() : $settings['descriptionAnimation']));
+                        $slide->setDescriptionSize($settings['descriptionSize']);
+                        $slide->setDescriptionColor(($settings['description_color'] !== '' ? $settings['description_color'] : '#fff'));
+                        //Button Configuration
+                        $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
+                        $slide->setButtonTextSize($settings['buttonTextSize']);
+                        $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        if($slides == false){
+                            $slides = array();
+                        }
+                        $slides[] = $slide;
                     }
-                    $slides[] = $slide;
+                }else {
+                    $slides[] = [];
                 }
             }
         }
@@ -248,6 +246,8 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 });
             </script>
         ";
+
+        return $this->htmlResponse();
     }
 
     /**
