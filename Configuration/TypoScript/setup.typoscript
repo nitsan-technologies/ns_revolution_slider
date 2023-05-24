@@ -28,7 +28,7 @@ plugin.tx_nsrevolutionslider_slider {
     settings {
         # jQuery enable & file path
         includeJquery = {$plugin.tx_nsrevolutionslider_slider.settings.includeJquery}
-        jQueryFile = typo3conf/ext/ns_revolution_slider/Resources/Public/Js/jquery-2.1.4.min.js
+        jQueryFile = Js/jquery-2.1.4.min.js
         customStyleFilePath = {$plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath}
         # Slider Revolution CSS & JS path
         jsFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath}

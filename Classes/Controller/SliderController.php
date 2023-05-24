@@ -70,9 +70,14 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         
         $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
         $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
-        
         if ($settings['includeJquery']) {
-            $this->pageRenderer->addJsFooterFile($settings['jQueryFile']);
+            if(\TYPO3\CMS\Core\Core\Environment::isComposerMode()){
+                $asset = $this->getPath('','ns_revolution_slider').$settings['jQueryFile'];
+                $this->pageRenderer->addJsFooterFile($asset);
+            }else {
+                $asset = \TYPO3\CMS\Core\Core\Environment::getExtensionsPath().'/ns_revolution_slider/Resources/Public/'.$settings['jQueryFile'];
+                $this->pageRenderer->addJsFooterFile($asset);
+            }
         }
         foreach ($javascript as $fileKey => $file) {
             $pathinfo = pathinfo($file);
@@ -333,5 +338,15 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $customSettings['bulletsStyle']['tmp'] = "'" . $customSettings['bulletsStyle']['tmp'] . "'";
         }
         return $customSettings;
+    }
+
+    public function getPath($path, $extName){
+        $arguments = ['path' => $path, 'extensionName' => $extName];
+        $path = $arguments['path'];
+        $publicPath =sprintf('EXT:%s/Resources/Public/%s',$arguments['extensionName'],ltrim($path, '/'));
+        $uri = \TYPO3\CMS\Core\Utility\PathUtility::getPublicResourceWebPath($publicPath);
+        $assetPath = substr($uri, 1);
+
+        return $assetPath;
     }
 }
