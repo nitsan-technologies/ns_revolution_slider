@@ -1,4 +1,5 @@
 <?php
+
 $langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
 return [
     'ctrl' => [
@@ -16,7 +17,7 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'security' => [ 
+        'security' => [
             'ignorePageTypeRestriction' => true
         ],
         'searchFields' => '',

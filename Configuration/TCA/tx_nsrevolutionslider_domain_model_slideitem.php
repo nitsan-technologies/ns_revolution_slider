@@ -1,4 +1,5 @@
 <?php
+
 $langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
 return [
     'ctrl' => [
@@ -17,7 +18,7 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'security' => [ 
+        'security' => [
             'ignorePageTypeRestriction' => true
         ],
         'searchFields' => 'slide_effect,data_duration,headline,headline_animation,description,description_animation,button_text,button_link,button_animation',
@@ -100,27 +101,27 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                       'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 
+                       'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting',
                        'value' => ''
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade',
                         'value' =>'fade'
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideup', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideup',
                         'value' => 'slideup'
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideright', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideright',
                         'value' => 'slideright'
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideleft', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideleft',
                         'value' => 'slideleft'
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverup', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slideoverup',
                         'value' => 'slideoverup'
                     ],
                     [
@@ -334,43 +335,43 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.globalSetting',
                         'value' => 0
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.fade',
                         'value' => 1
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromtop',
                         'value' => 2
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfrombottom',
                         'value' => 3
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromleft',
                         'value' => 4
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.sortfromright',
                         'value' => 5
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromright',
                         'value' => 6
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromleft',
                         'value' => 7
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfromtop',
                         'value' => 8
                     ],
                     [
-                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom', 
+                        'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.longfrombottom',
                         'value' => 9
                     ],
                     [
@@ -842,95 +843,95 @@ return [
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongleft',
-                        'label' =>  10
+                        'value' =>  10
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromlongright',
-                        'label' =>  11
+                        'value' =>  11
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortleft',
-                        'label' =>  12
+                        'value' =>  12
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.skewfromshortright',
-                        'label' =>  13
+                        'value' =>  13
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.randomrotatescale',
-                        'label' =>  14
+                        'value' =>  14
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfrombottom',
-                        'label' =>  15
+                        'value' =>  15
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromleft',
-                        'label' =>  16
+                        'value' =>  16
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromright',
-                        'label' =>  17
+                        'value' =>  17
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.letterflyinfromtop',
-                        'label' =>  18
+                        'value' =>  18
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.maskedzoomout',
-                        'label' =>  19
+                        'value' =>  19
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.popupsmooth',
-                        'label' =>  20
+                        'value' =>  20
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfrombottom',
-                        'label' =>  21
+                        'value' =>  21
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.rotateinfromzero',
-                        'label' =>  22
+                        'value' =>  22
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfrombottom',
-                        'label' =>  23
+                        'value' =>  23
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromleft',
-                        'label' =>  24
+                        'value' =>  24
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromright',
-                        'label' =>  25
+                        'value' =>  25
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.slidemaskfromtop',
-                        'label' =>  26
+                        'value' =>  26
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopupone',
-                        'label' =>  27
+                        'value' =>  27
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothpopuptwo',
-                        'label' =>  28
+                        'value' =>  28
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromright',
-                        'label' =>  29
+                        'value' =>  29
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothmaskfromleft',
-                        'label' =>  30
+                        'value' =>  30
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.smoothslidefrombottom',
-                        'label' =>  31
+                        'value' =>  31
                     ],
                     [
                         'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.noanimation',
-                        'label' =>  32
+                        'value' =>  32
                     ]
                 ],
                 'default' => 0,

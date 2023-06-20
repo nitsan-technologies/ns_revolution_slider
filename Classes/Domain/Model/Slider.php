@@ -1,4 +1,5 @@
 <?php
+
 namespace NITSAN\NsRevolutionSlider\Domain\Model;
 
 /***
@@ -16,7 +17,6 @@ namespace NITSAN\NsRevolutionSlider\Domain\Model;
  */
 class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * slides
      *

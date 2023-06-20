@@ -12,7 +12,7 @@ final class FlexformProcess
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
         $row = $event->getRecord();
-        if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider'){
+        if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider') {
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',
@@ -73,7 +73,7 @@ final class FlexformProcess
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.slide_effect', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] != '' ? $ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] :  LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] != '' ? $ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.headline_animation', 'ns_revolution_slider') . "</th>
@@ -81,16 +81,17 @@ final class FlexformProcess
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.description_animation', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF'] != '' ?  LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
 
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.button_animation', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF']], 'ns_revolution_slider') :  LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
 
             $itemContent .= '</tbody></table>';
+
+            $event->setPreviewContent($itemContent);
         }
-        $event->setPreviewContent($itemContent);
     }
 }
