@@ -1,14 +1,18 @@
 <?php
-namespace NITSAN\NsRevolutionSlider\Hooks;
 
+declare(strict_types=1);
+
+namespace NITSAN\NsRevolutionSlider\EventListener;
+
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface
+final class FlexformProcess
 {
-    public function preProcess(\TYPO3\CMS\Backend\View\PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
+        $row = $event->getRecord();
         if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider') {
-            $drawItem = false;
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',
@@ -69,7 +73,7 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.slide_effect', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] != '' ? $ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] :  LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] != '' ? $ffXml['data']['sDEF']['lDEF']['settings.slide_effect']['vDEF'] : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.headline_animation', 'ns_revolution_slider') . "</th>
@@ -77,15 +81,17 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
                             </tr>';
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.description_animation', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF'] != '' ?  LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.description_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
 
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.button_animation', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF']], 'ns_revolution_slider') :  LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                                <td style='padding-left: 10px;'>" . ($ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF'] != '' ? LocalizationUtility::translate($animation[$ffXml['data']['sDEF']['lDEF']['settings.button_animation']['vDEF']], 'ns_revolution_slider') : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
                             </tr>';
 
             $itemContent .= '</tbody></table>';
+
+            $event->setPreviewContent($itemContent);
         }
     }
 }

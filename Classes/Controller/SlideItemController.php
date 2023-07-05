@@ -1,5 +1,8 @@
 <?php
+
 namespace NITSAN\NsRevolutionSlider\Controller;
+
+use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
 
 /***
  *
@@ -16,6 +19,17 @@ namespace NITSAN\NsRevolutionSlider\Controller;
  */
 class SlideItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    /**
+     * slideItemRepository
+     *
+     * @var SlideItemRepository
+     */
+    protected $slideItemRepository = null;
+
+    public function __construct(SlideItemRepository $slideItemRepository)
+    {
+        $this->slideItemRepository = $slideItemRepository;
+    }
 
     /**
      * action list

@@ -1,9 +1,6 @@
 <?php
-if (version_compare(TYPO3_branch, '9.0', '<')) {
-    $langfile = 'LLL:EXT:lang/locallang_general.xlf:';
-} else {
-    $langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
-}
+
+$langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider',
@@ -13,7 +10,6 @@ return [
         'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -21,46 +17,22 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
+        'security' => [
+            'ignorePageTypeRestriction' => true
+        ],
         'searchFields' => '',
         'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/tx_nsrevolutionslider_domain_model_slider.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slider_name, slides',
-    ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, slider_name, slides, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_diffsource, hidden, slider_name, slides, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
             'label' => $langfile . 'LGL.language',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        $langfile . 'LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ]
-                ],
+             'config' => [
+                'type' => 'language',
                 'default' => 0,
-            ],
-        ],
-        'l10n_parent' => [
-            'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
-            'label' => $langfile . 'LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'default' => 0,
-                'items' => [
-                    ['', 0],
-                ],
-                'foreign_table' => 'tx_nsrevolutionslider_domain_model_slider',
-                'foreign_table_where' => 'AND {#tx_nsrevolutionslider_domain_model_slider}.{#pid}=###CURRENT_PID### AND {#tx_nsrevolutionslider_domain_model_slider}.{#sys_language_uid} IN (-1,0)',
             ],
         ],
         'l10n_diffsource' => [
@@ -83,8 +55,8 @@ return [
                 'type' => 'check',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
+                        'value' => 0,
                         'invertStateDisplay' => true
                     ]
                 ],
@@ -95,8 +67,8 @@ return [
             'label' => $langfile . 'LGL.starttime',
             'config' => [
                 'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'renderType' => 'datetime',
+                'eval' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true
@@ -108,8 +80,8 @@ return [
             'label' => $langfile . 'LGL.endtime',
             'config' => [
                 'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'renderType' => 'datetime',
+                'eval' => 'datetime',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038)
