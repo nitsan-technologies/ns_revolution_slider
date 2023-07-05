@@ -962,9 +962,9 @@ return [
             'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.box_bg_trans_opacity',
             'displayCond' => 'FIELD:box_check:=:1',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 30,
-                'eval' => 'trim,float',
+                'format' => 'decimal',
                 'range' => [
                     'lower' => 0,
                     'upper' => 1,
