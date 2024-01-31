@@ -1,6 +1,6 @@
 <?php
 
-$EM_CONF[$_EXTKEY] = [
+$EM_CONF['ns_revolution_slider'] = [
     'title' => '[NITSAN] Slider Revolution',
     'description' => 'World\'s most popular WordPress slider revolution is now available in TYPO3. We recommend to try our premium version, which includes backend slider revolution mdoule https://t3planet.com/revolution-slider-typo3-extension',
     'category' => 'plugin',
@@ -10,7 +10,7 @@ $EM_CONF[$_EXTKEY] = [
     'state' => 'stable',
     'uploadfolder' => 1,
     'createDirs' => '',
-    'version' => '12.0.0',
+    'version' => '12.0.1',
     'constraints' => [
         'depends' => [
             'typo3' => '12.0.0-12.4.99',
