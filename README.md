@@ -1,4 +1,8 @@
-# ns_revolution_slider
+# Slider Revolution
 
-- Live demo: https://demo.t3planet.com/t3t-extensions/sliders/revolution-slider
-- Information: https://t3planet.com/revolution-slider-typo3-extension
+- Live Frontend Demo: https://demo.t3planet.com/t3-extensions/revolution-slider
+- Live Backend Demo: https://demo.t3planet.com/live-typo3/t3t-extensions/typo3/?TYPO3_AUTOLOGIN_USER=editor-revolution-slider
+- Free version: https://extensions.typo3.org/extension/ns_revolution_slider
+- Premium version: https://t3planet.com/typo3-slider-revolution-extension
+- Documentation: https://docs.t3planet.com/en/latest/ExtNsRevolutionSlider/Index.html
+- Changelog: https://t3planet.com/typo3-slider-revolution-extension
