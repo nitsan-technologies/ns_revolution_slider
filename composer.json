@@ -1,7 +1,7 @@
 {
     "name": "nitsan/ns-revolution-slider",
     "type": "typo3-cms-extension",
-    "description": "More than just a TYPO3 Slider! The TYPO3 Slider Revolution is developed in official partnership with Slider Revolution. It allows you to create effective sliders easily using the drag-and-drop feature. It comes with over 250+ modern slider templates and more than 2000+ pre-built slider elements, offering a wide range of transitions and effects. *** Live Demo: https://demo.t3planet.com/t3-extensions/revolution-slider/ *** Premium Version, Documentation & Free Support: https://t3planet.com/typo3-slider-revolution-extension",
+    "description": "More than just a TYPO3 Slider! The TYPO3 Slider Revolution is developed in official partnership with Slider Revolution. It allows you to create effective sliders easily using the drag-and-drop feature. It comes with over 250+ modern slider templates and more than 2000+ pre-built slider elements, offering a wide range of transitions and effects.",
     "homepage": "https://t3planet.com/typo3-slider-revolution-extension",
     "license": "GPL-2.0+",
     "keywords": [
