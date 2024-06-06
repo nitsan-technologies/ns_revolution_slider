@@ -75,9 +75,12 @@
 						<TCEforms>
 							<label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.slide_duration</label>
 		                    <config>
-		                        <type>input</type>
+		                        <type>number</type>
                                 <placeholder>3000</placeholder>
 		                        <size>15</size>
+                                <range>
+                                    <upper>99999</upper>
+                                </range>
 		                        <eval>trim</eval>
 		                    </config>
 		                </TCEforms>
@@ -762,11 +765,17 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.shadow</label>
                             <config>
-                                <type>input</type>
-                                <default>0</default>
                                 <placeholder>0</placeholder>
-                                <size>15</size>
-                                <eval>trim</eval>
+                                <type>number</type>
+                                <size>30</size>
+                                <range>
+                                    <lower>1</lower>
+                                    <upper>6</upper>
+                                </range>
+                                <slider>
+                                    <step>1</step>
+                                </slider>
+                                <default>1</default>
                             </config>
                         </TCEforms>
                     </settings.shadow>
@@ -777,6 +786,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>1</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.spinner>
@@ -788,6 +798,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>1</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.stopLoop>
@@ -796,11 +807,10 @@
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.stopAtSlide</label>
                             <displayCond>FIELD:settings.stopLoop:=:1</displayCond>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <default>1</default>
                                 <placeholder>1</placeholder>
                                 <size>15</size>
-                                <eval>trim</eval>
                             </config>
                         </TCEforms>
                     </settings.stopAtSlide>
@@ -856,10 +866,9 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.hideSliderAtLimit</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <default>0</default>
                                 <size>15</size>
-                                <eval>trim</eval>
                             </config>
                         </TCEforms>
                     </settings.hideSliderAtLimit>
@@ -870,6 +879,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>0</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.debugMode>
@@ -891,6 +901,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>1</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.keyboardNavigation>
@@ -921,6 +932,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>0</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.mouseScrollNavigation>
@@ -931,6 +943,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>0</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.onHoverStop>
@@ -941,6 +954,7 @@
                             <type>check</type>
                             <eval>boolean</eval>
                             <default>1</default>
+                            <renderType>checkboxToggle</renderType>
                         </config>
                         </TCEforms>
                     </settings.touchenabled>
@@ -951,6 +965,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>1</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.arrowsEnable>
@@ -1020,6 +1035,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>0</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.arrowsHideOnleave>
@@ -1030,6 +1046,7 @@
                                 <type>check</type>
                                 <eval>boolean</eval>
                                 <default>1</default>
+                                <renderType>checkboxToggle</renderType>
                             </config>
                         </TCEforms>
                     </settings.bulletsEnable>
@@ -1109,6 +1126,9 @@
                                 <type>input</type>
                                 <renderType>colorpicker</renderType>
                                 <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <eval>trim</eval>
                             </config>
                         </TCEforms>
@@ -1119,7 +1139,9 @@
                             <config>
                                 <type>input</type>
                                 <renderType>colorpicker</renderType>
-                                <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <eval>trim</eval>
                             </config>
                         </TCEforms>
@@ -1131,6 +1153,9 @@
                                 <type>input</type>
                                 <renderType>colorpicker</renderType>
                                 <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <eval>trim</eval>
                             </config>
                         </TCEforms>
@@ -1139,9 +1164,12 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_size_desktop</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
+                                <required>true</required>
                                 <default>50</default>
                                 <placeholder>50</placeholder>
                             </config>
@@ -1151,10 +1179,13 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_size_tablet</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <default>35</default>
+                                <required>true</required>
                                 <placeholder>35</placeholder>
                             </config>
                         </TCEforms>
@@ -1163,9 +1194,12 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.headline_size_mobile</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
+                                <required>true</required>
                                 <default>30</default>
                                 <placeholder>30</placeholder>
                             </config>
@@ -1175,11 +1209,14 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_size_desktop</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <default>28</default>
                                 <placeholder>28</placeholder>
-                                <eval>trim,required</eval>
+                                <required>true</required>
                             </config>
                         </TCEforms>
                     </settings.description_size_desktop>
@@ -1187,11 +1224,14 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_size_tablet</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <default>26</default>
                                 <placeholder>26</placeholder>
-                                <eval>trim,required</eval>
+                                <required>true</required>
                             </config>
                         </TCEforms>
                     </settings.description_size_tablet>
@@ -1199,11 +1239,14 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.description_size_mobile</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <default>24</default>
                                 <placeholder>24</placeholder>
-                                <eval>trim,required</eval>
+                                <required>true</required>
                             </config>
                         </TCEforms>
                     </settings.description_size_mobile>
@@ -1211,9 +1254,11 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_text_size_desktop</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
                                 <default>18</default>
                                 <placeholder>18</placeholder>
                             </config>
@@ -1223,9 +1268,12 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_text_size_tablet</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
+                                <required>true</required>
                                 <default>16</default>
                                 <placeholder>16</placeholder>
                             </config>
@@ -1235,9 +1283,12 @@
                         <TCEforms>
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.button_text_size_mobile</label>
                             <config>
-                                <type>input</type>
+                                <type>number</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <range>
+                                    <upper>100</upper>
+                                </range>
+                                <required>true</required>
                                 <default>16</default>
                                 <placeholder>16</placeholder>
                             </config>

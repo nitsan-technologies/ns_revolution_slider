@@ -301,12 +301,11 @@ return [
             'exclude' => true,
             'label' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slideitem.data_duration',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 15,
-                'eval' => 'trim,number',
                 'range' => [
                     'lower' => 0,
-                    'upper' => 1000000,
+                    'upper' => 10000,
                 ],
             ],
         ],
@@ -790,6 +789,7 @@ return [
             'label' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slideitem.box_check',
             'onChange' => 'reload',
             'config' => [
+                'renderType' => 'checkboxToggle',
                 'type' => 'check',
             ],
         ],
