@@ -7,9 +7,3 @@ services:
   NITSAN\NsRevolutionSlider\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
-
-  NITSAN\NsRevolutionSlider\EventListener\FlexformProcess:
-    tags:
-      - name: event.listener
-        identifier: 'flexform-process'
-        event: TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent

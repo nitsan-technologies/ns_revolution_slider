@@ -2,6 +2,8 @@
 
 namespace NITSAN\NsRevolutionSlider\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /***
  *
  * This file is part of the "[NITSAN] Revolution slider" Extension for TYPO3 CMS.
@@ -15,6 +17,6 @@ namespace NITSAN\NsRevolutionSlider\Domain\Repository;
 /**
  * The repository for SlideItem
  */
-class SlideItemRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class SlideItemRepository extends Repository
 {
 }

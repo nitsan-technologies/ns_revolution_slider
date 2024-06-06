@@ -2,22 +2,18 @@
 
 defined('TYPO3') || die('Access denied.');
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use NITSAN\NsRevolutionSlider\Controller\SliderController;
+
+ExtensionUtility::configurePlugin(
     'NsRevolutionSlider',
     'Slider',
     [
-        \NITSAN\NsRevolutionSlider\Controller\SliderController::class => 'slider'
+        SliderController::class => 'slider'
     ],
     // non-cacheable actions
     [
-        \NITSAN\NsRevolutionSlider\Controller\SliderController::class => 'slider'
+        SliderController::class => 'slider'
     ]
 );
 
-$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-
-$iconRegistry->registerIcon(
-    'ns_revolution_slider-plugin-slider',
-    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-    ['source' => 'EXT:ns_revolution_slider/Resources/Public/Icons/user_plugin_slider.svg']
-);

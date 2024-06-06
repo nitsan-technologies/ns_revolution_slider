@@ -1,9 +1,11 @@
 <?php
 
-$langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+$coreLanguageFile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
+$localLanguageFile = 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:';
+
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider',
+        'title' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slider',
         'label' => 'slider_name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -17,10 +19,10 @@ return [
             'endtime' => 'endtime',
         ],
         'security' => [
-            'ignorePageTypeRestriction' => true
+            'ignorePageTypeRestriction' => true,
         ],
         'searchFields' => '',
-        'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/tx_nsrevolutionslider_domain_model_slider.svg'
+        'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/tx_nsrevolutionslider_domain_model_slider.svg',
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_diffsource, hidden, slider_name, slides, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
@@ -28,7 +30,7 @@ return [
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => $langfile . 'LGL.language',
+            'label' => $coreLanguageFile . 'LGL.language',
              'config' => [
                 'type' => 'language',
                 'default' => 0,
@@ -40,7 +42,7 @@ return [
             ],
         ],
         't3ver_label' => [
-            'label' => $langfile . 'LGL.versionLabel',
+            'label' => $coreLanguageFile . 'LGL.versionLabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -49,59 +51,59 @@ return [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.hidden',
+            'label' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slider.hidden',
             'config' => [
                 'type' => 'check',
                 'items' => [
                     [
                         'label' => '',
                         'value' => 0,
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
             ],
         ],
         'starttime' => [
             'exclude' => true,
-            'label' => $langfile . 'LGL.starttime',
+            'label' => $coreLanguageFile . 'LGL.starttime',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'endtime' => [
             'exclude' => true,
-            'label' => $langfile . 'LGL.endtime',
+            'label' => $coreLanguageFile . 'LGL.endtime',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'slider_name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.slider_name',
+            'label' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slider.slider_name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim'
+                'eval' => 'trim',
             ],
         ],
         'slides' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slider.slides',
+            'label' => $localLanguageFile . 'tx_nsrevolutionslider_domain_model_slider.slides',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
