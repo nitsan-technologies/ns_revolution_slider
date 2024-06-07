@@ -1,5 +1,11 @@
 <?php
-if (version_compare(TYPO3_branch, '9.0', '<')) {
+
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+
+$typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(
+    VersionNumberUtility::getCurrentTypo3Version()
+);
+if (version_compare($typo3VersionArray['version_main'], '9.0', '<')) {
     $langfile = 'LLL:EXT:lang/locallang_general.xlf:';
 } else {
     $langfile = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
@@ -125,7 +131,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim'
+                'eval' => 'trim,required'
             ],
         ],
         'slides' => [

@@ -78,7 +78,10 @@
 		                        <type>input</type>
                                 <placeholder>3000</placeholder>
 		                        <size>15</size>
-		                        <eval>trim</eval>
+		                        <eval>trim,int</eval>
+                                <range>
+                                    <upper>99999</upper>
+                                </range>
 		                    </config>
 		                </TCEforms>
 					</settings.slide_duration>
@@ -763,10 +766,17 @@
                             <label>LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.shadow</label>
                             <config>
                                 <type>input</type>
-                                <default>0</default>
                                 <placeholder>0</placeholder>
                                 <size>15</size>
-                                <eval>trim</eval>
+                                <range>
+                                    <lower>1</lower>
+                                    <upper>6</upper>
+                                </range>
+                                <slider>
+                                    <step>1</step>
+                                </slider>
+                                <default>1</default>
+                                <eval>trim,int</eval>
                             </config>
                         </TCEforms>
                     </settings.shadow>
@@ -800,7 +810,7 @@
                                 <default>1</default>
                                 <placeholder>1</placeholder>
                                 <size>15</size>
-                                <eval>trim</eval>
+                                <eval>trim,int</eval>
                             </config>
                         </TCEforms>
                     </settings.stopAtSlide>
@@ -859,7 +869,7 @@
                                 <type>input</type>
                                 <default>0</default>
                                 <size>15</size>
-                                <eval>trim</eval>
+                                <eval>trim,int</eval>
                             </config>
                         </TCEforms>
                     </settings.hideSliderAtLimit>
@@ -1141,7 +1151,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>50</default>
                                 <placeholder>50</placeholder>
                             </config>
@@ -1153,7 +1163,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>35</default>
                                 <placeholder>35</placeholder>
                             </config>
@@ -1165,7 +1175,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>30</default>
                                 <placeholder>30</placeholder>
                             </config>
@@ -1179,7 +1189,7 @@
                                 <size>10</size>
                                 <default>28</default>
                                 <placeholder>28</placeholder>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                             </config>
                         </TCEforms>
                     </settings.description_size_desktop>
@@ -1191,7 +1201,7 @@
                                 <size>10</size>
                                 <default>26</default>
                                 <placeholder>26</placeholder>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                             </config>
                         </TCEforms>
                     </settings.description_size_tablet>
@@ -1203,7 +1213,7 @@
                                 <size>10</size>
                                 <default>24</default>
                                 <placeholder>24</placeholder>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                             </config>
                         </TCEforms>
                     </settings.description_size_mobile>
@@ -1213,7 +1223,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>18</default>
                                 <placeholder>18</placeholder>
                             </config>
@@ -1225,7 +1235,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>16</default>
                                 <placeholder>16</placeholder>
                             </config>
@@ -1237,7 +1247,7 @@
                             <config>
                                 <type>input</type>
                                 <size>10</size>
-                                <eval>trim,required</eval>
+                                <eval>trim,required,int</eval>
                                 <default>16</default>
                                 <placeholder>16</placeholder>
                             </config>

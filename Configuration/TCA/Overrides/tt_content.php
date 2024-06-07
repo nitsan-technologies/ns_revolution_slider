@@ -1,7 +1,6 @@
 <?php
-defined('TYPO3_MODE') or die();
 
-$_EXTKEY = 'ns_revolution_slider';
+defined('TYPO3_MODE') or die();
 
 /***************
  * Plugin
@@ -19,7 +18,11 @@ $_EXTKEY = 'ns_revolution_slider';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nsrevolutionslider_domain_model_slider');
 
 /* Flexform setting  */
-$pluginSignature = str_replace('_', '', $_EXTKEY) . '_' . 'slider';
+$pluginSignature = str_replace('_', '', 'ns_revolution_slider') . '_' . 'slider';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml');
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    $pluginSignature, 
+    'FILE:EXT:ns_revolution_slider/Configuration/FlexForm/FlexForm.xml'
+);

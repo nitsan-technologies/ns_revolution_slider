@@ -1,5 +1,9 @@
 <?php
+
 namespace NITSAN\NsRevolutionSlider\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***
  *
@@ -14,22 +18,20 @@ namespace NITSAN\NsRevolutionSlider\Domain\Model;
 /**
  * Slider
  */
-class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Slider extends AbstractEntity
 {
-
     /**
      * slides
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NITSAN\NsRevolutionSlider\Domain\Model\SlideItem>
+     * @var ?ObjectStorage<SlideItem>
      */
-    protected $slides = null;
+    protected ?ObjectStorage $slides = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -39,21 +41,18 @@ class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Do not modify this method!
      * It will be rewritten on each save in the extension builder
      * You may modify the constructor of this class instead
-     *
-     * @return void
      */
-    protected function initStorageObjects()
+    protected function initStorageObjects(): void
     {
-        $this->slides = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->slides = new ObjectStorage();
     }
 
     /**
      * Adds a SlideItem
      *
-     * @param \NITSAN\NsRevolutionSlider\Domain\Model\SlideItem $slide
-     * @return void
+     * @param SlideItem $slide
      */
-    public function addSlide(\NITSAN\NsRevolutionSlider\Domain\Model\SlideItem $slide)
+    public function addSlide(SlideItem $slide): void
     {
         $this->slides->attach($slide);
     }
@@ -61,10 +60,9 @@ class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a SlideItem
      *
-     * @param \NITSAN\NsRevolutionSlider\Domain\Model\SlideItem $slideToRemove The SlideItem to be removed
-     * @return void
+     * @param SlideItem $slideToRemove The SlideItem to be removed
      */
-    public function removeSlide(\NITSAN\NsRevolutionSlider\Domain\Model\SlideItem $slideToRemove)
+    public function removeSlide(SlideItem $slideToRemove): void
     {
         $this->slides->detach($slideToRemove);
     }
@@ -72,9 +70,9 @@ class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the slides
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NITSAN\NsRevolutionSlider\Domain\Model\SlideItem> $slides
+     * @return ?ObjectStorage<SlideItem> $slides
      */
-    public function getSlides()
+    public function getSlides(): ?ObjectStorage
     {
         return $this->slides;
     }
@@ -82,10 +80,9 @@ class Slider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the slides
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NITSAN\NsRevolutionSlider\Domain\Model\SlideItem> $slides
-     * @return void
+     * @param ObjectStorage<SlideItem> $slides
      */
-    public function setSlides(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $slides)
+    public function setSlides(ObjectStorage $slides): void
     {
         $this->slides = $slides;
     }

@@ -1,5 +1,9 @@
 <?php
+
 namespace NITSAN\NsRevolutionSlider\Domain\Model;
+
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***
  *
@@ -14,233 +18,232 @@ namespace NITSAN\NsRevolutionSlider\Domain\Model;
 /**
  * SlideItem
  */
-class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class SlideItem extends AbstractEntity
 {
-
     /**
      * slideEffect
      *
      * @var string
      */
-    protected $slideEffect = '';
+    protected string $slideEffect = '';
 
     /**
      * dataDuration
      *
      * @var string
      */
-    protected $dataDuration = '';
+    protected string $dataDuration = '';
 
     /**
      * image
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @var ?FileReference
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
-    protected $image = null;
+    protected ?FileReference $image = null;
 
     /**
      * headline
      *
      * @var string
      */
-    protected $headline = '';
+    protected string $headline = '';
 
     /**
      * headlineAnimation
      *
      * @var string
      */
-    protected $headlineAnimation = '';
+    protected string $headlineAnimation = '';
 
     /**
      * headlineColor
      *
      * @var string
      */
-    protected $headlineColor = '';
+    protected string $headlineColor = '';
 
     /**
      * headlineSize
      *
      * @var string
      */
-    protected $headlineSize = '';
+    protected string $headlineSize = '';
 
     /**
      * description
      *
      * @var string
      */
-    protected $description = '';
+    protected string $description = '';
 
     /**
      * descriptionAnimation
      *
      * @var string
      */
-    protected $descriptionAnimation = '';
+    protected string $descriptionAnimation = '';
 
     /**
      * descriptionColor
      *
      * @var string
      */
-    protected $descriptionColor = '';
+    protected string $descriptionColor = '';
 
     /**
      * descriptionSize
      *
      * @var string
      */
-    protected $descriptionSize = '';
+    protected string $descriptionSize = '';
 
     /**
      * buttonText
      *
      * @var string
      */
-    protected $buttonText = '';
+    protected string $buttonText = '';
 
     /**
      * buttonLink
      *
      * @var string
      */
-    protected $buttonLink = '';
+    protected string $buttonLink = '';
 
     /**
      * buttonAnimation
      *
      * @var string
      */
-    protected $buttonAnimation = '';
+    protected string $buttonAnimation = '';
 
     /**
      * buttonTextColor
      *
      * @var string
      */
-    protected $buttonTextColor = '';
+    protected string $buttonTextColor = '';
 
     /**
      * buttonTextSize
      *
      * @var string
      */
-    protected $buttonTextSize = '';
+    protected string $buttonTextSize = '';
 
     /**
      * boxBgColor
      *
      * @var string
      */
-    protected $boxBgColor = '';
+    protected string $boxBgColor = '';
 
     /**
      * boxTextColor
      *
      * @var string
      */
-    protected $boxTextColor = '';
+    protected string $boxTextColor = '';
 
     /**
      * boxBgTransOpacity
      *
      * @var string
      */
-    protected $boxBgTransOpacity = '';
+    protected string $boxBgTransOpacity = '';
 
     /**
      * boxPositionX
      *
      * @var string
      */
-    protected $boxPositionX = '';
+    protected string $boxPositionX = '';
 
     /**
      * boxPositionY
      *
      * @var string
      */
-    protected $boxPositionY = '';
+    protected string $boxPositionY = '';
 
     /**
      * boxAnimation
      *
      * @var string
      */
-    protected $boxAnimation = '';
+    protected string $boxAnimation = '';
 
     /**
      * boxHeight
      *
      * @var string
      */
-    protected $boxHeight = '';
+    protected string $boxHeight = '';
 
     /**
      * headlinePositionX
      *
      * @var string
      */
-    protected $headlinePositionX = '';
+    protected string $headlinePositionX = '';
 
     /**
      * headlinePositionY
      *
      * @var string
      */
-    protected $headlinePositionY = '';
+    protected string $headlinePositionY = '';
 
     /**
      * descriptionPositionX
      *
      * @var string
      */
-    protected $descriptionPositionX = '';
+    protected string $descriptionPositionX = '';
 
     /**
      * descriptionPositionY
      *
      * @var string
      */
-    protected $descriptionPositionY = '';
+    protected string $descriptionPositionY = '';
 
     /**
      * buttonPositionX
      *
      * @var string
      */
-    protected $buttonPositionX = '';
+    protected string $buttonPositionX = '';
 
     /**
      * buttonPositionY
      *
      * @var string
      */
-    protected $buttonPositionY = '';
+    protected string $buttonPositionY = '';
 
     /**
      * boxWidth
      *
      * @var string
      */
-    protected $boxWidth = '';
+    protected string $boxWidth = '';
 
     /**
      * boxCheck
      *
      * @var string
      */
-    protected $boxCheck = '';
+    protected string $boxCheck = '';
 
     /**
      * Returns the slideEffect
      *
      * @return string $slideEffect
      */
-    public function getSlideEffect()
+    public function getSlideEffect(): string
     {
         return $this->slideEffect;
     }
@@ -249,9 +252,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the slideEffect
      *
      * @param string $slideEffect
-     * @return void
      */
-    public function setSlideEffect($slideEffect)
+    public function setSlideEffect(string $slideEffect): void
     {
         $this->slideEffect = $slideEffect;
     }
@@ -261,7 +263,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $DataDuration
      */
-    public function getDataDuration()
+    public function getDataDuration(): string
     {
         return $this->dataDuration;
     }
@@ -270,9 +272,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the dataDuration
      *
      * @param string $dataDuration
-     * @return void
      */
-    public function setDataDuration($dataDuration)
+    public function setDataDuration(string $dataDuration): void
     {
         $this->dataDuration = $dataDuration;
     }
@@ -280,9 +281,9 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the image
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return ?FileReference $image
      */
-    public function getImage()
+    public function getImage(): ?FileReference
     {
         return $this->image;
     }
@@ -290,10 +291,9 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the image
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-     * @return void
+     * @param FileReference $image
      */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    public function setImage(FileReference $image): void
     {
         $this->image = $image;
     }
@@ -303,7 +303,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headline
      */
-    public function getHeadline()
+    public function getHeadline(): string
     {
         return $this->headline;
     }
@@ -312,9 +312,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headline
      *
      * @param string $headline
-     * @return void
      */
-    public function setHeadline($headline)
+    public function setHeadline(string $headline): void
     {
         $this->headline = $headline;
     }
@@ -324,7 +323,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headlineAnimation
      */
-    public function getHeadlineAnimation()
+    public function getHeadlineAnimation(): string
     {
         return $this->headlineAnimation;
     }
@@ -333,9 +332,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headlineAnimation
      *
      * @param string $headlineAnimation
-     * @return void
      */
-    public function setHeadlineAnimation($headlineAnimation)
+    public function setHeadlineAnimation(string $headlineAnimation): void
     {
         $this->headlineAnimation = $headlineAnimation;
     }
@@ -345,7 +343,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headlineColor
      */
-    public function getHeadlineColor()
+    public function getHeadlineColor(): string
     {
         return $this->headlineColor;
     }
@@ -354,9 +352,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headlineColor
      *
      * @param string $headlineColor
-     * @return void
      */
-    public function setHeadlineColor($headlineColor)
+    public function setHeadlineColor(string $headlineColor): void
     {
         $this->headlineColor = $headlineColor;
     }
@@ -366,7 +363,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headlineSize
      */
-    public function getHeadlineSize()
+    public function getHeadlineSize(): string
     {
         return $this->headlineSize;
     }
@@ -375,9 +372,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headlineSize
      *
      * @param string $headlineSize
-     * @return void
      */
-    public function setHeadlineSize($headlineSize)
+    public function setHeadlineSize(string $headlineSize): void
     {
         $this->headlineSize = $headlineSize;
     }
@@ -387,7 +383,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $description
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -396,9 +392,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the description
      *
      * @param string $description
-     * @return void
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -408,7 +403,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $descriptionAnimation
      */
-    public function getDescriptionAnimation()
+    public function getDescriptionAnimation(): string
     {
         return $this->descriptionAnimation;
     }
@@ -417,9 +412,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the descriptionAnimation
      *
      * @param string $descriptionAnimation
-     * @return void
      */
-    public function setDescriptionAnimation($descriptionAnimation)
+    public function setDescriptionAnimation(string $descriptionAnimation): void
     {
         $this->descriptionAnimation = $descriptionAnimation;
     }
@@ -429,7 +423,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $descriptionColor
      */
-    public function getDescriptionColor()
+    public function getDescriptionColor(): string
     {
         return $this->descriptionColor;
     }
@@ -438,9 +432,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the descriptionColor
      *
      * @param string $descriptionColor
-     * @return void
      */
-    public function setDescriptionColor($descriptionColor)
+    public function setDescriptionColor(string $descriptionColor): void
     {
         $this->descriptionColor = $descriptionColor;
     }
@@ -450,7 +443,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $descriptionSize
      */
-    public function getDescriptionSize()
+    public function getDescriptionSize(): string
     {
         return $this->descriptionSize;
     }
@@ -459,9 +452,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the descriptionSize
      *
      * @param string $descriptionSize
-     * @return void
      */
-    public function setDescriptionSize($descriptionSize)
+    public function setDescriptionSize(string $descriptionSize): void
     {
         $this->descriptionSize = $descriptionSize;
     }
@@ -471,7 +463,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonText
      */
-    public function getButtonText()
+    public function getButtonText(): string
     {
         return $this->buttonText;
     }
@@ -480,9 +472,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonText
      *
      * @param string $buttonText
-     * @return void
      */
-    public function setButtonText($buttonText)
+    public function setButtonText(string $buttonText): void
     {
         $this->buttonText = $buttonText;
     }
@@ -492,7 +483,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonLink
      */
-    public function getButtonLink()
+    public function getButtonLink(): string
     {
         return $this->buttonLink;
     }
@@ -501,9 +492,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonLink
      *
      * @param string $buttonLink
-     * @return void
      */
-    public function setButtonLink($buttonLink)
+    public function setButtonLink(string $buttonLink): void
     {
         $this->buttonLink = $buttonLink;
     }
@@ -513,7 +503,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonAnimation
      */
-    public function getButtonAnimation()
+    public function getButtonAnimation(): string
     {
         return $this->buttonAnimation;
     }
@@ -522,9 +512,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonAnimation
      *
      * @param string $buttonAnimation
-     * @return void
      */
-    public function setButtonAnimation($buttonAnimation)
+    public function setButtonAnimation(string $buttonAnimation): void
     {
         $this->buttonAnimation = $buttonAnimation;
     }
@@ -534,7 +523,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonTextColor
      */
-    public function getButtonTextColor()
+    public function getButtonTextColor(): string
     {
         return $this->buttonTextColor;
     }
@@ -543,9 +532,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonTextColor
      *
      * @param string $buttonTextColor
-     * @return void
      */
-    public function setButtonTextColor($buttonTextColor)
+    public function setButtonTextColor(string $buttonTextColor): void
     {
         $this->buttonTextColor = $buttonTextColor;
     }
@@ -555,7 +543,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonTextSize
      */
-    public function getButtonTextSize()
+    public function getButtonTextSize(): string
     {
         return $this->buttonTextSize;
     }
@@ -564,9 +552,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonTextSize
      *
      * @param string $buttonTextSize
-     * @return void
      */
-    public function setButtonTextSize($buttonTextSize)
+    public function setButtonTextSize(string $buttonTextSize): void
     {
         $this->buttonTextSize = $buttonTextSize;
     }
@@ -576,7 +563,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxBgColor
      */
-    public function getBoxBgColor()
+    public function getBoxBgColor(): string
     {
         return $this->boxBgColor;
     }
@@ -585,9 +572,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxBgColor
      *
      * @param string $boxBgColor
-     * @return void
      */
-    public function setBoxBgColor($boxBgColor)
+    public function setBoxBgColor(string $boxBgColor): void
     {
         $this->boxBgColor = $boxBgColor;
     }
@@ -597,7 +583,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxTextColor
      */
-    public function getBoxTextColor()
+    public function getBoxTextColor(): string
     {
         return $this->boxTextColor;
     }
@@ -606,9 +592,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxTextColor
      *
      * @param string $boxTextColor
-     * @return void
      */
-    public function setBoxTextColor($boxTextColor)
+    public function setBoxTextColor(string $boxTextColor): void
     {
         $this->boxTextColor = $boxTextColor;
     }
@@ -618,7 +603,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxBgTransOpacity
      */
-    public function getBoxBgTransOpacity()
+    public function getBoxBgTransOpacity(): string
     {
         return $this->boxBgTransOpacity;
     }
@@ -627,9 +612,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxBgTransOpacity
      *
      * @param string $boxBgTransOpacity
-     * @return void
      */
-    public function setBoxBgTransOpacity($boxBgTransOpacity)
+    public function setBoxBgTransOpacity(string $boxBgTransOpacity): void
     {
         $this->boxBgTransOpacity = $boxBgTransOpacity;
     }
@@ -639,7 +623,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxPositionX
      */
-    public function getBoxPositionX()
+    public function getBoxPositionX(): string
     {
         return $this->boxPositionX;
     }
@@ -648,9 +632,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxPositionX
      *
      * @param string $boxPositionX
-     * @return void
      */
-    public function setBoxPositionX($boxPositionX)
+    public function setBoxPositionX(string $boxPositionX): void
     {
         $this->boxPositionX = $boxPositionX;
     }
@@ -660,7 +643,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxPositionY
      */
-    public function getBoxPositionY()
+    public function getBoxPositionY(): string
     {
         return $this->boxPositionY;
     }
@@ -669,9 +652,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxPositionY
      *
      * @param string $boxPositionY
-     * @return void
      */
-    public function setBoxPositionY($boxPositionY)
+    public function setBoxPositionY(string $boxPositionY): void
     {
         $this->boxPositionY = $boxPositionY;
     }
@@ -681,7 +663,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     *
     * @return string $boxAnimation
     */
-    public function getBoxAnimation()
+    public function getBoxAnimation(): string
     {
         return $this->boxAnimation;
     }
@@ -690,9 +672,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxAnimation
      *
      * @param string $boxAnimation
-     * @return void
      */
-    public function setBoxAnimation($boxAnimation)
+    public function setBoxAnimation(string $boxAnimation): void
     {
         $this->boxAnimation = $boxAnimation;
     }
@@ -702,7 +683,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxHeight
      */
-    public function getBoxHeight()
+    public function getBoxHeight(): string
     {
         return $this->boxHeight;
     }
@@ -711,9 +692,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxHeight
      *
      * @param string $boxHeight
-     * @return void
      */
-    public function setBoxHeight($boxHeight)
+    public function setBoxHeight(string $boxHeight): void
     {
         $this->boxHeight = $boxHeight;
     }
@@ -723,7 +703,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headlinePositionX
      */
-    public function getHeadlinePositionX()
+    public function getHeadlinePositionX(): string
     {
         return $this->headlinePositionX;
     }
@@ -732,9 +712,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headlinePositionX
      *
      * @param string $headlinePositionX
-     * @return void
      */
-    public function setHeadlinePositionX($headlinePositionX)
+    public function setHeadlinePositionX($headlinePositionX): void
     {
         $this->headlinePositionX = $headlinePositionX;
     }
@@ -744,7 +723,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $headlinePositionY
      */
-    public function getHeadlinePositionY()
+    public function getHeadlinePositionY(): string
     {
         return $this->headlinePositionY;
     }
@@ -753,9 +732,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the headlinePositionY
      *
      * @param string $headlinePositionY
-     * @return void
      */
-    public function setHeadlinePositionY($headlinePositionY)
+    public function setHeadlinePositionY(string $headlinePositionY): void
     {
         $this->headlinePositionY = $headlinePositionY;
     }
@@ -765,7 +743,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $descriptionPositionX
      */
-    public function getDescriptionPositionX()
+    public function getDescriptionPositionX(): string
     {
         return $this->descriptionPositionX;
     }
@@ -774,9 +752,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the descriptionPositionX
      *
      * @param string $descriptionPositionX
-     * @return void
      */
-    public function setDescriptionPositionX($descriptionPositionX)
+    public function setDescriptionPositionX(string $descriptionPositionX): void
     {
         $this->descriptionPositionX = $descriptionPositionX;
     }
@@ -786,7 +763,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $descriptionPositionY
      */
-    public function getDescriptionPositionY()
+    public function getDescriptionPositionY(): string
     {
         return $this->descriptionPositionY;
     }
@@ -795,9 +772,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the descriptionPositionY
      *
      * @param string $descriptionPositionY
-     * @return void
      */
-    public function setDescriptionPositionY($descriptionPositionY)
+    public function setDescriptionPositionY(string $descriptionPositionY): void
     {
         $this->descriptionPositionY = $descriptionPositionY;
     }
@@ -807,7 +783,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonPositionX
      */
-    public function getButtonPositionX()
+    public function getButtonPositionX(): string
     {
         return $this->buttonPositionX;
     }
@@ -816,9 +792,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonPositionX
      *
      * @param string $buttonPositionX
-     * @return void
      */
-    public function setButtonPositionX($buttonPositionX)
+    public function setButtonPositionX(string $buttonPositionX): void
     {
         $this->buttonPositionX = $buttonPositionX;
     }
@@ -828,7 +803,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $buttonPositionY
      */
-    public function getButtonPositionY()
+    public function getButtonPositionY(): string
     {
         return $this->buttonPositionY;
     }
@@ -837,9 +812,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the buttonPositionY
      *
      * @param string $buttonPositionY
-     * @return void
      */
-    public function setButtonPositionY($buttonPositionY)
+    public function setButtonPositionY(string $buttonPositionY): void
     {
         $this->buttonPositionY = $buttonPositionY;
     }
@@ -849,7 +823,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxWidth
      */
-    public function getBoxWidth()
+    public function getBoxWidth(): string
     {
         return $this->boxWidth;
     }
@@ -858,9 +832,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxWidth
      *
      * @param string $boxWidth
-     * @return void
      */
-    public function setBoxWidth($boxWidth)
+    public function setBoxWidth(string $boxWidth): void
     {
         $this->boxWidth = $boxWidth;
     }
@@ -870,7 +843,7 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $boxCheck
      */
-    public function getBoxCheck()
+    public function getBoxCheck(): string
     {
         return $this->boxCheck;
     }
@@ -879,9 +852,8 @@ class SlideItem extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Sets the boxCheck
      *
      * @param string $boxCheck
-     * @return void
      */
-    public function setBoxCheck($boxCheck)
+    public function setBoxCheck(string $boxCheck): void
     {
         $this->boxCheck = $boxCheck;
     }

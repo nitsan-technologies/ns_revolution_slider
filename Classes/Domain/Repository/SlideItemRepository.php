@@ -1,5 +1,8 @@
 <?php
+
 namespace NITSAN\NsRevolutionSlider\Domain\Repository;
+
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /***
  *
@@ -11,9 +14,10 @@ namespace NITSAN\NsRevolutionSlider\Domain\Repository;
  *  (c) 2019
  *
  ***/
+
 /**
  * The repository for SlideItem
  */
-class SlideItemRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class SlideItemRepository extends Repository
 {
 }

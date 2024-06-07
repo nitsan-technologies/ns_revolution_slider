@@ -16,10 +16,8 @@ plugin.tx_nsrevolutionslider_slider {
     }
     persistence {
         storagePid = {$plugin.tx_nsrevolutionslider_slider.persistence.storagePid}
-        #recursive = 1
     }
     features {
-        # skipDefaultArguments = 1
         # if set to 1, the enable fields are ignored in BE context
         ignoreAllEnableFieldsInBe = 0
         # Should be on by default, but can be disabled if all action in the plug-in are uncached
@@ -49,6 +47,7 @@ page {
     }
    
 }
+
 lib.replaceSpace = TEXT
 lib.replaceSpace {
     current = 1
