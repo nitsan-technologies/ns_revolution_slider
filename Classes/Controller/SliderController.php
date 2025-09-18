@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * SliderController
+ * @extensionScannerIgnoreFile
  */
 class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -48,7 +49,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      *
      * @return void
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         //Fetch current record information
         $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
@@ -59,11 +60,11 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
         $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
         if ($settings['includeJquery']) {
-            if(\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
-                $asset = $this->getPath('', 'ns_revolution_slider').$settings['jQueryFile'];
+            if (\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
+                $asset = $this->getPath('', 'ns_revolution_slider') . $settings['jQueryFile'];
                 $this->pageRenderer->addJsFooterFile($asset);
             } else {
-                $asset = \TYPO3\CMS\Core\Core\Environment::getExtensionsPath().'/ns_revolution_slider/Resources/Public/'.$settings['jQueryFile'];
+                $asset = \TYPO3\CMS\Core\Core\Environment::getExtensionsPath() . '/ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
                 $this->pageRenderer->addJsFooterFile($asset);
             }
         }
@@ -95,7 +96,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function sliderAction()
     {
-        $contentObj = $this->configurationManager->getContentObject();
+        $contentObj = $this->request->getAttribute('currentContentObject');
         $uid = $contentObj->data['uid'];
         //Plug-in settings
         $settings = $this->settings;
@@ -134,7 +135,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $slideData->setButtonAnimation(($slideData->getButtonAnimation() ? $slideData->getButtonAnimation() : $settings['buttonAnimation']));
                         $slideData->setButtonTextSize($settings['buttonTextSize']);
                         $slideData->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
-                        if($slides == false) {
+                        if ($slides == false) {
                             $slides = array();
                         }
                         $slides[] = $slideData;
@@ -145,7 +146,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             //Slider type => Whole Slider
             if ($settings['slider']) {
                 $slideData = $this->sliderRepository->findByUid($settings['slider']);
-                if($slideData) {
+                if ($slideData) {
                     foreach ($slideData->getSlides() as $slide) {
                         //Animation Configuration updated base on Slide
                         $slide->setSlideEffect(($slide->getSlideEffect() ? $slide->getSlideEffect() : $settings['slideEffect']));
@@ -161,7 +162,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
                         $slide->setButtonTextSize($settings['buttonTextSize']);
                         $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
-                        if($slides == false) {
+                        if ($slides == false) {
                             $slides = array();
                         }
                         $slides[] = $slide;
@@ -182,8 +183,8 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
         if ($settings['customStyle']) {
             $GLOBALS['TSFE']->additionalHeaderData[$this->request->getControllerExtensionKey() . '_' . $uid . '_style'] .= "<style type='text/css'>"
-            . $settings['customStyle'] .
-            '</style>';
+                . $settings['customStyle'] .
+                '</style>';
         }
         $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] = isset($GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid]) ? $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] : '';
         $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] .= "
@@ -203,7 +204,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
                     hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
                     debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
-                    
+
                     /* basic navigation arrows and bullets */
                     navigation: {
                         keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
@@ -331,7 +332,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $arguments = ['path' => $path, 'extensionName' => $extName];
         $path = $arguments['path'];
-        $publicPath =sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
+        $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
         $uri = \TYPO3\CMS\Core\Utility\PathUtility::getPublicResourceWebPath($publicPath);
         $assetPath = substr($uri, 1);
 

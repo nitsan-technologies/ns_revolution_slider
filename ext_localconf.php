@@ -2,6 +2,7 @@
 
 defined('TYPO3') || die('Access denied.');
 
+// @extensionScannerIgnoreLine
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NsRevolutionSlider',
     'Slider',
