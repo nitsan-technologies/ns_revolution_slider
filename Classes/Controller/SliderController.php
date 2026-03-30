@@ -67,23 +67,11 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $jsPath = Environment::getPublicPath() . '/' . str_replace('EXT:ns_revolution_slider/', 'typo3conf/ext/ns_revolution_slider/', $jsFolder);
         $cssPath = Environment::getPublicPath() . '/' . str_replace('EXT:ns_revolution_slider/', 'typo3conf/ext/ns_revolution_slider/', $cssFolder);
 
-<<<<<<< Updated upstream
-        $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
-        $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
-        if ($settings['includeJquery']) {
-            if (\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
-                $asset = $this->getPath('', 'ns_revolution_slider') . $settings['jQueryFile'];
-                $this->pageRenderer->addJsFooterFile($asset);
-            } else {
-                $asset = \TYPO3\CMS\Core\Core\Environment::getExtensionsPath() . '/ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
-                $this->pageRenderer->addJsFooterFile($asset);
-            }
-=======
 
         $javascript = is_dir($jsPath) ? GeneralUtility::getFilesInDir($jsPath) : [];
         $css = is_dir($cssPath) ? GeneralUtility::getFilesInDir($cssPath) : [];
 
-        
+
          if (!empty($settings['includeJquery'])) {
             $jQueryFile = $settings['jQueryFile'] ?? 'EXT:ns_revolution_slider/Resources/Public/Js/jquery-3.5.1.min.js';
 
@@ -91,9 +79,8 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'jquery',
                 $jQueryFile
             );
->>>>>>> Stashed changes
         }
-       
+
         foreach ($javascript as $file) {
             $pathinfo = pathinfo($file);
 
@@ -141,14 +128,14 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings['descriptionAnimation'] = ($settings['description_animation'] ? $settings['description_animation'] : $settings['descriptionAnimation']);
         $settings['buttonAnimation'] = ($settings['button_animation'] ? $settings['button_animation'] : $settings['buttonAnimation']);
 
-        // Need to imporevement 
-        
+        // Need to imporevement
+
         $settings['headlineSize'] = "['" . $settings['headline_size_desktop'] . "', '" . $settings['headline_size_tablet'] . "', '" . $settings['headline_size_tablet'] . "', '" . $settings['headline_size_mobile'] . "']";
-        
+
         $settings['descriptionSize'] = "['" . $settings['description_size_desktop'] . "','" . $settings['description_size_tablet'] . "','" . $settings['description_size_tablet'] . "','" . $settings['description_size_mobile'] . "']";
-        
+
         $settings['buttonTextSize'] = "['" . $settings['button_text_size_desktop'] . "','" . $settings['button_text_size_tablet'] . "','" . $settings['button_text_size_tablet'] . "','" . $settings['button_text_size_mobile'] . "']";
-        
+
 
         //Slider logic
         $slides = false;
@@ -218,70 +205,10 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'slides' => $slides
             ]
         );
-        
+
         $pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(PageRenderer::class);
 
         $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
-<<<<<<< Updated upstream
-        if ($settings['customStyle']) {
-            $GLOBALS['TSFE']->additionalHeaderData[$this->request->getControllerExtensionKey() . '_' . $uid . '_style'] .= "<style type='text/css'>"
-                . $settings['customStyle'] .
-                '</style>';
-        }
-        $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] = isset($GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid]) ? $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] : '';
-        $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] .= "
-            <script type='text/javascript'>
-                jQuery('#rev_slider_" . $uid . "').show().revolution({
-                    sliderLayout: '" . $settings['sliderLayout'] . "',
-                    sliderType: 'standard',
-                    shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
-                    spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
-                    stopLoop: '" . ($settings['stopLoop'] ? 'on' : 'off') . "',
-                    stopAfterLoops: " . ($settings['stopLoop'] ? 0 : -1) . ',
-                    stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && $settings['stopLoop'] ? $settings['stopAtSlide'] : -1) . ',
-                    ' . (isset($settings['slideDuration']) && $settings['slideDuration'] !== '' ? 'delay: ' . $settings['slideDuration'] . ',' : '') . '
-                    responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
-                    visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
-                    gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
-                    gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
-                    hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
-                    debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
-
-                    /* basic navigation arrows and bullets */
-                    navigation: {
-                        keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
-                        keyboard_direction: '" . $settings['keyboard_direction'] . "',
-                        mouseScrollNavigation: '" . ($settings['mouseScrollNavigation'] ? 'on' : 'off') . "',
-                        onHoverStop: '" . ($settings['onHoverStop'] ? 'on' : 'off') . "',
-                        touch: {
-                            touchenabled: '" . ($settings['touchenabled'] ? 'on' : 'off') . "',
-                            swipe_threshold: 75,
-                            swipe_min_touches: 1,
-                            swipe_direction: 'horizontal',
-                            drag_block_vertical: true
-                        },
-                        arrows: {
-                            enable: " . ($settings['arrowsEnable'] ? 'true' : 'false') . ',
-                            hide_onleave: ' . ($settings['arrowsHideOnleave'] ? 'true' : 'false') . ",
-                            style: '" . $settings['arrowsStyle'] . "'
-                            " . ($customSettings['arrowsStyle']['tmp'] !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
-                        },
-                        bullets: {
-                            enable: ' . ($settings['bulletsEnable'] ? 'true' : 'false') . ",
-                            hide_onleave: false,
-                            style: '" . $settings['bulletsStyle'] . "',
-                            " . ($customSettings['bulletsStyle']['tmp'] !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
-                            h_align: 'center',
-                            v_align: 'bottom',
-                            h_offset: 0,
-                            v_offset: 20,
-                            space: 5
-                        }
-                    }
-                });
-            </script>
-        ";
-=======
         if (!empty($settings['customStyle'])) {
             $pageRenderer->addCssInlineBlock(
                 $this->request->getControllerExtensionKey() . '_' . $uid . '_style',
@@ -310,9 +237,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
                                                 hideSliderAtLimit: " . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ",
                                                 debugMode: " . ($settings['debugMode'] ? 'true' : 'false') . ",
-                                                    
+
                                                 navigation: {
-                                                    
+
                                                     keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
                                                     keyboard_direction: '" . $settings['keyboard_direction'] . "',
                                                     mouseScrollNavigation: '" . ($settings['mouseScrollNavigation'] ? 'on' : 'off') . "',
@@ -348,7 +275,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                     </script>
                                 ");
 
->>>>>>> Stashed changes
 
         return $this->htmlResponse();
     }

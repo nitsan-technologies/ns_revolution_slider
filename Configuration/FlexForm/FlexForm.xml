@@ -71,10 +71,6 @@
 
                     </settings.slides>
                     <settings.slide_duration>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                         <label>
                             LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_nsrevolutionslider_domain_model_slideitem.slide_duration</label>
                         <config>
@@ -275,11 +271,7 @@
                                 </numIndex>
                                 <numIndex index="35" type="array">
                                     <numIndex index="0">
-<<<<<<< Updated upstream
-                                        LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.curtain-2</numIndex>
-=======
                                         LLL:EXT:ns_revolution_slider/Resources/Privattypolinke/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.animation.curtain-2</numIndex>
->>>>>>> Stashed changes
                                     <numIndex index="1">curtain-2</numIndex>
                                 </numIndex>
                                 <numIndex index="36" type="array">
