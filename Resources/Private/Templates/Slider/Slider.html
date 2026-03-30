@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 	<f:layout name="Default" />
-
 	<f:section name="content">
+		
 		<f:if condition="{slides}">
             <div class="rev_slider_wrapper {feSettings.sliderLayout.outerWrapClass}">
                 <div id="rev_slider_{uid}" class="rev_slider {feSettings.sliderLayout.innerWrapClass}" data-version="5.4.8" style="display:none">
@@ -90,8 +90,6 @@
 									    </f:if>
 	                        		</f:else>
 	                        	</f:if>
-
-	                        	
 	                        </li>
                     	</f:for>
                     </ul>

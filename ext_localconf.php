@@ -15,10 +15,11 @@ defined('TYPO3') || die('Access denied.');
     ]
 );
 
-$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-
-$iconRegistry->registerIcon(
-    'ns_revolution_slider-plugin-slider',
-    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-    ['source' => 'EXT:ns_revolution_slider/Resources/Public/Icons/user_plugin_slider.svg']
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptConstants(
+    "@import 'EXT:ns_revolution_slider/Configuration/TypoScript/constants.typoscript'"
 );
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+    "@import 'EXT:ns_revolution_slider/Configuration/TypoScript/setup.typoscript'"
+);
+

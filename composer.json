@@ -13,7 +13,11 @@
       "issues": "https://github.com/nitsan-technologies/ns_revolution_slider/issues"
     },
     "require": {
+<<<<<<< Updated upstream
          "typo3/cms-core": "^12 || ^13"
+=======
+         "typo3/cms-core": "^12 || ^13 || ^14"
+>>>>>>> Stashed changes
     },
     "autoload": {
         "psr-4": {

@@ -2,18 +2,32 @@
 
 defined('TYPO3') or die();
 
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 $_EXTKEY = 'ns_revolution_slider';
+
 
 /***************
  * Plugin
  */
-$nsRevolutionSlider = \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+$nsRevolutionSlider = ExtensionUtility::registerPlugin(
     'NsRevolutionSlider',
     'Slider',
-    'NS Slider Revolution'
+    'Slider Revolution',
+    'ns_revolution_slider-plugin-slider'
 );
 
 /* Flexform setting  */
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$nsRevolutionSlider] = 'recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$nsRevolutionSlider] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($nsRevolutionSlider, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml');
+
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform,',
+    $nsRevolutionSlider,
+    'after:subheader',
+);
+
+ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:ns_revolution_slider/Configuration/FlexForm/FlexForm.xml',
+    $nsRevolutionSlider,
+);
