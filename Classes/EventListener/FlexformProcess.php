@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace NITSAN\NsRevolutionSlider\EventListener;
 
-use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 
 final class FlexformProcess
 {
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-        $row = $event->getRecord();
-        if ($row['CType'] == 'list' && $row['list_type'] == 'nsrevolutionslider_slider') {
+         $row = $event->getRecord();
+        $data = $row->getRawRecord();
+        if ($data->get('CType') === 'slider'){
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',

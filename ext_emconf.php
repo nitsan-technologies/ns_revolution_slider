@@ -13,7 +13,7 @@ $EM_CONF['ns_revolution_slider'] = [
     'version' => '12.0.2',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.0.0-13.4.99',
+            'typo3' => '12.0.0-14.9ext.99',
         ],
         'conflicts' => [],
         'suggests' => [],

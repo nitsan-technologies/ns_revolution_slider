@@ -13,11 +13,11 @@ namespace NITSAN\NsRevolutionSlider\Controller;
  *
  ***/
 
-use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
-use NITSAN\NsRevolutionSlider\Domain\Repository\SliderRepository;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
+use NITSAN\NsRevolutionSlider\Domain\Repository\SliderRepository;
+use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
 /**
  * SliderController
  * @extensionScannerIgnoreFile
@@ -51,6 +51,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function initializeAction(): void
     {
+
+        
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         //Fetch current record information
         $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         //Plug-in settings
@@ -62,17 +65,32 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         if ($settings['includeJquery']) {
             if (\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
                 $asset = $this->getPath('', 'ns_revolution_slider') . $settings['jQueryFile'];
-                $this->pageRenderer->addJsFooterFile($asset);
+                $uniqueId = 'js_file_'.md5($settings['jQueryFile']);
+                $assetCollector->addJavaScript(
+                    $uniqueId,
+                    $asset
+                );
+                // $this->pageRenderer->addJsFooterFile($asset);
             } else {
-                $asset = \TYPO3\CMS\Core\Core\Environment::getExtensionsPath() . '/ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
-                $this->pageRenderer->addJsFooterFile($asset);
+                $asset = 'EXT:ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
+                $uniqueId = 'js_file_'.md5($settings['jQueryFile']);
+                $assetCollector->addJavaScript(
+                    $uniqueId,
+                    $asset
+                );
+                // $this->pageRenderer->addJsFooterFile($asset);
             }
         }
         foreach ($javascript as $fileKey => $file) {
             $pathinfo = pathinfo($file);
             if (GeneralUtility::inList('js', strtolower($pathinfo['extension']))) {
                 $js = $settings['jsFolderPath'] . $file;
-                $this->pageRenderer->addJsFooterFile($js);
+                $uniqueId = 'js_' . md5($js);
+                $assetCollector->addJavaScript(
+                        $uniqueId,
+                        $js,
+                );
+                // $this->pageRenderer->addJsFooterFile($js);
                 unset($js);
             }
         }
@@ -80,12 +98,23 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $pathinfo = pathinfo($file);
             if (GeneralUtility::inList('css', strtolower($pathinfo['extension']))) {
                 $css = $settings['cssFolderPath'] . $file;
-                $this->pageRenderer->addCssFile($css);
+                $uniqueId = 'css_' . md5($css);
+
+                $assetCollector->addStyleSheet(
+                    $uniqueId,
+                    $css
+                );
+                // $this->pageRenderer->addCssFile($css);
                 unset($css);
             }
         }
         if ($settings['customStyleFilePath']) {
-            $this->pageRenderer->addCssFile($settings['customStyleFilePath']);
+            $customPath = $settings['customStyleFilePath'];
+             $assetCollector->addStyleSheet(
+                'css_custom_' . md5($customPath),
+                $customPath
+            );
+            // $this->pageRenderer->addCssFile($settings['customStyleFilePath']);
         }
         parent::initializeAction();
     }
@@ -96,6 +125,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function sliderAction()
     {
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $contentObj = $this->request->getAttribute('currentContentObject');
         $uid = $contentObj->data['uid'];
         //Plug-in settings
@@ -182,63 +212,76 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         );
         $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
         if ($settings['customStyle']) {
-            $GLOBALS['TSFE']->additionalHeaderData[$this->request->getControllerExtensionKey() . '_' . $uid . '_style'] .= "<style type='text/css'>"
-                . $settings['customStyle'] .
-                '</style>';
-        }
-        $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] = isset($GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid]) ? $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] : '';
-        $GLOBALS['TSFE']->additionalFooterData[$this->request->getControllerExtensionKey() . '_' . $uid] .= "
-            <script type='text/javascript'>
-                jQuery('#rev_slider_" . $uid . "').show().revolution({
-                    sliderLayout: '" . $settings['sliderLayout'] . "',
-                    sliderType: 'standard',
-                    shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
-                    spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
-                    stopLoop: '" . ($settings['stopLoop'] ? 'on' : 'off') . "',
-                    stopAfterLoops: " . ($settings['stopLoop'] ? 0 : -1) . ',
-                    stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && $settings['stopLoop'] ? $settings['stopAtSlide'] : -1) . ',
-                    ' . (isset($settings['slideDuration']) && $settings['slideDuration'] !== '' ? 'delay: ' . $settings['slideDuration'] . ',' : '') . '
-                    responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
-                    visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
-                    gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
-                    gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
-                    hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
-                    debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
+           
+            $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid . '_style';
 
-                    /* basic navigation arrows and bullets */
-                    navigation: {
-                        keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
-                        keyboard_direction: '" . $settings['keyboard_direction'] . "',
-                        mouseScrollNavigation: '" . ($settings['mouseScrollNavigation'] ? 'on' : 'off') . "',
-                        onHoverStop: '" . ($settings['onHoverStop'] ? 'on' : 'off') . "',
-                        touch: {
-                            touchenabled: '" . ($settings['touchenabled'] ? 'on' : 'off') . "',
-                            swipe_threshold: 75,
-                            swipe_min_touches: 1,
-                            swipe_direction: 'horizontal',
-                            drag_block_vertical: true
-                        },
-                        arrows: {
-                            enable: " . ($settings['arrowsEnable'] ? 'true' : 'false') . ',
-                            hide_onleave: ' . ($settings['arrowsHideOnleave'] ? 'true' : 'false') . ",
-                            style: '" . $settings['arrowsStyle'] . "'
-                            " . ($customSettings['arrowsStyle']['tmp'] !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
-                        },
-                        bullets: {
-                            enable: ' . ($settings['bulletsEnable'] ? 'true' : 'false') . ",
-                            hide_onleave: false,
-                            style: '" . $settings['bulletsStyle'] . "',
-                            " . ($customSettings['bulletsStyle']['tmp'] !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
-                            h_align: 'center',
-                            v_align: 'bottom',
-                            h_offset: 0,
-                            v_offset: 20,
-                            space: 5
-                        }
-                    }
-                });
-            </script>
-        ";
+            $assetCollector->addInlineStyleSheet(
+                $uniqueId,
+                $settings['customStyle']
+            );
+        }
+        
+      
+        
+        $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid;
+        if (!$assetCollector->hasInlineJavaScript($uniqueId)) {
+            $jsCode = "jQuery('#rev_slider_" . $uid . "').show().revolution({
+                                sliderLayout: '" . $settings['sliderLayout'] . "',
+                                sliderType: 'standard',
+                                shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
+                                spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
+                                stopLoop: '" . ($settings['stopLoop'] ? 'on' : 'off') . "',
+                                stopAfterLoops: " . ($settings['stopLoop'] ? 0 : -1) . ',
+                                stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && $settings['stopLoop'] ? $settings['stopAtSlide'] : -1) . ',
+                                ' . (isset($settings['slideDuration']) && $settings['slideDuration'] !== '' ? 'delay: ' . $settings['slideDuration'] . ',' : '') . '
+                                responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
+                                visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
+                                gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
+                                gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
+                                hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
+                                debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
+
+                                /* basic navigation arrows and bullets */
+                                navigation: {
+                                    keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
+                                    keyboard_direction: '" . $settings['keyboard_direction'] . "',
+                                    mouseScrollNavigation: '" . ($settings['mouseScrollNavigation'] ? 'on' : 'off') . "',
+                                    onHoverStop: '" . ($settings['onHoverStop'] ? 'on' : 'off') . "',
+                                    touch: {
+                                        touchenabled: '" . ($settings['touchenabled'] ? 'on' : 'off') . "',
+                                        swipe_threshold: 75,
+                                        swipe_min_touches: 1,
+                                        swipe_direction: 'horizontal',
+                                        drag_block_vertical: true
+                                    },
+                                    arrows: {
+                                        enable: " . ($settings['arrowsEnable'] ? 'true' : 'false') . ',
+                                        hide_onleave: ' . ($settings['arrowsHideOnleave'] ? 'true' : 'false') . ",
+                                        style: '" . $settings['arrowsStyle'] . "'
+                                        " . ($customSettings['arrowsStyle']['tmp'] !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
+                                    },
+                                    bullets: {
+                                        enable: ' . ($settings['bulletsEnable'] ? 'true' : 'false') . ",
+                                        hide_onleave: false,
+                                        style: '" . $settings['bulletsStyle'] . "',
+                                        " . ($customSettings['bulletsStyle']['tmp'] !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
+                                        h_align: 'center',
+                                        v_align: 'bottom',
+                                        h_offset: 0,
+                                        v_offset: 20,
+                                        space: 5
+                                    }
+                                }
+                            });
+                        ";
+            $assetCollector->addInlineJavaScript(
+                $uniqueId,
+                $jsCode, 
+                [],
+                ['position' => 'footer']
+            );
+        }
+        
 
         return $this->htmlResponse();
     }
@@ -330,12 +373,14 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     public function getPath($path, $extName)
     {
-        $arguments = ['path' => $path, 'extensionName' => $extName];
-        $path = $arguments['path'];
-        $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
-        $uri = \TYPO3\CMS\Core\Utility\PathUtility::getPublicResourceWebPath($publicPath);
-        $assetPath = substr($uri, 1);
+        return 'EXT:' . $extName . '/Resources/Public/' . ltrim($path, '/');
+        // $arguments = ['path' => $path, 'extensionName' => $extName];
+        // $path = $arguments['path'];
+        // $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
+        // $uri = \TYPO3\CMS\Core\Utility\PathUtility::getPublicResourceWebPath($publicPath);
+        // $assetPath = substr($uri, 1);
 
-        return $assetPath;
+        // return $assetPath;
+        
     }
 }
