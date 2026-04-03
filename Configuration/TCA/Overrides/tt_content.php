@@ -22,13 +22,15 @@ ExtensionManagementUtility::addToAllTCAtypes(
     $nsRevolutionSlider,
     'after:subheader',
 );
-
-
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$nsRevolutionSlider] = 'recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$nsRevolutionSlider] = 'pi_flexform';
-
 ExtensionManagementUtility::addPiFlexFormValue(
     '*',
     'FILE:EXT:ns_revolution_slider/Configuration/FlexForm/FlexForm.xml',
     $nsRevolutionSlider
 );
+
+
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$nsRevolutionSlider] = 'recursive,select_key,pages';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$nsRevolutionSlider] = 'pi_flexform';
+
+
+

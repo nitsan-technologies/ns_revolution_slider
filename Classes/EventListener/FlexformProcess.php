@@ -11,9 +11,18 @@ final class FlexformProcess
 {
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-         $row = $event->getRecord();
-        $data = $row->getRawRecord();
-        if ($data->get('CType') === 'slider'){
+        $row = $event->getRecord();
+        // $data = $row->getRawRecord();
+        if (is_array($row)) {
+            // TYPO3 v12 & v13
+            $cType = $row['CType'] ?? null;
+        } elseif (is_object($row) && method_exists($row, 'getRawRecord')) {
+            // TYPO3 v14
+            $cType = $row->getRawRecord()->get('CType');
+        } else {
+            $cType = null;
+        }
+        if ($cType  === 'slider'){
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',
