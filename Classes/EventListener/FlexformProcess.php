@@ -22,7 +22,7 @@ final class FlexformProcess
         } else {
             $cType = null;
         }
-        if ($cType  === 'slider'){
+        if ($cType  === 'list'){
             $animation = [
                 0 => 'backend.globalSetting',
                 1 => 'backend.animation.fade',

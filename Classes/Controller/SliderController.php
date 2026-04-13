@@ -374,13 +374,5 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function getPath($path, $extName)
     {
         return 'EXT:' . $extName . '/Resources/Public/' . ltrim($path, '/');
-        // $arguments = ['path' => $path, 'extensionName' => $extName];
-        // $path = $arguments['path'];
-        // $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
-        // $uri = \TYPO3\CMS\Core\Utility\PathUtility::getPublicResourceWebPath($publicPath);
-        // $assetPath = substr($uri, 1);
-
-        // return $assetPath;
-        
     }
 }
