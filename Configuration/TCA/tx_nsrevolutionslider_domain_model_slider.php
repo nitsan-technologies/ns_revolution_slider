@@ -65,7 +65,7 @@ return [
             'exclude' => true,
             'label' => $langfile . 'LGL.starttime',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,
@@ -78,7 +78,7 @@ return [
             'exclude' => true,
             'label' => $langfile . 'LGL.endtime',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,
