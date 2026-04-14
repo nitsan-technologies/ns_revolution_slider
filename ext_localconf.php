@@ -1,13 +1,15 @@
 <?php
 
 defined('TYPO3') || die('Access denied.');
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-
-$typo3VersionArray = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionStringToArray(
-    \TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version()
+$typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(
+    VersionNumberUtility::getCurrentTypo3Version()
 );
     // @extensionScannerIgnoreLine
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+ExtensionUtility::configurePlugin(
     'NsRevolutionSlider',
     'Slider',
     [
@@ -18,12 +20,6 @@ $typo3VersionArray = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersio
         \NITSAN\NsRevolutionSlider\Controller\SliderController::class => 'slider'
     ],
 );
-if (version_compare($typo3VersionArray['version_main'], '13', '<=')) {
-    
-    // @extensionScannerIgnoreLine
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '@import "EXT:ns_revolution_slider/Configuration/TSconfig/ContentElementWizard.tsconfig"'
-    );
-} 
+
 
 

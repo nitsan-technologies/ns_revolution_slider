@@ -1,8 +1,7 @@
 {
     "name": "nitsan/ns-revolution-slider",
     "type": "typo3-cms-extension",
-    "description": "Slider Revolution",
-    "homepage": "https://t3planet.com/typo3-slider-revolution-extension",
+    "description": "TYPO3 Revolution Slider - Create powerful and modern sliders for your TYPO3 website using the official Revolution Slider integration. Easily build sliders with drag-and-drop, 250+ templates, and 2000+ pre-built elements with advanced transitions and effects.",
     "license": "GPL-2.0+",
     "keywords": [
       "TYPO3 CMS",
