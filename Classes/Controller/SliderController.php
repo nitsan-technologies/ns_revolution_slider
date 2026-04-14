@@ -15,6 +15,7 @@ namespace NITSAN\NsRevolutionSlider\Controller;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Page\AssetCollector;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsRevolutionSlider\Domain\Repository\SliderRepository;
 use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
@@ -51,8 +52,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function initializeAction(): void
     {
-
-        
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         //Fetch current record information
         $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
@@ -70,7 +69,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     $uniqueId,
                     $asset
                 );
-                // $this->pageRenderer->addJsFooterFile($asset);
             } else {
                 $asset = 'EXT:ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
                 $uniqueId = 'js_file_'.md5($settings['jQueryFile']);
@@ -78,7 +76,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     $uniqueId,
                     $asset
                 );
-                // $this->pageRenderer->addJsFooterFile($asset);
             }
         }
         foreach ($javascript as $fileKey => $file) {
@@ -90,7 +87,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $uniqueId,
                         $js,
                 );
-                // $this->pageRenderer->addJsFooterFile($js);
                 unset($js);
             }
         }
@@ -104,7 +100,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                     $uniqueId,
                     $css
                 );
-                // $this->pageRenderer->addCssFile($css);
                 unset($css);
             }
         }
@@ -114,7 +109,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'css_custom_' . md5($customPath),
                 $customPath
             );
-            // $this->pageRenderer->addCssFile($settings['customStyleFilePath']);
         }
         parent::initializeAction();
     }
@@ -220,9 +214,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $settings['customStyle']
             );
         }
-        
-      
-        
         $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid;
         if (!$assetCollector->hasInlineJavaScript($uniqueId)) {
             $jsCode = "jQuery('#rev_slider_" . $uid . "').show().revolution({
@@ -281,8 +272,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 ['position' => 'footer']
             );
         }
-        
-
         return $this->htmlResponse();
     }
 
@@ -370,9 +359,15 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
         return $customSettings;
     }
-
     public function getPath($path, $extName)
     {
-        return 'EXT:' . $extName . '/Resources/Public/' . ltrim($path, '/');
+        $resourceIdentifier = sprintf(
+            'EXT:%s/Resources/Public/%s',
+            $extName,
+            ltrim($path, '/')
+        );
+        $publicUri = PathUtility::getPublicResourceWebPath($resourceIdentifier);
+
+        return ltrim((string)$publicUri, '/');
     }
 }
