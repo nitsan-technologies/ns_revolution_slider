@@ -61,6 +61,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
         $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
+        $javascript = $this->sortRevolutionSliderJavaScriptFiles($javascript);
         if ($settings['includeJquery']) {
             if (\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
                 $asset = $this->getPath('', 'ns_revolution_slider') . $settings['jQueryFile'];
@@ -273,6 +274,41 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             );
         }
         return $this->htmlResponse();
+    }
+
+    /**
+     * Revolution Slider requires tools.min.js before revolution.min.js.
+     *
+     * @param array<int, string> $files
+     * @return array<int, string>
+     */
+    protected function sortRevolutionSliderJavaScriptFiles(array $files): array
+    {
+        $skip = [
+            'index.php',
+            'jquery.themepunch.enablelog.js',
+            'tp-color-picker.min.js',
+        ];
+        $priority = [
+            'jquery.themepunch.tools.min.js',
+            'jquery.themepunch.revolution.min.js',
+        ];
+        $ordered = [];
+        foreach ($priority as $file) {
+            if (in_array($file, $files, true)) {
+                $ordered[] = $file;
+            }
+        }
+        foreach ($files as $file) {
+            if (in_array($file, $skip, true) || in_array($file, $ordered, true)) {
+                continue;
+            }
+            if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) === 'js') {
+                $ordered[] = $file;
+            }
+        }
+
+        return $ordered;
     }
 
     /**

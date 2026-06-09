@@ -1,3 +1,14 @@
+.tx-ns-revolution-slider .fullwidthbanner-container,
+.tx-ns-revolution-slider .rev_slider_wrapper {
+	min-height: 400px;
+}
+
+.tx-ns-revolution-slider .rev-slidebg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .tx-ns-revolution-slider .tp-parallax-wrap .tp-caption a {
 	z-index: 8;
 	white-space: nowrap;
