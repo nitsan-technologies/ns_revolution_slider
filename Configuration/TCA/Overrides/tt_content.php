@@ -22,9 +22,9 @@ ExtensionManagementUtility::addToAllTCAtypes(
     'after:subheader',
 );
 ExtensionManagementUtility::addPiFlexFormValue(
-    '*',
+    $nsRevolutionSlider,
     'FILE:EXT:ns_revolution_slider/Configuration/FlexForm/FlexForm.xml',
-    $nsRevolutionSlider
+    'list'
 );
 
 
