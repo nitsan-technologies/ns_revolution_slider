@@ -310,6 +310,7 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
     if (typeof jQuery.fn.revolution !== 'function') {
         console.error('[ns_revolution_slider] Revolution Slider library not loaded. Install JS/CSS to " . $jsFolderPath . "');
+        \$slider.removeClass('revslider-pending').addClass('revslider-fallback').show();
         return;
     }
     \$slider.show();

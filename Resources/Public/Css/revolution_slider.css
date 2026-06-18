@@ -9,8 +9,17 @@
 }
 
 .tx-ns-revolution-slider .rev_slider.revslider-initialised,
-.tx-ns-revolution-slider .rev_slider.tp-simpleresponsive {
+.tx-ns-revolution-slider .rev_slider.tp-simpleresponsive,
+.tx-ns-revolution-slider .rev_slider.revslider-fallback {
 	visibility: visible;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-fallback {
+	display: block !important;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-fallback > ul > li:not(:first-child) {
+	display: none;
 }
 
 .tx-ns-revolution-slider .rev_slider.revslider-pending > ul {

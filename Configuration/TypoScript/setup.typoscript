@@ -10,7 +10,7 @@ plugin.tx_nsrevolutionslider_slider {
             1 = {$plugin.tx_nsrevolutionslider_slider.view.partialRootPath}
         }
         layoutRootPaths {
-            0 = EXT:tx_nsrevolutionslider/Resources/Private/Layouts/
+            0 = EXT:ns_revolution_slider/Resources/Private/Layouts/
             1 = {$plugin.tx_nsrevolutionslider_slider.view.layoutRootPath}
         }
     }
