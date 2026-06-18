@@ -13,9 +13,7 @@ namespace NITSAN\NsRevolutionSlider\Controller;
  *
  ***/
 
-use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Page\AssetCollector;
-use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsRevolutionSlider\Domain\Repository\SliderRepository;
 use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
@@ -37,8 +35,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected $slideItemRepository = null;
 
-    protected $pageRenderer;
-
     public function __construct(SliderRepository $sliderRepository, SlideItemRepository $slideItemRepository)
     {
         $this->sliderRepository = $sliderRepository;
@@ -52,66 +48,82 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function initializeAction(): void
     {
+        $this->registerRevolutionSliderAssets($this->settings);
+        parent::initializeAction();
+    }
+
+    /**
+     * Registers Revolution Slider frontend assets for TYPO3 v12+.
+     *
+     * @param array<string, mixed> $settings
+     */
+    protected function registerRevolutionSliderAssets(array $settings): void
+    {
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
-        //Fetch current record information
-        $this->pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        //Plug-in settings
-        $settings = $this->settings;
-        //Javascript and CSS files fetch from folder
+        $publicPath = \TYPO3\CMS\Core\Core\Environment::getPublicPath();
+        $jsFolderPath = rtrim((string)($settings['jsFolderPath'] ?? ''), '/') . '/';
+        $cssFolderPath = rtrim((string)($settings['cssFolderPath'] ?? ''), '/') . '/';
 
-        $javascript = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['jsFolderPath']);
-        $css = GeneralUtility::getFilesInDir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $settings['cssFolderPath']);
-        $javascript = $this->sortRevolutionSliderJavaScriptFiles($javascript);
-        if ($settings['includeJquery']) {
-            if (\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
-                $asset = $this->getPath('', 'ns_revolution_slider') . $settings['jQueryFile'];
-                $uniqueId = 'js_file_'.md5($settings['jQueryFile']);
-                $assetCollector->addJavaScript(
-                    $uniqueId,
-                    $asset
-                );
-            } else {
-                $asset = 'EXT:ns_revolution_slider/Resources/Public/' . $settings['jQueryFile'];
-                $uniqueId = 'js_file_'.md5($settings['jQueryFile']);
-                $assetCollector->addJavaScript(
-                    $uniqueId,
-                    $asset
-                );
-            }
-        }
-        foreach ($javascript as $fileKey => $file) {
-            $pathinfo = pathinfo($file);
-            if (GeneralUtility::inList('js', strtolower($pathinfo['extension']))) {
-                $js = $settings['jsFolderPath'] . $file;
-                $uniqueId = 'js_' . md5($js);
-                $assetCollector->addJavaScript(
-                        $uniqueId,
-                        $js,
-                );
-                unset($js);
-            }
-        }
-        foreach ($css as $fileKey => $file) {
-            $pathinfo = pathinfo($file);
-            if (GeneralUtility::inList('css', strtolower($pathinfo['extension']))) {
-                $css = $settings['cssFolderPath'] . $file;
-                $uniqueId = 'css_' . md5($css);
-
-                $assetCollector->addStyleSheet(
-                    $uniqueId,
-                    $css
-                );
-                unset($css);
-            }
-        }
-        if ($settings['customStyleFilePath']) {
-            $customPath = $settings['customStyleFilePath'];
-             $assetCollector->addStyleSheet(
-                'css_custom_' . md5($customPath),
-                $customPath
+        if ($settings['includeJquery'] ?? false) {
+            $jQueryFile = (string)($settings['jQueryFile'] ?? 'Js/jquery-2.1.4.min.js');
+            $assetCollector->addJavaScript(
+                'js_file_' . md5($jQueryFile),
+                'EXT:ns_revolution_slider/Resources/Public/' . ltrim($jQueryFile, '/')
             );
         }
-        parent::initializeAction();
+
+        $javascript = [];
+        $jsDirectory = $publicPath . '/' . $jsFolderPath;
+        if (is_dir($jsDirectory)) {
+            $javascript = GeneralUtility::getFilesInDir($jsDirectory);
+            $extensionsPath = $jsDirectory . 'extensions/';
+            if (is_dir($extensionsPath)) {
+                $extensionFiles = GeneralUtility::getFilesInDir($extensionsPath);
+                foreach ($extensionFiles as $extensionFile) {
+                    $javascript[] = 'extensions/' . $extensionFile;
+                }
+            }
+        }
+
+        foreach ($this->sortRevolutionSliderJavaScriptFiles($javascript) as $file) {
+            if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'js') {
+                continue;
+            }
+            $source = $jsFolderPath . $file;
+            if (!is_file($publicPath . '/' . $source)) {
+                continue;
+            }
+            $assetCollector->addJavaScript('js_' . md5($source), $source);
+        }
+
+        $cssDirectory = $publicPath . '/' . $cssFolderPath;
+        if (is_dir($cssDirectory)) {
+            foreach (GeneralUtility::getFilesInDir($cssDirectory) as $file) {
+                if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'css') {
+                    continue;
+                }
+                $source = $cssFolderPath . $file;
+                if (!is_file($publicPath . '/' . $source)) {
+                    continue;
+                }
+                $assetCollector->addStyleSheet('css_' . md5($source), $source);
+            }
+        }
+
+        if (!empty($settings['customStyleFilePath']) && is_file($publicPath . '/' . ltrim((string)$settings['customStyleFilePath'], '/'))) {
+            $assetCollector->addStyleSheet(
+                'css_custom_' . md5((string)$settings['customStyleFilePath']),
+                (string)$settings['customStyleFilePath']
+            );
+        }
+
+        $navigationStyle = $settings['arrowsStyle'] ?? $settings['bulletsStyle'] ?? '';
+        if ($navigationStyle !== '') {
+            $navigationSkin = $cssFolderPath . 'navigation-skins/' . $navigationStyle . '.css';
+            if (is_file($publicPath . '/' . $navigationSkin)) {
+                $assetCollector->addStyleSheet('css_nav_' . md5($navigationSkin), $navigationSkin);
+            }
+        }
     }
 
     /**
@@ -160,6 +172,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $slideData->setButtonAnimation(($slideData->getButtonAnimation() ? $slideData->getButtonAnimation() : $settings['buttonAnimation']));
                         $slideData->setButtonTextSize($settings['buttonTextSize']);
                         $slideData->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        if ($slideData->getBoxCheck() && !$this->hasValidBoxPosition($slideData->getBoxPositionX())) {
+                            $slideData->setBoxCheck(0);
+                        }
                         if ($slides == false) {
                             $slides = array();
                         }
@@ -187,6 +202,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
                         $slide->setButtonTextSize($settings['buttonTextSize']);
                         $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        if ($slide->getBoxCheck() && !$this->hasValidBoxPosition($slide->getBoxPositionX())) {
+                            $slide->setBoxCheck(0);
+                        }
                         if ($slides == false) {
                             $slides = array();
                         }
@@ -217,8 +235,25 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
         $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid;
         if (!$assetCollector->hasInlineJavaScript($uniqueId)) {
-            $jsCode = "jQuery('#rev_slider_" . $uid . "').show().revolution({
-                                sliderLayout: '" . $settings['sliderLayout'] . "',
+            $jsCode = $this->buildRevolutionSliderInitializationScript($uid, $settings, $customSettings);
+            $assetCollector->addInlineJavaScript(
+                $uniqueId,
+                $jsCode,
+                [],
+                ['position' => 'footer']
+            );
+        }
+        return $this->htmlResponse();
+    }
+
+    /**
+     * @param array<string, mixed> $settings
+     * @param array<string, mixed> $customSettings
+     */
+    protected function buildRevolutionSliderInitializationScript(int $uid, array $settings, array $customSettings): string
+    {
+        $jsFolderPath = addslashes((string)($settings['jsFolderPath'] ?? 'fileadmin/revolution-slider/js/'));
+        $revolutionConfig = "sliderLayout: '" . $settings['sliderLayout'] . "',
                                 sliderType: 'standard',
                                 shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
                                 spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
@@ -232,6 +267,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                 gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
                                 hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
                                 debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
+                                onInit: function() {
+                                    jQuery('#rev_slider_" . $uid . "').removeClass('revslider-pending');
+                                },
 
                                 /* basic navigation arrows and bullets */
                                 navigation: {
@@ -263,17 +301,38 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                         v_offset: 20,
                                         space: 5
                                     }
-                                }
+                                }";
+
+        return "function nsRevolutionSliderInit_" . $uid . "() {
+    var \$slider = jQuery('#rev_slider_" . $uid . "');
+    if (!\$slider.length) {
+        return;
+    }
+    if (typeof jQuery.fn.revolution !== 'function') {
+        console.error('[ns_revolution_slider] Revolution Slider library not loaded. Install JS/CSS to " . $jsFolderPath . "');
+        return;
+    }
+    \$slider.show();
+    \$slider.revolution({
+                                " . $revolutionConfig . "
                             });
-                        ";
-            $assetCollector->addInlineJavaScript(
-                $uniqueId,
-                $jsCode, 
-                [],
-                ['position' => 'footer']
-            );
+    \$slider.removeClass('revslider-pending');
+}
+if (document.readyState === 'complete') {
+    nsRevolutionSliderInit_" . $uid . "();
+} else {
+    window.addEventListener('load', nsRevolutionSliderInit_" . $uid . ");
+}";
+    }
+
+    protected function hasValidBoxPosition(string $position): bool
+    {
+        $position = trim($position);
+        if ($position === '') {
+            return false;
         }
-        return $this->htmlResponse();
+
+        return str_starts_with($position, '[') || is_numeric($position);
     }
 
     /**
@@ -292,6 +351,9 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $priority = [
             'jquery.themepunch.tools.min.js',
             'jquery.themepunch.revolution.min.js',
+            'extensions/revolution.extension.slideanims.min.js',
+            'extensions/revolution.extension.layeranimation.min.js',
+            'extensions/revolution.extension.navigation.min.js',
         ];
         $ordered = [];
         foreach ($priority as $file) {
@@ -394,16 +456,5 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $customSettings['bulletsStyle']['tmp'] = "'" . $customSettings['bulletsStyle']['tmp'] . "'";
         }
         return $customSettings;
-    }
-    public function getPath($path, $extName)
-    {
-        $resourceIdentifier = sprintf(
-            'EXT:%s/Resources/Public/%s',
-            $extName,
-            ltrim($path, '/')
-        );
-        $publicUri = PathUtility::getPublicResourceWebPath($resourceIdentifier);
-
-        return ltrim((string)$publicUri, '/');
     }
 }
