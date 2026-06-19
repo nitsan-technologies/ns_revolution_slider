@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NITSAN\NsRevolutionSlider\EventListener;
 
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -16,6 +17,8 @@ final class FlexformProcess
      * Legacy CType used by an earlier migration wizard version.
      */
     private const LEGACY_MIGRATED_CTYPE = 'slider';
+
+    private const FLEXFORM_SHEETS = ['sDEF', 'general', 'navigationStyles', 'fontStyle'];
 
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
@@ -70,6 +73,7 @@ final class FlexformProcess
         $slideEffect = $this->getFlexformSetting($record, 'settings.slide_effect');
 
         $itemContent .= '<tbody>';
+        $itemContent .= '<tr><th colspan="2"><strong>' . $this->translate('backend.section.mainSettings') . '</strong></th></tr>';
         if ($slides !== '' && $slidesType === '1') {
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.slides', 'ns_revolution_slider') . "</th>
@@ -79,33 +83,73 @@ final class FlexformProcess
         if ($slider !== '' && $slidesType !== '1') {
             $itemContent .= '<tr>
                                 <th>' . LocalizationUtility::translate('backend.slider', 'ns_revolution_slider') . "</th>
-                                <td style='padding-left: 10px;'>" . $slider . '</td>
+                                <td style='padding-left: 10px;'>" . htmlspecialchars($slider) . '</td>
                             </tr>';
         }
         $itemContent .= '<tr>
                             <th>' . LocalizationUtility::translate('backend.slide_duration', 'ns_revolution_slider') . "</th>
-                            <td style='padding-left: 10px;'>" . ($slideDuration !== '' ? $slideDuration : '-') . '</td>
+                            <td style='padding-left: 10px;'>" . ($slideDuration !== '' ? htmlspecialchars($slideDuration) : '-') . '</td>
                         </tr>';
         $itemContent .= '<tr>
                             <th>' . LocalizationUtility::translate('backend.slide_effect', 'ns_revolution_slider') . "</th>
-                            <td style='padding-left: 10px;'>" . ($slideEffect !== '' ? $slideEffect : LocalizationUtility::translate('backend.animation.none', 'ns_revolution_slider')) . '</td>
+                            <td style='padding-left: 10px;'>" . ($slideEffect !== '' ? htmlspecialchars($slideEffect) : $this->translate('backend.animation.none')) . '</td>
                         </tr>';
         $itemContent .= '<tr>
                             <th>' . LocalizationUtility::translate('backend.headline_animation', 'ns_revolution_slider') . "</th>
-                            <td style='padding-left: 10px;'>" . $this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.headline_animation')) . '</td>
+                            <td style='padding-left: 10px;'>" . htmlspecialchars($this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.headline_animation'))) . '</td>
                         </tr>';
         $itemContent .= '<tr>
                             <th>' . LocalizationUtility::translate('backend.description_animation', 'ns_revolution_slider') . "</th>
-                            <td style='padding-left: 10px;'>" . $this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.description_animation')) . '</td>
+                            <td style='padding-left: 10px;'>" . htmlspecialchars($this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.description_animation'))) . '</td>
                         </tr>';
         $itemContent .= '<tr>
                             <th>' . LocalizationUtility::translate('backend.button_animation', 'ns_revolution_slider') . "</th>
-                            <td style='padding-left: 10px;'>" . $this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.button_animation')) . '</td>
+                            <td style='padding-left: 10px;'>" . htmlspecialchars($this->getAnimationLabel($animation, $this->getFlexformSetting($record, 'settings.button_animation'))) . '</td>
                         </tr>';
+
+        $itemContent .= '<tr><th colspan="2"><strong>' . $this->translate('backend.section.generalSettings') . '</strong></th></tr>';
+        $itemContent .= $this->renderPreviewRow('backend.slider_layout', $this->getFlexformSetting($record, 'settings.sliderLayout'));
+        $itemContent .= $this->renderPreviewRow('backend.spinner', $this->formatCheckboxValue($this->getFlexformSetting($record, 'settings.spinner')));
+        $itemContent .= $this->renderPreviewRow('backend.stop_loop', $this->formatCheckboxValue($this->getFlexformSetting($record, 'settings.stopLoop')));
+        $itemContent .= $this->renderPreviewRow('backend.responsive_levels', $this->getFlexformSetting($record, 'settings.responsiveLevels'));
+
+        $itemContent .= '<tr><th colspan="2"><strong>' . $this->translate('backend.section.navigationSettings') . '</strong></th></tr>';
+        $itemContent .= $this->renderPreviewRow('backend.keyboard_navigation', $this->formatCheckboxValue($this->getFlexformSetting($record, 'settings.keyboardNavigation')));
+        $itemContent .= $this->renderPreviewRow('backend.keyboard_direction', $this->getFlexformSetting($record, 'settings.keyboard_direction'));
+        $itemContent .= $this->renderPreviewRow('backend.arrows_style', $this->getFlexformSetting($record, 'settings.arrowsStyle'));
+        $itemContent .= $this->renderPreviewRow('backend.bullets_style', $this->getFlexformSetting($record, 'settings.bulletsStyle'));
+
+        $itemContent .= '<tr><th colspan="2"><strong>' . $this->translate('backend.section.fontSettings') . '</strong></th></tr>';
+        $itemContent .= $this->renderPreviewRow('backend.headline_size_desktop', $this->getFlexformSetting($record, 'settings.headline_size_desktop'));
+        $itemContent .= $this->renderPreviewRow('backend.headline_color', $this->getFlexformSetting($record, 'settings.headline_color'));
+        $itemContent .= $this->renderPreviewRow('backend.description_size_desktop', $this->getFlexformSetting($record, 'settings.description_size_desktop'));
+        $itemContent .= $this->renderPreviewRow('backend.button_text_size_desktop', $this->getFlexformSetting($record, 'settings.button_text_size_desktop'));
 
         $itemContent .= '</tbody></table>';
 
         $event->setPreviewContent($itemContent);
+    }
+
+    private function renderPreviewRow(string $labelKey, string $value): string
+    {
+        return '<tr>
+                    <th>' . $this->translate($labelKey) . "</th>
+                    <td style='padding-left: 10px;'>" . ($value !== '' ? htmlspecialchars($value) : '-') . '</td>
+                </tr>';
+    }
+
+    private function translate(string $key): string
+    {
+        return (string)LocalizationUtility::translate($key, 'ns_revolution_slider');
+    }
+
+    private function formatCheckboxValue(string $value): string
+    {
+        if ($value === '') {
+            return '';
+        }
+
+        return $value === '1' ? $this->translate('backend.yes') : $this->translate('backend.no');
     }
 
     private function isRevolutionSliderRecord(PageContentPreviewRenderingEvent $event): bool
@@ -155,32 +199,59 @@ final class FlexformProcess
      */
     private function getFlexformSetting(array|object $record, string $field): string
     {
-        if (is_array($record)) {
-            $flexformXml = (string)($record['pi_flexform'] ?? '');
-            if ($flexformXml === '') {
-                return '';
-            }
+        $settingKey = str_starts_with($field, 'settings.') ? substr($field, 9) : $field;
 
-            return $this->getFlexformValueFromXml($flexformXml, $field);
+        $flexformXml = $this->resolveFlexformXml($record);
+        if ($flexformXml !== '') {
+            $flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
+            $configuration = $flexFormTools->convertFlexFormContentToArray($flexformXml);
+            if (isset($configuration['settings'][$settingKey])) {
+                $value = $this->normalizeFlexformValue($configuration['settings'][$settingKey]);
+                if ($value !== '') {
+                    return $value;
+                }
+            }
         }
 
-        if ($record->has('pi_flexform')) {
+        if (!is_array($record) && $record->has('pi_flexform')) {
             $flexFormData = $record->get('pi_flexform');
             if ($this->isFlexFormFieldValues($flexFormData)) {
-                return $this->getFlexformValueFromFieldValues($flexFormData, $field);
+                $value = $this->getFlexformValueFromFieldValues($flexFormData, $field);
+                if ($value !== '') {
+                    return $value;
+                }
             }
             if (is_string($flexFormData) && $flexFormData !== '') {
                 return $this->getFlexformValueFromXml($flexFormData, $field);
             }
         }
 
+        return '';
+    }
+
+    /**
+     * @param array<string, mixed>|object $record
+     */
+    private function resolveFlexformXml(array|object $record): string
+    {
+        if (is_array($record)) {
+            return (string)($record['pi_flexform'] ?? '');
+        }
+
         if (method_exists($record, 'getRawRecord')) {
             $rawRecord = $record->getRawRecord();
             if ($rawRecord !== null && $rawRecord->has('pi_flexform')) {
-                $flexformXml = (string)$rawRecord->get('pi_flexform');
-                if ($flexformXml !== '') {
-                    return $this->getFlexformValueFromXml($flexformXml, $field);
+                $value = $rawRecord->get('pi_flexform');
+                if (is_string($value) && $value !== '') {
+                    return $value;
                 }
+            }
+        }
+
+        if ($record->has('pi_flexform')) {
+            $value = $record->get('pi_flexform');
+            if (is_string($value) && $value !== '') {
+                return $value;
             }
         }
 
@@ -199,10 +270,18 @@ final class FlexformProcess
      */
     private function getFlexformValueFromFieldValues(object $flexFormData, string $field): string
     {
-        foreach (['sDEF/' . $field, $field] as $path) {
+        $paths = [$field];
+        foreach (self::FLEXFORM_SHEETS as $sheet) {
+            $paths[] = $sheet . '/' . $field;
+        }
+
+        foreach ($paths as $path) {
             try {
                 if ($flexFormData->has($path)) {
-                    return $this->normalizeFlexformValue($flexFormData->get($path));
+                    $value = $this->normalizeFlexformValue($flexFormData->get($path));
+                    if ($value !== '') {
+                        return $value;
+                    }
                 }
             } catch (\Throwable) {
                 continue;
@@ -215,8 +294,29 @@ final class FlexformProcess
     private function getFlexformValueFromXml(string $flexformXml, string $field): string
     {
         $flexform = GeneralUtility::xml2array($flexformXml);
+        if (!is_array($flexform)) {
+            return '';
+        }
 
-        return (string)($flexform['data']['sDEF']['lDEF'][$field]['vDEF'] ?? '');
+        $data = $flexform['data'] ?? [];
+        foreach (self::FLEXFORM_SHEETS as $sheet) {
+            $value = (string)($data[$sheet]['lDEF'][$field]['vDEF'] ?? '');
+            if ($value !== '') {
+                return $value;
+            }
+        }
+
+        foreach ($data as $sheet) {
+            if (!is_array($sheet['lDEF'] ?? null)) {
+                continue;
+            }
+            $value = (string)($sheet['lDEF'][$field]['vDEF'] ?? '');
+            if ($value !== '') {
+                return $value;
+            }
+        }
+
+        return '';
     }
 
     private function normalizeFlexformValue(mixed $value): string
