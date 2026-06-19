@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace NITSAN\NsRevolutionSlider\EventListener;
 
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
-use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
+use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -154,7 +154,8 @@ final class FlexformProcess
 
     private function isRevolutionSliderRecord(PageContentPreviewRenderingEvent $event): bool
     {
-        $recordType = $event->getRecordType();
+        $record = $event->getRecord();
+        $recordType = (string)($record['CType'] ?? '');
 
         if (in_array($recordType, [self::PLUGIN_SIGNATURE, self::LEGACY_MIGRATED_CTYPE], true)) {
             return true;
@@ -164,7 +165,7 @@ final class FlexformProcess
             return false;
         }
 
-        return $this->getRecordFieldValue($event->getRecord(), 'list_type') === self::PLUGIN_SIGNATURE;
+        return $this->getRecordFieldValue($record, 'list_type') === self::PLUGIN_SIGNATURE;
     }
 
     /**
@@ -203,8 +204,8 @@ final class FlexformProcess
 
         $flexformXml = $this->resolveFlexformXml($record);
         if ($flexformXml !== '') {
-            $flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
-            $configuration = $flexFormTools->convertFlexFormContentToArray($flexformXml);
+            $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+            $configuration = $flexFormService->convertFlexFormContentToArray($flexformXml);
             if (isset($configuration['settings'][$settingKey])) {
                 $value = $this->normalizeFlexformValue($configuration['settings'][$settingKey]);
                 if ($value !== '') {
