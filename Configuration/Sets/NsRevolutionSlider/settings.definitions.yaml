@@ -1,0 +1,83 @@
+categories:
+  nsRevolutionSlider:
+    label: 'Revolution Slider'
+  nsRevolutionSlider.website:
+    label: 'Website configuration'
+    parent: nsRevolutionSlider
+  nsRevolutionSlider.animation:
+    label: 'Plug-in configuration (Design and Animation)'
+    parent: nsRevolutionSlider
+
+settings:
+  plugin.tx_nsrevolutionslider_slider.view.templateRootPath:
+    label: 'Path to template root (FE)'
+    description: 'Path to Fluid templates used by the slider plugin in the frontend.'
+    category: nsRevolutionSlider.website
+    type: string
+    default: 'EXT:ns_revolution_slider/Resources/Private/Templates/'
+  plugin.tx_nsrevolutionslider_slider.view.partialRootPath:
+    label: 'Path to template partials (FE)'
+    description: 'Path to Fluid partials used by the slider plugin in the frontend.'
+    category: nsRevolutionSlider.website
+    type: string
+    default: 'EXT:ns_revolution_slider/Resources/Private/Partials/'
+  plugin.tx_nsrevolutionslider_slider.view.layoutRootPath:
+    label: 'Path to template layouts (FE)'
+    description: 'Path to Fluid layouts used by the slider plugin in the frontend.'
+    category: nsRevolutionSlider.website
+    type: string
+    default: 'EXT:ns_revolution_slider/Resources/Private/Layouts/'
+  plugin.tx_nsrevolutionslider_slider.settings.includeJquery:
+    label: 'Include jQuery (2.1.4)'
+    description: 'Load the bundled jQuery library required by Revolution Slider.'
+    category: nsRevolutionSlider.animation
+    type: bool
+    default: true
+  plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath:
+    label: 'Path to revolution JS(s) [Purchased revolution JS folder Path]'
+    description: 'Folder path to the purchased Revolution Slider JavaScript files.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: 'fileadmin/revolution-slider/js/'
+  plugin.tx_nsrevolutionslider_slider.settings.cssFolderPath:
+    label: 'Path to revolution CSS(s) [Purchased revolution CSS folder Path]'
+    description: 'Folder path to the purchased Revolution Slider CSS files.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: 'fileadmin/revolution-slider/css/'
+  plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath:
+    label: 'Custom style (CSS)'
+    description: 'Optional custom CSS file path, for example typo3conf/ext/ns_revolution_slider/Resources/Public/Css/revolution_slider.css'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: ''
+  plugin.tx_nsrevolutionslider_slider.settings.slideDuration:
+    label: 'Slide Duration'
+    description: 'Default slide duration in milliseconds.'
+    category: nsRevolutionSlider.animation
+    type: int
+    default: 2000
+  plugin.tx_nsrevolutionslider_slider.settings.slideEffect:
+    label: 'Slide transition'
+    description: 'Default slide transition effect, for example fade, slideleft, or slideright.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: fade
+  plugin.tx_nsrevolutionslider_slider.settings.headlineAnimation:
+    label: 'Headline animation'
+    description: 'Default headline animation preset ID.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: '1'
+  plugin.tx_nsrevolutionslider_slider.settings.descriptionAnimation:
+    label: 'Description animation'
+    description: 'Default description animation preset ID.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: '1'
+  plugin.tx_nsrevolutionslider_slider.settings.buttonAnimation:
+    label: 'Button animation'
+    description: 'Default button animation preset ID.'
+    category: nsRevolutionSlider.animation
+    type: string
+    default: '1'

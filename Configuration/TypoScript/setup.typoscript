@@ -41,14 +41,25 @@ plugin.tx_nsrevolutionslider_slider {
         buttonAnimation = {$plugin.tx_nsrevolutionslider_slider.settings.buttonAnimation}
     }
 }
-page {
-    includeCSS {
-        # Custom CSS
-        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
 
+# Minimal frontend page setup when no separate theme/site template is used.
+page = PAGE
+page {
+    typeNum = 0
+    includeCSS {
+        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
     }
-   
+    10 = CONTENT
+    10 {
+        table = tt_content
+        select {
+            pidInList = this
+            orderBy = sorting
+            where = {#colPos}=0
+        }
+    }
 }
+
 lib.replaceSpace = TEXT
 lib.replaceSpace {
     current = 1
