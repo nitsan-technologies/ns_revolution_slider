@@ -139,15 +139,15 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings = $this->settings;
         $customSettings = $this->customSettings($settings);
         //Global animation configuration updated base on plug-in settings
-        $settings['slideDuration'] = ($settings['slide_duration'] ? $settings['slide_duration'] : $settings['slideDuration']);
-        $settings['slideEffect'] = ($settings['slide_effect'] ? $settings['slide_effect'] : $settings['slideEffect']);
-        $settings['headlineAnimation'] = ($settings['headline_animation'] ? $settings['headline_animation'] : $settings['headlineAnimation']);
-        $settings['descriptionAnimation'] = ($settings['description_animation'] ? $settings['description_animation'] : $settings['descriptionAnimation']);
-        $settings['buttonAnimation'] = ($settings['button_animation'] ? $settings['button_animation'] : $settings['buttonAnimation']);
+        $settings['slideDuration'] = ($settings['slide_duration'] ?? false) ? $settings['slide_duration'] : ($settings['slideDuration'] ?? '');
+        $settings['slideEffect'] = ($settings['slide_effect'] ?? false) ? $settings['slide_effect'] : ($settings['slideEffect'] ?? '');
+        $settings['headlineAnimation'] = ($settings['headline_animation'] ?? false) ? $settings['headline_animation'] : ($settings['headlineAnimation'] ?? '');
+        $settings['descriptionAnimation'] = ($settings['description_animation'] ?? false) ? $settings['description_animation'] : ($settings['descriptionAnimation'] ?? '');
+        $settings['buttonAnimation'] = ($settings['button_animation'] ?? false) ? $settings['button_animation'] : ($settings['buttonAnimation'] ?? '');
 
-        $settings['headlineSize'] = "['" . $settings['headline_size_desktop'] . "', '" . $settings['headline_size_tablet'] . "', '" . $settings['headline_size_tablet'] . "', '" . $settings['headline_size_mobile'] . "']";
-        $settings['descriptionSize'] = "['" . $settings['description_size_desktop'] . "','" . $settings['description_size_tablet'] . "','" . $settings['description_size_tablet'] . "','" . $settings['description_size_mobile'] . "']";
-        $settings['buttonTextSize'] = "['" . $settings['button_text_size_desktop'] . "','" . $settings['button_text_size_tablet'] . "','" . $settings['button_text_size_tablet'] . "','" . $settings['button_text_size_mobile'] . "']";
+        $settings['headlineSize'] = "['" . ($settings['headline_size_desktop'] ?? '') . "', '" . ($settings['headline_size_tablet'] ?? '') . "', '" . ($settings['headline_size_tablet'] ?? '') . "', '" . ($settings['headline_size_mobile'] ?? '') . "']";
+        $settings['descriptionSize'] = "['" . ($settings['description_size_desktop'] ?? '') . "','" . ($settings['description_size_tablet'] ?? '') . "','" . ($settings['description_size_tablet'] ?? '') . "','" . ($settings['description_size_mobile'] ?? '') . "']";
+        $settings['buttonTextSize'] = "['" . ($settings['button_text_size_desktop'] ?? '') . "','" . ($settings['button_text_size_tablet'] ?? '') . "','" . ($settings['button_text_size_tablet'] ?? '') . "','" . ($settings['button_text_size_mobile'] ?? '') . "']";
 
         //Slider logic
         $slides = false;
@@ -163,15 +163,15 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         //Headline Configuration
                         $slideData->setHeadlineAnimation(($slideData->getHeadlineAnimation() ? $slideData->getHeadlineAnimation() : $settings['headlineAnimation']));
                         $slideData->setHeadlineSize($settings['headlineSize']);
-                        $slideData->setHeadlineColor(($settings['headline_color'] !== '' ? $settings['headline_color'] : '#fff'));
+                        $slideData->setHeadlineColor((($settings['headline_color'] ?? '') !== '') ? $settings['headline_color'] : '#fff');
                         //Description Configuration
                         $slideData->setDescriptionAnimation(($slideData->getDescriptionAnimation() ? $slideData->getDescriptionAnimation() : $settings['descriptionAnimation']));
                         $slideData->setDescriptionSize($settings['descriptionSize']);
-                        $slideData->setDescriptionColor(($settings['description_color'] !== '' ? $settings['description_color'] : '#fff'));
+                        $slideData->setDescriptionColor((($settings['description_color'] ?? '') !== '') ? $settings['description_color'] : '#fff');
                         //Button Configuration
                         $slideData->setButtonAnimation(($slideData->getButtonAnimation() ? $slideData->getButtonAnimation() : $settings['buttonAnimation']));
                         $slideData->setButtonTextSize($settings['buttonTextSize']);
-                        $slideData->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        $slideData->setButtonTextColor((($settings['button_text_color'] ?? '') !== '') ? $settings['button_text_color'] : '#fff');
                         if ($slideData->getBoxCheck() && !$this->hasValidBoxPosition($slideData->getBoxPositionX())) {
                             $slideData->setBoxCheck(0);
                         }
@@ -193,15 +193,15 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                         //Headline Configuration
                         $slide->setHeadlineAnimation(($slide->getHeadlineAnimation() ? $slide->getHeadlineAnimation() : $settings['headlineAnimation']));
                         $slide->setHeadlineSize($settings['headlineSize']);
-                        $slide->setHeadlineColor(($settings['headline_color'] !== '' ? $settings['headline_color'] : '#fff'));
+                        $slide->setHeadlineColor((($settings['headline_color'] ?? '') !== '') ? $settings['headline_color'] : '#fff');
                         //Description Configuration
                         $slide->setDescriptionAnimation(($slide->getDescriptionAnimation() ? $slide->getDescriptionAnimation() : $settings['descriptionAnimation']));
                         $slide->setDescriptionSize($settings['descriptionSize']);
-                        $slide->setDescriptionColor(($settings['description_color'] !== '' ? $settings['description_color'] : '#fff'));
+                        $slide->setDescriptionColor((($settings['description_color'] ?? '') !== '') ? $settings['description_color'] : '#fff');
                         //Button Configuration
                         $slide->setButtonAnimation(($slide->getButtonAnimation() ? $slide->getButtonAnimation() : $settings['buttonAnimation']));
                         $slide->setButtonTextSize($settings['buttonTextSize']);
-                        $slide->setButtonTextColor(($settings['button_text_color'] !== '' ? $settings['button_text_color'] : '#fff'));
+                        $slide->setButtonTextColor((($settings['button_text_color'] ?? '') !== '') ? $settings['button_text_color'] : '#fff');
                         if ($slide->getBoxCheck() && !$this->hasValidBoxPosition($slide->getBoxPositionX())) {
                             $slide->setBoxCheck(0);
                         }
@@ -253,47 +253,47 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function buildRevolutionSliderInitializationScript(int $uid, array $settings, array $customSettings): string
     {
         $jsFolderPath = addslashes((string)($settings['jsFolderPath'] ?? 'fileadmin/revolution-slider/js/'));
-        $revolutionConfig = "sliderLayout: '" . $settings['sliderLayout'] . "',
+        $revolutionConfig = "sliderLayout: '" . ($settings['sliderLayout'] ?? 'auto') . "',
                                 sliderType: 'standard',
                                 shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
-                                spinner: '" . ($settings['spinner'] ? 'spinner3' : 'off') . "',
-                                stopLoop: '" . ($settings['stopLoop'] ? 'on' : 'off') . "',
-                                stopAfterLoops: " . ($settings['stopLoop'] ? 0 : -1) . ',
-                                stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && $settings['stopLoop'] ? $settings['stopAtSlide'] : -1) . ',
+                                spinner: '" . (!empty($settings['spinner']) ? 'spinner3' : 'off') . "',
+                                stopLoop: '" . (!empty($settings['stopLoop']) ? 'on' : 'off') . "',
+                                stopAfterLoops: " . (!empty($settings['stopLoop']) ? 0 : -1) . ',
+                                stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && !empty($settings['stopLoop']) ? $settings['stopAtSlide'] : -1) . ',
                                 ' . (isset($settings['slideDuration']) && $settings['slideDuration'] !== '' ? 'delay: ' . $settings['slideDuration'] . ',' : '') . '
                                 responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
                                 visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
                                 gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
                                 gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
                                 hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
-                                debugMode: ' . ($settings['debugMode'] ? 'true' : 'false') . ",
+                                debugMode: ' . (!empty($settings['debugMode']) ? 'true' : 'false') . ",
                                 onInit: function() {
                                     jQuery('#rev_slider_" . $uid . "').removeClass('revslider-pending');
                                 },
 
                                 /* basic navigation arrows and bullets */
                                 navigation: {
-                                    keyboardNavigation: '" . ($settings['keyboardNavigation'] ? 'on' : 'off') . "',
-                                    keyboard_direction: '" . $settings['keyboard_direction'] . "',
-                                    mouseScrollNavigation: '" . ($settings['mouseScrollNavigation'] ? 'on' : 'off') . "',
-                                    onHoverStop: '" . ($settings['onHoverStop'] ? 'on' : 'off') . "',
+                                    keyboardNavigation: '" . (!empty($settings['keyboardNavigation']) ? 'on' : 'off') . "',
+                                    keyboard_direction: '" . ($settings['keyboard_direction'] ?? 'horizontal') . "',
+                                    mouseScrollNavigation: '" . (!empty($settings['mouseScrollNavigation']) ? 'on' : 'off') . "',
+                                    onHoverStop: '" . (!empty($settings['onHoverStop']) ? 'on' : 'off') . "',
                                     touch: {
-                                        touchenabled: '" . ($settings['touchenabled'] ? 'on' : 'off') . "',
+                                        touchenabled: '" . (!empty($settings['touchenabled']) ? 'on' : 'off') . "',
                                         swipe_threshold: 75,
                                         swipe_min_touches: 1,
                                         swipe_direction: 'horizontal',
                                         drag_block_vertical: true
                                     },
                                     arrows: {
-                                        enable: " . ($settings['arrowsEnable'] ? 'true' : 'false') . ',
-                                        hide_onleave: ' . ($settings['arrowsHideOnleave'] ? 'true' : 'false') . ",
-                                        style: '" . $settings['arrowsStyle'] . "'
+                                        enable: " . (!empty($settings['arrowsEnable']) ? 'true' : 'false') . ',
+                                        hide_onleave: ' . (!empty($settings['arrowsHideOnleave']) ? 'true' : 'false') . ",
+                                        style: '" . ($settings['arrowsStyle'] ?? '') . "'
                                         " . ($customSettings['arrowsStyle']['tmp'] !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
                                     },
                                     bullets: {
-                                        enable: ' . ($settings['bulletsEnable'] ? 'true' : 'false') . ",
+                                        enable: ' . (!empty($settings['bulletsEnable']) ? 'true' : 'false') . ",
                                         hide_onleave: false,
-                                        style: '" . $settings['bulletsStyle'] . "',
+                                        style: '" . ($settings['bulletsStyle'] ?? '') . "',
                                         " . ($customSettings['bulletsStyle']['tmp'] !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
                                         h_align: 'center',
                                         v_align: 'bottom',
@@ -384,7 +384,7 @@ if (document.readyState === 'complete') {
     public function customSettings(array $settings)
     {
         $customSettings = [];
-        switch ($settings['sliderLayout']) {
+        switch ($settings['sliderLayout'] ?? '') {
             case 'fullwidth':
                 $customSettings['sliderLayout']['outerWrapClass'] = 'fullwidthbanner-container';
                 $customSettings['sliderLayout']['innerWrapClass'] = 'fullwidthabanner';
@@ -398,7 +398,7 @@ if (document.readyState === 'complete') {
                 $customSettings['sliderLayout']['innerWrap'] = '';
                 break;
         }
-        switch ($settings['arrowsStyle']) {
+        switch ($settings['arrowsStyle'] ?? '') {
             case 'hades':
                 $customSettings['arrowsStyle']['tmp'] = '<div class="tp-arr-allwrapper"><div class="tp-arr-imgholder"></div></div>';
                 break;
@@ -427,7 +427,7 @@ if (document.readyState === 'complete') {
         if ($customSettings['arrowsStyle']['tmp'] !== '') {
             $customSettings['arrowsStyle']['tmp'] = "'" . $customSettings['arrowsStyle']['tmp'] . "'";
         }
-        switch ($settings['bulletsStyle']) {
+        switch ($settings['bulletsStyle'] ?? '') {
             case 'hades':
                 $customSettings['bulletsStyle']['tmp'] = '<span class="tp-bullet-image"></span>';
                 break;
