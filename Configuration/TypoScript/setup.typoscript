@@ -42,7 +42,8 @@ plugin.tx_nsrevolutionslider_slider {
     }
 }
 
-# Minimal frontend page setup when no separate theme/site template is used.
+# Optional minimal PAGE setup for blank/demo installs only (do not enable on sites with an existing theme).
+[globalVar = LIT:1 = {$plugin.tx_nsrevolutionslider_slider.loadMinimalPageTemplate}]
 page = PAGE
 page {
     typeNum = 0
@@ -59,6 +60,8 @@ page {
         }
     }
 }
+
+[global]
 
 lib.replaceSpace = TEXT
 lib.replaceSpace {

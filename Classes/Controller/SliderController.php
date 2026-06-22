@@ -291,13 +291,13 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                                         enable: " . (!empty($settings['arrowsEnable']) ? 'true' : 'false') . ',
                                         hide_onleave: ' . (!empty($settings['arrowsHideOnleave']) ? 'true' : 'false') . ",
                                         style: '" . ($settings['arrowsStyle'] ?? '') . "'
-                                        " . ($customSettings['arrowsStyle']['tmp'] !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
+                                        " . (($customSettings['arrowsStyle']['tmp'] ?? '') !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
                                     },
                                     bullets: {
                                         enable: ' . (!empty($settings['bulletsEnable']) ? 'true' : 'false') . ",
                                         hide_onleave: false,
                                         style: '" . ($settings['bulletsStyle'] ?? '') . "',
-                                        " . ($customSettings['bulletsStyle']['tmp'] !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
+                                        " . (($customSettings['bulletsStyle']['tmp'] ?? '') !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
                                         h_align: 'center',
                                         v_align: 'bottom',
                                         h_offset: 0,
@@ -386,7 +386,11 @@ if (document.readyState === 'complete') {
      */
     public function customSettings(array $settings)
     {
-        $customSettings = [];
+        $customSettings = [
+            'sliderLayout' => ['outerWrapClass' => '', 'innerWrapClass' => ''],
+            'arrowsStyle' => ['tmp' => ''],
+            'bulletsStyle' => ['tmp' => ''],
+        ];
         switch ($settings['sliderLayout'] ?? '') {
             case 'fullwidth':
                 $customSettings['sliderLayout']['outerWrapClass'] = 'fullwidthbanner-container';

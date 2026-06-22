@@ -166,6 +166,15 @@ final class FlexformProcess
         }
 
         $record = $event->getRecord();
+
+        // TYPO3 v14 RecordInterface: full type is e.g. tt_content.nsrevolutionslider_slider
+        if (is_object($record) && method_exists($record, 'getFullType')) {
+            $fullType = (string)$record->getFullType();
+            if ($fullType === 'tt_content.' . self::PLUGIN_SIGNATURE) {
+                return true;
+            }
+        }
+
         $recordType = $this->getRecordFieldValue($record, 'CType');
 
         if (in_array($recordType, [self::PLUGIN_SIGNATURE, self::LEGACY_MIGRATED_CTYPE], true)) {
@@ -307,10 +316,14 @@ final class FlexformProcess
      */
     private function getFlexformValueFromFieldValues(object $flexFormData, string $field): string
     {
-        $paths = [$field];
+        $settingKey = str_starts_with($field, 'settings.') ? substr($field, 9) : $field;
+        $paths = [$field, $settingKey, 'settings/' . $settingKey];
         foreach (self::FLEXFORM_SHEETS as $sheet) {
             $paths[] = $sheet . '/' . $field;
+            $paths[] = $sheet . '/' . $settingKey;
+            $paths[] = $sheet . '/settings/' . $settingKey;
         }
+        $paths = array_unique($paths);
 
         foreach ($paths as $path) {
             try {

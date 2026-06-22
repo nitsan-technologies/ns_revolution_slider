@@ -23,7 +23,7 @@ final class PluginListTypeToCTypeUpdate implements UpgradeWizardInterface
 
     public function getIdentifier(): string
     {
-        return 'nsRevolutionSliderPluginListTypeToCType';
+        return 'nsRevolutionSliderPluginListTypeToCTypeUpdate';
     }
 
     public function getTitle(): string
