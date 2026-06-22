@@ -134,7 +134,10 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $contentObj = $this->request->getAttribute('currentContentObject');
-        $uid = $contentObj->data['uid'];
+        if ($contentObj === null) {
+            return $this->htmlResponse('');
+        }
+        $uid = (int)($contentObj->data['uid'] ?? 0);
         //Plug-in settings
         $settings = $this->settings;
         $customSettings = $this->customSettings($settings);
@@ -151,10 +154,10 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         //Slider logic
         $slides = false;
-        if ($settings['slides_type']) {
+        if (!empty($settings['slides_type'])) {
             //Slider type => individual slide items
-            if ($settings['slides'] != '') {
-                $slidesUids = explode(',', $settings['slides']);
+            if (($settings['slides'] ?? '') != '') {
+                $slidesUids = explode(',', (string)$settings['slides']);
                 foreach ($slidesUids as $slide) {
                     $slideData = $this->slideItemRepository->findByUid($slide);
                     if ($slideData) {
@@ -184,8 +187,8 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         } else {
             //Slider type => Whole Slider
-            if ($settings['slider']) {
-                $slideData = $this->sliderRepository->findByUid($settings['slider']);
+            if (!empty($settings['slider'])) {
+                $slideData = $this->sliderRepository->findByUid((int)$settings['slider']);
                 if ($slideData) {
                     foreach ($slideData->getSlides() as $slide) {
                         //Animation Configuration updated base on Slide
@@ -394,8 +397,8 @@ if (document.readyState === 'complete') {
                 $customSettings['sliderLayout']['innerWrapClass'] = 'fullscreenbanner';
                 break;
             default:
-                $customSettings['sliderLayout']['outerWrap'] = '';
-                $customSettings['sliderLayout']['innerWrap'] = '';
+                $customSettings['sliderLayout']['outerWrapClass'] = '';
+                $customSettings['sliderLayout']['innerWrapClass'] = '';
                 break;
         }
         switch ($settings['arrowsStyle'] ?? '') {

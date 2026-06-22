@@ -154,8 +154,19 @@ final class FlexformProcess
 
     private function isRevolutionSliderRecord(PageContentPreviewRenderingEvent $event): bool
     {
+        // TYPO3 v14+: event exposes record type directly (CType or dedicated plugin CType).
+        if (method_exists($event, 'getRecordType')) {
+            $recordType = (string)$event->getRecordType();
+            if (in_array($recordType, [self::PLUGIN_SIGNATURE, self::LEGACY_MIGRATED_CTYPE], true)) {
+                return true;
+            }
+            if ($recordType !== 'list') {
+                return false;
+            }
+        }
+
         $record = $event->getRecord();
-        $recordType = (string)($record['CType'] ?? '');
+        $recordType = $this->getRecordFieldValue($record, 'CType');
 
         if (in_array($recordType, [self::PLUGIN_SIGNATURE, self::LEGACY_MIGRATED_CTYPE], true)) {
             return true;
@@ -177,19 +188,81 @@ final class FlexformProcess
             return (string)($record[$field] ?? '');
         }
 
-        if ($record->has($field)) {
-            $value = $record->get($field);
-            if (is_scalar($value) || $value === null) {
-                return (string)($value ?? '');
+        if (method_exists($record, 'has') && method_exists($record, 'get') && $record->has($field)) {
+            return $this->stringifyRecordValue($record->get($field));
+        }
+
+        // TYPO3 v14 RecordInterface: CType is available via getRecordType().
+        if ($field === 'CType' && method_exists($record, 'getRecordType')) {
+            $recordType = $record->getRecordType();
+
+            return $recordType !== null ? (string)$recordType : '';
+        }
+
+        if (method_exists($record, 'getRawRecord')) {
+            $rawRecord = $record->getRawRecord();
+            if ($rawRecord !== null && method_exists($rawRecord, 'has') && method_exists($rawRecord, 'get') && $rawRecord->has($field)) {
+                return $this->stringifyRecordValue($rawRecord->get($field));
             }
         }
 
-        $rawRecord = $record->getRawRecord();
-        if ($rawRecord !== null && $rawRecord->has($field)) {
-            $value = $rawRecord->get($field);
-            if (is_scalar($value) || $value === null) {
-                return (string)($value ?? '');
+        if (method_exists($record, 'toArray')) {
+            $array = $record->toArray();
+
+            return (string)($array[$field] ?? '');
+        }
+
+        return '';
+    }
+
+    /**
+     * @param array<string, mixed>|object $record
+     */
+    private function getFlexFormData(array|object $record): mixed
+    {
+        if (is_array($record)) {
+            return $record['pi_flexform'] ?? null;
+        }
+
+        if (method_exists($record, 'has') && method_exists($record, 'get') && $record->has('pi_flexform')) {
+            return $record->get('pi_flexform');
+        }
+
+        if (method_exists($record, 'getRawRecord')) {
+            $rawRecord = $record->getRawRecord();
+            if ($rawRecord !== null && method_exists($rawRecord, 'has') && method_exists($rawRecord, 'get') && $rawRecord->has('pi_flexform')) {
+                return $rawRecord->get('pi_flexform');
             }
+        }
+
+        if (method_exists($record, 'toArray')) {
+            return $record->toArray()['pi_flexform'] ?? null;
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array<string, mixed>|object $record
+     */
+    private function resolveFlexformXml(array|object $record): string
+    {
+        $flexFormData = $this->getFlexFormData($record);
+
+        return is_string($flexFormData) ? $flexFormData : '';
+    }
+
+    private function isFlexFormFieldValues(mixed $value): bool
+    {
+        return is_object($value)
+            && class_exists(\TYPO3\CMS\Core\Domain\FlexFormFieldValues::class)
+            && $value instanceof \TYPO3\CMS\Core\Domain\FlexFormFieldValues;
+    }
+
+    private function stringifyRecordValue(mixed $value): string
+    {
+        if (is_scalar($value) || $value === null) {
+            return (string)($value ?? '');
         }
 
         return '';
@@ -201,6 +274,14 @@ final class FlexformProcess
     private function getFlexformSetting(array|object $record, string $field): string
     {
         $settingKey = str_starts_with($field, 'settings.') ? substr($field, 9) : $field;
+
+        $flexFormData = $this->getFlexFormData($record);
+        if ($this->isFlexFormFieldValues($flexFormData)) {
+            $value = $this->getFlexformValueFromFieldValues($flexFormData, $field);
+            if ($value !== '') {
+                return $value;
+            }
+        }
 
         $flexformXml = $this->resolveFlexformXml($record);
         if ($flexformXml !== '') {
@@ -214,56 +295,11 @@ final class FlexformProcess
             }
         }
 
-        if (!is_array($record) && $record->has('pi_flexform')) {
-            $flexFormData = $record->get('pi_flexform');
-            if ($this->isFlexFormFieldValues($flexFormData)) {
-                $value = $this->getFlexformValueFromFieldValues($flexFormData, $field);
-                if ($value !== '') {
-                    return $value;
-                }
-            }
-            if (is_string($flexFormData) && $flexFormData !== '') {
-                return $this->getFlexformValueFromXml($flexFormData, $field);
-            }
+        if (is_string($flexFormData) && $flexFormData !== '') {
+            return $this->getFlexformValueFromXml($flexFormData, $field);
         }
 
         return '';
-    }
-
-    /**
-     * @param array<string, mixed>|object $record
-     */
-    private function resolveFlexformXml(array|object $record): string
-    {
-        if (is_array($record)) {
-            return (string)($record['pi_flexform'] ?? '');
-        }
-
-        if (method_exists($record, 'getRawRecord')) {
-            $rawRecord = $record->getRawRecord();
-            if ($rawRecord !== null && $rawRecord->has('pi_flexform')) {
-                $value = $rawRecord->get('pi_flexform');
-                if (is_string($value) && $value !== '') {
-                    return $value;
-                }
-            }
-        }
-
-        if ($record->has('pi_flexform')) {
-            $value = $record->get('pi_flexform');
-            if (is_string($value) && $value !== '') {
-                return $value;
-            }
-        }
-
-        return '';
-    }
-
-    private function isFlexFormFieldValues(mixed $value): bool
-    {
-        return is_object($value)
-            && class_exists(\TYPO3\CMS\Core\Domain\FlexFormFieldValues::class)
-            && $value instanceof \TYPO3\CMS\Core\Domain\FlexFormFieldValues;
     }
 
     /**

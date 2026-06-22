@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
-#[UpgradeWizard('nsRevolutionPluginListTypeToCTypeUpdate')]
+#[UpgradeWizard('nsRevolutionSliderPluginListTypeToCTypeUpdate')]
 final class PluginListTypeToCTypeUpdate implements UpgradeWizardInterface
 {
     private const PLUGIN_SIGNATURE = 'nsrevolutionslider_slider';
