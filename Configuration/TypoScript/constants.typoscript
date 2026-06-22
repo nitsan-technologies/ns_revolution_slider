@@ -48,5 +48,5 @@ plugin.tx_nsrevolutionslider_slider {
         buttonAnimation = 1
     }
     # cat=plugin.tx_nsrevolutionslider_slider/101010/99; type=boolean; label=Load minimal PAGE template (demo/blank installs only)
-    loadMinimalPageTemplate = 0
+    loadMinimalPageTemplate = 1
 }

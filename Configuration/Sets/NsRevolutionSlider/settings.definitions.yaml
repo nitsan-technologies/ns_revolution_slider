@@ -81,3 +81,9 @@ settings:
     category: nsRevolutionSlider.animation
     type: string
     default: '1'
+  plugin.tx_nsrevolutionslider_slider.loadMinimalPageTemplate:
+    label: 'Load minimal page template'
+    description: 'Renders a basic PAGE object for demo/blank installs. Disable when your site uses a full theme package.'
+    category: nsRevolutionSlider.website
+    type: bool
+    default: true
