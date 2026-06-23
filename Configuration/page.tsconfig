@@ -1,6 +1,9 @@
+# TYPO3 v12/v13: content element wizard entry for General Plugin + Slider Revolution.
+# TYPO3 v14 uses automatic wizard registration from TCA (registerPlugin/addPlugin).
+# This file is kept for v12/v13 instances; v14 ignores list_type defaults safely.
 mod.wizards.newContentElement.wizardItems.plugins {
     elements {
-        slider {
+        nsrevolutionslider_slider {
             iconIdentifier = ns_revolution_slider-plugin-slider
             title = LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.name
             description = LLL:EXT:ns_revolution_slider/Resources/Private/Language/locallang_db.xlf:tx_ns_revolution_slider_slider.description

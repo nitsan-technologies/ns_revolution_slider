@@ -1,3 +1,43 @@
+.tx-ns-revolution-slider .fullwidthbanner-container,
+.tx-ns-revolution-slider .rev_slider_wrapper {
+	min-height: 400px;
+}
+
+/* Hide raw list markup until Revolution Slider initializes (keep display for width calculation). */
+.tx-ns-revolution-slider .rev_slider.revslider-pending {
+	visibility: hidden;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-initialised,
+.tx-ns-revolution-slider .rev_slider.tp-simpleresponsive,
+.tx-ns-revolution-slider .rev_slider.revslider-fallback {
+	visibility: visible;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-fallback {
+	display: block !important;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-fallback > ul > li:not(:first-child) {
+	display: none;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-pending > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tx-ns-revolution-slider .rev_slider.revslider-pending > ul > li {
+	list-style: none;
+}
+
+.tx-ns-revolution-slider .rev_slider .slotholder,
+.tx-ns-revolution-slider .rev_slider .tp-bgimg {
+	background-size: cover !important;
+	background-position: center center !important;
+}
+
 .tx-ns-revolution-slider .tp-parallax-wrap .tp-caption a {
 	z-index: 8;
 	white-space: nowrap;
@@ -10,6 +50,12 @@
 .tx-ns-revolution-slider .tp-parallax-wrap .tp-caption a:hover{
 	text-decoration: none;
 }
+.tx-ns-revolution-slider .rev_slider .tp-caption {
+	color: #fff;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85);
+	z-index: 10;
+}
+
 .tx-ns-revolution-slider .rev_slider .tp-mask-wrap .tp-caption{
 	text-shadow: 3px 2px 7px black;
 }

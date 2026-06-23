@@ -21,7 +21,7 @@ return [
             'ignorePageTypeRestriction' => true
         ],
         'searchFields' => 'slide_effect,data_duration,headline,headline_animation,description,description_animation,button_text,button_link,button_animation',
-        'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/tx_nsrevolutionslider_domain_model_slideitem.png'
+        'iconfile' => 'EXT:ns_revolution_slider/Resources/Public/Icons/user_plugin_slider.svg'
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid, l10n_diffsource, hidden, slide_effect, data_duration, image, headline, headline_animation, description, description_animation, button_text, button_link, button_animation, box_check, box_animation, box_width, box_height, box_bg_color, box_text_color, box_bg_trans_opacity, box_position_x, box_position_y, headline_position_x, headline_position_y, description_position_x, description_position_y, button_position_x, button_position_y, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
@@ -66,7 +66,7 @@ return [
             'exclude' => true,
             'label' => $langfile . 'LGL.starttime',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,
@@ -79,7 +79,7 @@ return [
             'exclude' => true,
             'label' => $langfile . 'LGL.endtime',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'renderType' => 'datetime',
                 'eval' => 'datetime',
                 'default' => 0,

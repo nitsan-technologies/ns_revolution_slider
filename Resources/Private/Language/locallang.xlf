@@ -321,6 +321,60 @@
             <trans-unit id="backend.globalSetting">
                 <source>As per global setting</source>
             </trans-unit>
+            <trans-unit id="backend.section.mainSettings">
+                <source>Main Settings</source>
+            </trans-unit>
+            <trans-unit id="backend.section.generalSettings">
+                <source>General Settings</source>
+            </trans-unit>
+            <trans-unit id="backend.section.navigationSettings">
+                <source>Navigation Settings</source>
+            </trans-unit>
+            <trans-unit id="backend.section.fontSettings">
+                <source>Font Style Settings</source>
+            </trans-unit>
+            <trans-unit id="backend.slider_layout">
+                <source>Slider layout</source>
+            </trans-unit>
+            <trans-unit id="backend.spinner">
+                <source>Spinner</source>
+            </trans-unit>
+            <trans-unit id="backend.stop_loop">
+                <source>Stop loop</source>
+            </trans-unit>
+            <trans-unit id="backend.responsive_levels">
+                <source>Responsive levels</source>
+            </trans-unit>
+            <trans-unit id="backend.keyboard_navigation">
+                <source>Keyboard navigation</source>
+            </trans-unit>
+            <trans-unit id="backend.keyboard_direction">
+                <source>Keyboard direction</source>
+            </trans-unit>
+            <trans-unit id="backend.arrows_style">
+                <source>Arrows style</source>
+            </trans-unit>
+            <trans-unit id="backend.bullets_style">
+                <source>Bullets style</source>
+            </trans-unit>
+            <trans-unit id="backend.headline_size_desktop">
+                <source>Headline font size (desktop)</source>
+            </trans-unit>
+            <trans-unit id="backend.headline_color">
+                <source>Headline font color</source>
+            </trans-unit>
+            <trans-unit id="backend.description_size_desktop">
+                <source>Description font size (desktop)</source>
+            </trans-unit>
+            <trans-unit id="backend.button_text_size_desktop">
+                <source>Button text font size (desktop)</source>
+            </trans-unit>
+            <trans-unit id="backend.yes">
+                <source>Yes</source>
+            </trans-unit>
+            <trans-unit id="backend.no">
+                <source>No</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

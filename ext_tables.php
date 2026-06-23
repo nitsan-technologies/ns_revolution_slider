@@ -1,7 +1,8 @@
 <?php
 
-defined('TYPO3') || die('Access denied.');
+defined('TYPO3') || die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    '@import \'EXT:ns_revolution_slider/Configuration/TSconfig/ContentElementWizard.tsconfig\''
-);
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addToInsertRecords('tx_nsrevolutionslider_domain_model_slider');
+ExtensionManagementUtility::addToInsertRecords('tx_nsrevolutionslider_domain_model_slideitem');

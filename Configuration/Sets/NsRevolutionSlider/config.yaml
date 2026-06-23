@@ -1,0 +1,4 @@
+name: nitsan/NsRevolutionSlider
+label: Revolution Slider
+dependencies:
+  - typo3/fluid-styled-content

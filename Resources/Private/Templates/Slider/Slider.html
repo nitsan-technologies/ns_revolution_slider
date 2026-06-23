@@ -4,7 +4,7 @@
 	<f:section name="content">
 		<f:if condition="{slides}">
             <div class="rev_slider_wrapper {feSettings.sliderLayout.outerWrapClass}">
-                <div id="rev_slider_{uid}" class="rev_slider {feSettings.sliderLayout.innerWrapClass}" data-version="5.4.8" style="display:none">
+                <div id="rev_slider_{uid}" class="rev_slider revslider-pending {feSettings.sliderLayout.innerWrapClass}" data-version="5.4.8" style="display:none">
                     <ul>
                     	<f:for each="{slides}" as="slide" iteration="i">
                     		<f:variable name="navTitle" value="{slide.image.originalResource.title}" />
@@ -13,7 +13,7 @@
                     		</f:if>
 	                        <li data-transition="{slide.slideEffect}" data-title="{navTitle}" data-duration="{f:if(condition: slide.dataDuration, then: slide.dataDuration, else: 3000)}">
 	                        	<f:if condition="{slide.image}">
-	                        		<f:image image="{slide.image}" maxWidth="1920" maxHeight="1080" class="rev-slidebg" treatIdAsReference="1" />
+	                        		<f:image image="{slide.image}" maxWidth="1920" maxHeight="1080" class="rev-slidebg" treatIdAsReference="1" additionalAttributes="{data-bgposition: 'center center', data-bgfit: 'cover', data-bgrepeat: 'no-repeat'}" />
 	                        	</f:if>
 
 	                        	<f:if condition="{slide.boxCheck}">

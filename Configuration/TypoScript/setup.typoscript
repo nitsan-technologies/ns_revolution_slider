@@ -10,7 +10,7 @@ plugin.tx_nsrevolutionslider_slider {
             1 = {$plugin.tx_nsrevolutionslider_slider.view.partialRootPath}
         }
         layoutRootPaths {
-            0 = EXT:tx_nsrevolutionslider/Resources/Private/Layouts/
+            0 = EXT:ns_revolution_slider/Resources/Private/Layouts/
             1 = {$plugin.tx_nsrevolutionslider_slider.view.layoutRootPath}
         }
     }
@@ -41,14 +41,28 @@ plugin.tx_nsrevolutionslider_slider {
         buttonAnimation = {$plugin.tx_nsrevolutionslider_slider.settings.buttonAnimation}
     }
 }
-page {
-    includeCSS {
-        # Custom CSS
-        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
 
+# Minimal PAGE setup for blank/demo installs without a site package.
+# Disable via constant or site setting when using a full theme.
+[{$plugin.tx_nsrevolutionslider_slider.loadMinimalPageTemplate} == 1]
+page = PAGE
+page {
+    typeNum = 0
+    includeCSS {
+        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
     }
-   
+    10 = CONTENT
+    10 {
+        table = tt_content
+        select {
+            pidInList = this
+            orderBy = sorting
+            where = {#colPos}=0
+        }
+    }
 }
+[END]
+
 lib.replaceSpace = TEXT
 lib.replaceSpace {
     current = 1
