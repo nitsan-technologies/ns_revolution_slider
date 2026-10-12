@@ -375,6 +375,15 @@
             <trans-unit id="backend.no">
                 <source>No</source>
             </trans-unit>
+            <trans-unit id="premium.strip.headline">
+                <source>Slider Revolution Premium</source>
+            </trans-unit>
+            <trans-unit id="premium.strip.description">
+                <source>Get more out of your sliders with the premium version. Try it free.</source>
+            </trans-unit>
+            <trans-unit id="premium.strip.trial">
+                <source>Start Free Trial</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

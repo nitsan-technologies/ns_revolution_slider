@@ -1,0 +1,20 @@
+.ns-revolution-slider-premium-strip {
+    margin-bottom: 1rem;
+    padding: 8px 16px;
+    border: 1px solid light-dark(#c2c2c2, #464646);
+    background-color: light-dark(#eaeaea, #333);
+    color: light-dark(#212424, #d9d9d9);
+}
+
+.ns-revolution-slider-premium-strip .btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.ns-revolution-slider-premium-strip .btn.btn-primary:hover,
+.ns-revolution-slider-premium-strip .btn.btn-primary:focus {
+    background-color: #0062cc;
+    border-color: #0062cc;
+    color: #fff;
+}
