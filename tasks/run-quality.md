@@ -22,8 +22,8 @@ Composer mode: `composer dump-autoload`.
    `tx_nsrevolutionslider_*`.
 2. **New content element wizard:** "Slider Revolution" is listed (v12/v13 as General Plugin, v14 as own
    type) and saves.
-3. **Edit form:** FlexForm sheets load; switching `slides_type` reloads; premium strip shows once above the
-   tabs.
+3. **Edit form:** FlexForm sheets load; switching `slides_type` reloads; premium strip shows once, in the Plugin
+   tab below "Plugin Options" and above the FlexForm sheet tabs, and not above the record tabs.
 4. **Page module:** preview table renders; premium strip shows once, not inside the edit link.
 5. **Strip absent** on Slider and Slide Item records and on other content elements.
 6. **Records:** create Slide Items with image, assign them to a Slider.

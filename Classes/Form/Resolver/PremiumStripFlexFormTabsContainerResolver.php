@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace NITSAN\NsRevolutionSlider\Form\Resolver;
 
-use NITSAN\NsRevolutionSlider\Form\Container\PremiumStripTabsContainer;
+use NITSAN\NsRevolutionSlider\Form\Container\PremiumStripFlexFormTabsContainer;
 use TYPO3\CMS\Backend\Form\NodeFactory;
 use TYPO3\CMS\Backend\Form\NodeResolverInterface;
 
 /**
- * Uses PremiumStripTabsContainer for the main edit form of Slider Revolution content elements.
+ * Uses PremiumStripFlexFormTabsContainer for the plugin options (pi_flexform) of Slider Revolution content elements.
  */
-final class PremiumStripTabsContainerResolver implements NodeResolverInterface
+final class PremiumStripFlexFormTabsContainerResolver implements NodeResolverInterface
 {
     private const PLUGIN_SIGNATURE = 'nsrevolutionslider_slider';
 
@@ -32,13 +32,16 @@ final class PremiumStripTabsContainerResolver implements NodeResolverInterface
 
     public function resolve(): ?string
     {
-        if (($this->data['tableName'] ?? '') !== 'tt_content' || !empty($this->data['isInlineChild'])) {
+        if (($this->data['tableName'] ?? '') !== 'tt_content'
+            || ($this->data['fieldName'] ?? '') !== 'pi_flexform'
+            || !empty($this->data['isInlineChild'])
+        ) {
             return null;
         }
 
         $recordType = (string)($this->data['recordTypeValue'] ?? '');
         if ($recordType === self::PLUGIN_SIGNATURE) {
-            return PremiumStripTabsContainer::class;
+            return PremiumStripFlexFormTabsContainer::class;
         }
 
         $listType = $this->data['databaseRow']['list_type'] ?? '';
@@ -46,6 +49,6 @@ final class PremiumStripTabsContainerResolver implements NodeResolverInterface
             $listType = (string)($listType[0] ?? '');
         }
 
-        return $recordType === 'list' && $listType === self::PLUGIN_SIGNATURE ? PremiumStripTabsContainer::class : null;
+        return $recordType === 'list' && $listType === self::PLUGIN_SIGNATURE ? PremiumStripFlexFormTabsContainer::class : null;
     }
 }

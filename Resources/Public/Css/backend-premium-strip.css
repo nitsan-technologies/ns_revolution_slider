@@ -1,9 +1,15 @@
 .ns-revolution-slider-premium-strip {
     margin-bottom: 1rem;
-    padding: 8px 16px;
-    border: 1px solid light-dark(#c2c2c2, #464646);
-    background-color: light-dark(#eaeaea, #333);
-    color: light-dark(#212424, #d9d9d9);
+    padding: 10px 16px;
+    border: 1px solid light-dark(#8eb6e8, #3d6ea5);
+    border-left: 4px solid light-dark(#2b6cb0, #7eb6ea);
+    background-color: light-dark(#e7f2fc, #16324a);
+    color: light-dark(#0d2c4a, #e7f1fb);
+}
+
+.panel > .ns-revolution-slider-premium-strip {
+    margin-bottom: 0;
+    border-width: 0 0 1px 4px;
 }
 
 .ns-revolution-slider-premium-strip .btn.btn-primary {

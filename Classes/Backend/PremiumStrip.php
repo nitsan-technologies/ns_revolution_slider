@@ -36,7 +36,7 @@ final class PremiumStrip
         }
 
         $iconSize = enum_exists(IconSize::class) ? IconSize::SMALL : 'small';
-        $icon = GeneralUtility::makeInstance(IconFactory::class)->getIcon('actions-star', $iconSize)->render();
+        $icon = GeneralUtility::makeInstance(IconFactory::class)->getIcon('actions-rocket', $iconSize)->render();
 
         return '<div class="ns-revolution-slider-premium-strip d-flex flex-wrap align-items-center justify-content-between gap-2">'
             . '<div class="d-flex flex-wrap align-items-center gap-2">'

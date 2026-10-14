@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace NITSAN\NsRevolutionSlider\Form\Container;
 
 use NITSAN\NsRevolutionSlider\Backend\PremiumStrip;
-use TYPO3\CMS\Backend\Form\Container\TabsContainer;
+use TYPO3\CMS\Backend\Form\Container\FlexFormTabsContainer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Core tabs container with the premium strip above the tab menu of the Slider Revolution content element.
+ * Core FlexForm tabs container with the premium strip above the sheet tabs of the Slider Revolution plugin options.
  */
-final class PremiumStripTabsContainer extends TabsContainer
+final class PremiumStripFlexFormTabsContainer extends FlexFormTabsContainer
 {
     public function render(): array
     {
