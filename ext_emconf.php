@@ -10,10 +10,11 @@ $EM_CONF['ns_revolution_slider'] = [
     'state' => 'stable',
     'uploadfolder' => 1,
     'createDirs' => '',
-    'version' => '13.0.0',
+    'version' => '13.0.1',
     'constraints' => [
         'depends' => [
             'typo3' => '12.0.0-14.9.99',
+            'ns_license' => '14.5.4-14.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -15,3 +15,9 @@ ExtensionUtility::configurePlugin(
         \NITSAN\NsRevolutionSlider\Controller\SliderController::class => 'slider',
     ],
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeResolver'][1760276100] = [
+    'nodeName' => 'flexFormTabsContainer',
+    'priority' => 40,
+    'class' => \NITSAN\NsRevolutionSlider\Form\Resolver\PremiumStripFlexFormTabsContainerResolver::class,
+];

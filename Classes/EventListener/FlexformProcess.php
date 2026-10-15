@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace NITSAN\NsRevolutionSlider\EventListener;
 
+use NITSAN\NsRevolutionSlider\Backend\PremiumStrip;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -19,6 +21,11 @@ final class FlexformProcess
     private const LEGACY_MIGRATED_CTYPE = 'slider';
 
     private const FLEXFORM_SHEETS = ['sDEF', 'general', 'navigationStyles', 'fontStyle'];
+
+    public function __construct(
+        private readonly PremiumStrip $premiumStrip,
+        private readonly PageRenderer $pageRenderer,
+    ) {}
 
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
@@ -126,6 +133,12 @@ final class FlexformProcess
         $itemContent .= $this->renderPreviewRow('backend.button_text_size_desktop', $this->getFlexformSetting($record, 'settings.button_text_size_desktop'));
 
         $itemContent .= '</tbody></table>';
+
+        $premiumStrip = $this->premiumStrip->render();
+        if ($premiumStrip !== '') {
+            $this->pageRenderer->addCssFile(PremiumStrip::STYLESHEET);
+            $itemContent = $premiumStrip . $itemContent;
+        }
 
         $event->setPreviewContent($itemContent);
     }
