@@ -13,8 +13,10 @@ Renders a Revolution Slider 5.x (jQuery, ThemePunch) from Slider / Slide Item re
 | v12, v13 | General Plugin: `CType = list`, `list_type = nsrevolutionslider_slider` (`addPlugin`), wizard entry from `page.tsconfig` | Plugin tab shows the FlexForm (`subtypes_addlist`) |
 | v14 | Own `CType = nsrevolutionslider_slider` (`registerPlugin` with FlexForm) | Plugin tab shows the FlexForm |
 
-`tt_content.php` removes a stray `CType` registration on v12/v13 on purpose: since v13 `registerPlugin()`
-creates a CType, which would break the General Plugin UX there.
+On v12/v13 `tt_content.php` uses `addPlugin(…, 'list_type', …)` instead of `registerPlugin()` and removes any
+`CType` item / `types` entry `nsrevolutionslider_slider` left by an earlier registration, which would break the
+General Plugin UX. Code-read: the code comment says v13 `registerPlugin()` always creates a CType; in v13 core
+it follows the plugin type stored by `configurePlugin()` (here the default `list_type`).
 
 **Upgrade wizard** `nsRevolutionSliderPluginListTypeToCTypeUpdate` ("Migrate Revolution Slider plugins to
 content elements"), runs only on v14: moves `list_type = nsrevolutionslider_slider` records to the CType and
@@ -39,10 +41,15 @@ Animation ids 1–32 map to `data-frames` presets in `Templates/Slider/Slider.ht
 3. Colours always come from the FlexForm (default `#fff`); sizes are built as JS arrays from the FlexForm.
 
 TypoScript `plugin.tx_nsrevolutionslider_slider.settings` (static template or site set):
-`includeJquery`, `jQueryFile`, `jsFolderPath` (default `fileadmin/revolution-slider/js/`), `cssFolderPath`
-(`fileadmin/revolution-slider/css/`), `customStyleFilePath`, `customStyle` (inline CSS), default animations
-and duration. `persistence.storagePid` is set but irrelevant (records are loaded with `findByUid`).
-`loadMinimalPageTemplate` is a top-level constant, see `core.md` known issues.
+`includeJquery` (1), `jQueryFile` (setup only, `Js/jquery-2.1.4.min.js`), `jsFolderPath` (default
+`fileadmin/revolution-slider/js/`), `cssFolderPath` (`fileadmin/revolution-slider/css/`), `customStyleFilePath`
+(empty), `slideDuration` (2000), `slideEffect` (`fade`), `headlineAnimation` / `descriptionAnimation` /
+`buttonAnimation` (1). `SliderController` also reads `settings.customStyle` (added as inline CSS), but no
+TypoScript, constant or site setting defines it. `persistence.storagePid` (empty constant) is set but irrelevant
+(records are loaded with `findByUid`). `loadMinimalPageTemplate` is a top-level constant, see `core.md` known
+issues. The site set defines the view paths, the settings above except `jQueryFile`, and
+`loadMinimalPageTemplate` in `settings.definitions.yaml`; `storagePid` exists only as a classic constant (the
+set's `constants.typoscript` imports the classic file).
 
 ## Frontend flow (`SliderController`)
 
@@ -63,6 +70,10 @@ skin is loaded when arrows and bullets use different styles.
 
 ## Page module preview (`EventListener/FlexformProcess.php`)
 
-`PageContentPreviewRenderingEvent` listener for both registrations (CType or `list` + list_type). Shows a
-table with Main / General / Navigation / Font settings. The slider is shown as its uid, selected slides as a
-count. The premium strip is prepended (`premium-cta.md`).
+`PageContentPreviewRenderingEvent` listener (service tag in `Services.yaml`, identifier `flexform-process`) for
+both registrations (CType or `list` + list_type) and the legacy CType `slider`. Reads the FlexForm from
+`FlexFormFieldValues` (v14 record) or the XML (v12/v13). Shows a table with a subset of the settings: Main
+(slider uid or selected-slides count, duration, effect, three animations), General (`sliderLayout`, `spinner`,
+`stopLoop`, `responsiveLevels`), Navigation (`keyboardNavigation`, `keyboard_direction`, `arrowsStyle`,
+`bulletsStyle`), Font (headline size/colour, description and button text size, desktop only). The premium
+strip is prepended (`premium-cta.md`).

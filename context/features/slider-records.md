@@ -5,7 +5,8 @@ currently holds 0 sliders and 0 slide items.
 
 Editors create Slide Items, group them into a Slider, and pick either the Slider or individual Slide Items
 in the content element (`slider-content-element.md`). Both tables are allowed on standard pages
-(`ignorePageTypeRestriction`, `addToInsertRecords`) and are workspace-aware (`versioningWS`).
+(`ignorePageTypeRestriction`), selectable in the core "Insert records" element (`addToInsertRecords` in
+`ext_tables.php`) and workspace-aware (`versioningWS`).
 
 ## Tables
 

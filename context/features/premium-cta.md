@@ -3,9 +3,11 @@
 **Status:** Done · verified on TYPO3 14.3 (2026-10-14) · needs ns_license **14.5.4** (the `trial` query
 parameter) · v12/v13 not tested.
 
-Light-blue strip with a 4px left accent (dark-blue text, `actions-rocket` icon, blue "Start Free Trial"
-button). Headline "You are using the free version", text "Upgrade to Premium for the visual Slider Revolution
-builder." Same layout, colours and wording pattern as the ns_hubspot / ns_feedback / ns_backup strips.
+Light-blue card with a 4px left accent, 6px radius and 14px 18px padding (`actions-rocket` icon, blue
+"Start Free Trial →" button; the arrow is `aria-hidden` markup). Two lines: semibold headline "You're using the
+free version of NS Revolution Slider", description "Unlock premium features and get more out of NS Revolution
+Slider." Wording and design are the team-wide standard from the 2026-10-14 review, identical in every NITSAN
+strip except for the extension name. Inside the FlexForm panel (`.panel > …`) it is inset by 16px.
 
 ## Where it shows
 

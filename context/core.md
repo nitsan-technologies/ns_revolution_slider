@@ -8,7 +8,7 @@
 | Composer name | `nitsan/ns-revolution-slider` |
 | Title (ext_emconf) / product name | TYPO3 Revolution Slider / Slider Revolution |
 | Namespace | `NITSAN\NsRevolutionSlider\` → `Classes/` (upper-case `NITSAN`) |
-| Version (ext_emconf) | 13.0.0 |
+| Version (ext_emconf) | 13.1.0 (latest tag 13.0.0) |
 | Repository | https://github.com/nitsan-technologies/ns_revolution_slider (default branch `master`) |
 | Licensing status (NITSAN Free/Freemium sheet) | **Freemium** — this repo is the free version |
 | Premium version | Sheet: https://t3planet.de/typo3-slider-revolution-erweiterung (€169/year) · README: https://t3planet.com/typo3-slider-revolution-extension |
@@ -69,6 +69,13 @@ Code-read:
 - An empty `jsFolderPath` / `cssFolderPath` makes `SliderController` scan the public web root for `.js`/`.css`.
 - Font sizes are passed as `[desktop, tablet, tablet, mobile]`; the "notebook" level gets the tablet value.
 - `SlideItemController::listAction()` is not registered in `configurePlugin()` and has no template (dead code).
+- `setup.typoscript` sets `view.templateRootPaths.0 = EXT:{extension.shortExtensionKey}/…`; that placeholder is
+  not resolved in TypoScript, so only `templateRootPaths.1` (the constant) points to the real templates.
+- Deprecations: on v13 the `list_type` registration (`addPlugin(…, 'list_type')`, `configurePlugin()` without
+  plugin type) logs `E_USER_DEPRECATED`. In TYPO3 14 the upgrade wizard's `TYPO3\CMS\Install\Attribute\
+  UpgradeWizard` / `TYPO3\CMS\Install\Updates\UpgradeWizardInterface` are deprecated aliases (moved to
+  `TYPO3\CMS\Core\…`), and `ext_tables.php` itself is deprecated since 14.3 (removal in v15; the core docblock of
+  `addToInsertRecords()` asks for `Configuration/TCA/Overrides/`).
 - `ext_tables.sql` still declares legacy columns (`cruser_id`, `t3ver_id`, `t3ver_count`, `t3ver_tstamp`,
   `t3ver_move_id`).
 - `composer.json` licence `GPL-2.0+` is a deprecated SPDX id (README badge says GPL-3.0). `ext_emconf` keeps
