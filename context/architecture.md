@@ -31,6 +31,6 @@ record tables, one Page-module event listener, one FormEngine node resolver. No 
 | `Configuration/TCA/tx_nsrevolutionslider_domain_model_{slider,slideitem}.php` | Record TCA |
 | `Configuration/TypoScript/{constants,setup}.typoscript` | `plugin.tx_nsrevolutionslider_slider` (view, persistence, settings), optional minimal `page`, `lib.replaceSpace` |
 | `Resources/Private/Templates/Slider/Slider.html`, `Layouts/Default.html` | Revolution Slider 5.4.8 markup (`data-frames` presets per animation id 1–32) |
-| `Resources/Public/Js/jquery-2.1.4.min.js` | Bundled jQuery |
+| `Resources/Public/Js/jquery-3.7.1.min.js` | Bundled jQuery |
 | `Resources/Public/Css/revolution_slider.css` | Included by the minimal `page`; suggested value for `customStyleFilePath` |
 | `Resources/Public/Css/backend-premium-strip.css` | Premium strip styling (backend only) |

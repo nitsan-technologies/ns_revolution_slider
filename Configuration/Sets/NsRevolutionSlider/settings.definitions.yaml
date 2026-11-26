@@ -28,7 +28,7 @@ settings:
     type: string
     default: 'EXT:ns_revolution_slider/Resources/Private/Layouts/'
   plugin.tx_nsrevolutionslider_slider.settings.includeJquery:
-    label: 'Include jQuery (2.1.4)'
+    label: 'Include jQuery (3.7.1)'
     description: 'Load the bundled jQuery library required by Revolution Slider.'
     category: nsRevolutionSlider.animation
     type: bool

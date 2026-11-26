@@ -28,7 +28,7 @@ plugin.tx_nsrevolutionslider_slider {
     settings {
         # jQuery enable & file path
         includeJquery = {$plugin.tx_nsrevolutionslider_slider.settings.includeJquery}
-        jQueryFile = Js/jquery-2.1.4.min.js
+        jQueryFile = Js/jquery-3.7.1.min.js
         customStyleFilePath = {$plugin.tx_nsrevolutionslider_slider.settings.customStyleFilePath}
         # Slider Revolution CSS & JS path
         jsFolderPath = {$plugin.tx_nsrevolutionslider_slider.settings.jsFolderPath}
@@ -42,15 +42,17 @@ plugin.tx_nsrevolutionslider_slider {
     }
 }
 
+# Always include the extension CSS (fallback visibility, min-height). Themed sites
+# previously only got this file when loadMinimalPageTemplate was enabled.
+page.includeCSS.tx_nsrevolutionslider = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
+
 # Minimal PAGE setup for blank/demo installs without a site package.
 # Disable via constant or site setting when using a full theme.
 [{$plugin.tx_nsrevolutionslider_slider.loadMinimalPageTemplate} == 1]
 page = PAGE
 page {
     typeNum = 0
-    includeCSS {
-        revolutionStyle = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
-    }
+    includeCSS.tx_nsrevolutionslider = EXT:ns_revolution_slider/Resources/Public/Css/revolution_slider.css
     10 = CONTENT
     10 {
         table = tt_content

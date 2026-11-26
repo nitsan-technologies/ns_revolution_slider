@@ -370,7 +370,7 @@
                 <source>Slide Selection</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.includeJquery">
-                <source>Include jQuery (2.1.4)</source>
+                <source>Include jQuery (3.7.1)</source>
             </trans-unit>
             <trans-unit id="tx_ns_revolution_slider_slider.jqueryFile">
                 <source>jQuery file</source>

@@ -41,3 +41,23 @@ Short log of recent work. Keep only what the next session needs; move lasting fa
 
 - Code-read audit: corrected the v13 `registerPlugin()` claim, `customStyle` (read but never defined) and
   `addToInsertRecords` meaning; added plugin type per major, v14 wizard merge, preview fields, deprecations.
+
+## 2026-11-26 — Security hardening (13.0.2)
+
+- `SliderController`: FlexForm/TypoScript values for the Revolution init script go through integer/CSV/
+  select sanitisation + `json_encode` (no raw string concat). Empty/`..` asset paths no longer scan the
+  public root; slide UIDs cast to int. jQuery 2.1.4 left unchanged to avoid ThemePunch breakage.
+  Version `13.0.1` → `13.0.2`.
+
+## 2026-11-26 — FE blank slider on themed sites
+
+- Cause: extension CSS was only registered inside `loadMinimalPageTemplate` PAGE; Camino static include
+  never loaded `revolution_slider.css`, so pending/fallback stayed invisible; test slides also had no
+  images and `#fff` text. Fix: always `page.includeCSS.tx_nsrevolutionslider`; stronger fallback CSS
+  later reverted from `revolution_slider.css`.
+
+## 2026-11-26 — F-03 / F-04 without behaviour change
+
+- F-03: bundled jQuery 2.1.4 → 3.7.1; `includeJquery` still defaults to on; legacy TypoScript path
+  `Js/jquery-2.1.4.min.js` remaps to 3.7.1.
+- F-04: `slider` action is cacheable (`configurePlugin` non-cacheable list empty).

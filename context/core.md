@@ -36,7 +36,7 @@
 | `typo3/cms-install` | **not declared** | upgrade wizard (`#[UpgradeWizard]`) |
 | `nitsan/ns-license` / `ns_license` | `^14.5.4` / `14.5.4-14.9.99` | free-trial deep link (`features/premium-cta.md`) |
 | Revolution Slider 5.x jQuery library (ThemePunch) | not shipped | must be bought and copied to `fileadmin/revolution-slider/{js,css}/` |
-| jQuery 2.1.4 | shipped (`Resources/Public/Js/`) | loaded when `includeJquery` = 1 |
+| jQuery 3.7.1 | shipped (`Resources/Public/Js/`) | loaded when `includeJquery` = 1; legacy `Js/jquery-2.1.4.min.js` path maps to 3.7.1 |
 
 ## Tooling
 
@@ -69,7 +69,8 @@ Code-read:
   set it to 0.
 - Without the purchased library the slider stays hidden; the init script logs
   `Revolution Slider library not loaded` and shows the fallback markup.
-- An empty `jsFolderPath` / `cssFolderPath` makes `SliderController` scan the public web root for `.js`/`.css`.
+- Empty or traversing `jsFolderPath` / `cssFolderPath` values are ignored (no public-root scan). Valid
+  relative folders under the public path (default `fileadmin/revolution-slider/…`) still load as before.
 - Font sizes are passed as `[desktop, tablet, tablet, mobile]`; the "notebook" level gets the tablet value.
 - `SlideItemController::listAction()` is not registered in `configurePlugin()` and has no template (dead code).
 - `setup.typoscript` sets `view.templateRootPaths.0 = EXT:{extension.shortExtensionKey}/…`; that placeholder is

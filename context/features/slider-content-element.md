@@ -41,7 +41,7 @@ Animation ids 1–32 map to `data-frames` presets in `Templates/Slider/Slider.ht
 3. Colours always come from the FlexForm (default `#fff`); sizes are built as JS arrays from the FlexForm.
 
 TypoScript `plugin.tx_nsrevolutionslider_slider.settings` (static template or site set):
-`includeJquery` (1), `jQueryFile` (setup only, `Js/jquery-2.1.4.min.js`), `jsFolderPath` (default
+`includeJquery` (1), `jQueryFile` (setup only, `Js/jquery-3.7.1.min.js`), `jsFolderPath` (default
 `fileadmin/revolution-slider/js/`), `cssFolderPath` (`fileadmin/revolution-slider/css/`), `customStyleFilePath`
 (empty), `slideDuration` (2000), `slideEffect` (`fade`), `headlineAnimation` / `descriptionAnimation` /
 `buttonAnimation` (1). `SliderController` also reads `settings.customStyle` (added as inline CSS), but no
@@ -64,9 +64,10 @@ set's `constants.typoscript` imports the classic file).
 4. A footer inline script `nsRevolutionSliderInit_{uid}` calls `jQuery(...).revolution({...})` on window
    load; without the library it logs a console error and shows the fallback.
 
-Code-read caveats: FlexForm values (`responsiveLevels`, `gridwidth`, …) are concatenated into the JS
-unescaped; `shadow` is emitted as `'spinner1'`/`'spinner0'` instead of a shadow level; only one navigation
-skin is loaded when arrows and bullets use different styles.
+Code-read caveats: FlexForm numeric/CSV settings and nav config are embedded via `json_encode` (with
+integer/select sanitisation); `shadow` is emitted as `'spinner1'`/`'spinner0'` instead of a shadow level;
+only one navigation skin is loaded when arrows and bullets use different styles. Asset folders must be
+non-empty relative paths under the public web root.
 
 ## Page module preview (`EventListener/FlexformProcess.php`)
 

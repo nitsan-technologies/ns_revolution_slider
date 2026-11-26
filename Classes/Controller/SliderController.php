@@ -13,6 +13,7 @@ namespace NITSAN\NsRevolutionSlider\Controller;
  *
  ***/
 
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use NITSAN\NsRevolutionSlider\Domain\Repository\SliderRepository;
@@ -23,6 +24,17 @@ use NITSAN\NsRevolutionSlider\Domain\Repository\SlideItemRepository;
  */
 class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    private const DEFAULT_JQUERY_FILE = 'Js/jquery-3.7.1.min.js';
+
+    /**
+     * Legacy TypoScript path; mapped to the current bundled file.
+     */
+    private const LEGACY_JQUERY_FILE = 'Js/jquery-2.1.4.min.js';
+
+    private const ALLOWED_SLIDER_LAYOUTS = ['auto', 'fullwidth', 'fullscreen'];
+
+    private const ALLOWED_KEYBOARD_DIRECTIONS = ['horizontal', 'vertical'];
+
     /**
      * sliderRepository
      *
@@ -60,65 +72,83 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function registerRevolutionSliderAssets(array $settings): void
     {
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
-        $publicPath = \TYPO3\CMS\Core\Core\Environment::getPublicPath();
-        $jsFolderPath = rtrim((string)($settings['jsFolderPath'] ?? ''), '/') . '/';
-        $cssFolderPath = rtrim((string)($settings['cssFolderPath'] ?? ''), '/') . '/';
+        $publicPath = Environment::getPublicPath();
+        $jsFolderPath = $this->normalizePublicRelativeDirectory((string)($settings['jsFolderPath'] ?? ''), $publicPath);
+        $cssFolderPath = $this->normalizePublicRelativeDirectory((string)($settings['cssFolderPath'] ?? ''), $publicPath);
 
         if ($settings['includeJquery'] ?? false) {
-            $jQueryFile = (string)($settings['jQueryFile'] ?? 'Js/jquery-2.1.4.min.js');
+            $jQueryFile = $this->normalizeExtensionPublicRelativeFile(
+                (string)($settings['jQueryFile'] ?? self::DEFAULT_JQUERY_FILE)
+            );
             $assetCollector->addJavaScript(
                 'js_file_' . md5($jQueryFile),
-                'EXT:ns_revolution_slider/Resources/Public/' . ltrim($jQueryFile, '/')
+                'EXT:ns_revolution_slider/Resources/Public/' . $jQueryFile
             );
         }
 
         $javascript = [];
-        $jsDirectory = $publicPath . '/' . $jsFolderPath;
-        if (is_dir($jsDirectory)) {
-            $javascript = GeneralUtility::getFilesInDir($jsDirectory);
-            $extensionsPath = $jsDirectory . 'extensions/';
-            if (is_dir($extensionsPath)) {
-                $extensionFiles = GeneralUtility::getFilesInDir($extensionsPath);
-                foreach ($extensionFiles as $extensionFile) {
-                    $javascript[] = 'extensions/' . $extensionFile;
+        if ($jsFolderPath !== null) {
+            $jsDirectory = $publicPath . '/' . $jsFolderPath;
+            if (is_dir($jsDirectory)) {
+                $javascript = GeneralUtility::getFilesInDir($jsDirectory);
+                $extensionsPath = $jsDirectory . 'extensions/';
+                if (is_dir($extensionsPath)) {
+                    $extensionFiles = GeneralUtility::getFilesInDir($extensionsPath);
+                    foreach ($extensionFiles as $extensionFile) {
+                        $javascript[] = 'extensions/' . $extensionFile;
+                    }
                 }
             }
-        }
 
-        foreach ($this->sortRevolutionSliderJavaScriptFiles($javascript) as $file) {
-            if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'js') {
-                continue;
-            }
-            $source = $jsFolderPath . $file;
-            if (!is_file($publicPath . '/' . $source)) {
-                continue;
-            }
-            $assetCollector->addJavaScript('js_' . md5($source), $source);
-        }
-
-        $cssDirectory = $publicPath . '/' . $cssFolderPath;
-        if (is_dir($cssDirectory)) {
-            foreach (GeneralUtility::getFilesInDir($cssDirectory) as $file) {
-                if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'css') {
+            foreach ($this->sortRevolutionSliderJavaScriptFiles($javascript) as $file) {
+                if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'js') {
                     continue;
                 }
-                $source = $cssFolderPath . $file;
+                if (str_contains($file, '..')) {
+                    continue;
+                }
+                $source = $jsFolderPath . $file;
                 if (!is_file($publicPath . '/' . $source)) {
                     continue;
                 }
-                $assetCollector->addStyleSheet('css_' . md5($source), $source);
+                $assetCollector->addJavaScript('js_' . md5($source), $source);
             }
         }
 
-        if (!empty($settings['customStyleFilePath']) && is_file($publicPath . '/' . ltrim((string)$settings['customStyleFilePath'], '/'))) {
+        if ($cssFolderPath !== null) {
+            $cssDirectory = $publicPath . '/' . $cssFolderPath;
+            if (is_dir($cssDirectory)) {
+                foreach (GeneralUtility::getFilesInDir($cssDirectory) as $file) {
+                    if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) !== 'css') {
+                        continue;
+                    }
+                    if (str_contains($file, '..')) {
+                        continue;
+                    }
+                    $source = $cssFolderPath . $file;
+                    if (!is_file($publicPath . '/' . $source)) {
+                        continue;
+                    }
+                    $assetCollector->addStyleSheet('css_' . md5($source), $source);
+                }
+            }
+        }
+
+        $customStyleFilePath = $this->normalizePublicRelativeFile(
+            (string)($settings['customStyleFilePath'] ?? ''),
+            $publicPath
+        );
+        if ($customStyleFilePath !== null) {
             $assetCollector->addStyleSheet(
-                'css_custom_' . md5((string)$settings['customStyleFilePath']),
-                (string)$settings['customStyleFilePath']
+                'css_custom_' . md5($customStyleFilePath),
+                $customStyleFilePath
             );
         }
 
-        $navigationStyle = $settings['arrowsStyle'] ?? $settings['bulletsStyle'] ?? '';
-        if ($navigationStyle !== '') {
+        $navigationStyle = $this->sanitizeNavStyle(
+            (string)($settings['arrowsStyle'] ?? $settings['bulletsStyle'] ?? '')
+        );
+        if ($navigationStyle !== '' && $cssFolderPath !== null) {
             $navigationSkin = $cssFolderPath . 'navigation-skins/' . $navigationStyle . '.css';
             if (is_file($publicPath . '/' . $navigationSkin)) {
                 $assetCollector->addStyleSheet('css_nav_' . md5($navigationSkin), $navigationSkin);
@@ -159,7 +189,11 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             if (($settings['slides'] ?? '') != '') {
                 $slidesUids = explode(',', (string)$settings['slides']);
                 foreach ($slidesUids as $slide) {
-                    $slideData = $this->slideItemRepository->findByUid($slide);
+                    $slideUid = (int)$slide;
+                    if ($slideUid <= 0) {
+                        continue;
+                    }
+                    $slideData = $this->slideItemRepository->findByUid($slideUid);
                     if ($slideData) {
                         //Animation Configuration updated base on Slide
                         $slideData->setSlideEffect(($slideData->getSlideEffect() ? $slideData->getSlideEffect() : $settings['slideEffect']));
@@ -228,7 +262,6 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         );
         $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
         if ($settings['customStyle']) {
-           
             $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid . '_style';
 
             $assetCollector->addInlineStyleSheet(
@@ -255,78 +288,128 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function buildRevolutionSliderInitializationScript(int $uid, array $settings, array $customSettings): string
     {
-        $jsFolderPath = addslashes((string)($settings['jsFolderPath'] ?? 'fileadmin/revolution-slider/js/'));
-        $revolutionConfig = "sliderLayout: '" . ($settings['sliderLayout'] ?? 'auto') . "',
-                                sliderType: 'standard',
-                                shadow: '" . (isset($settings['shadow']) && $settings['shadow'] !== '' ? 'spinner1' : 'spinner0') . "',
-                                spinner: '" . (!empty($settings['spinner']) ? 'spinner3' : 'off') . "',
-                                stopLoop: '" . (!empty($settings['stopLoop']) ? 'on' : 'off') . "',
-                                stopAfterLoops: " . (!empty($settings['stopLoop']) ? 0 : -1) . ',
-                                stopAtSlide: ' . (isset($settings['stopAtSlide']) && $settings['stopAtSlide'] !== '' && $settings['stopAtSlide'] !== '-1' && $settings['stopAtSlide'] !== '0' && !empty($settings['stopLoop']) ? $settings['stopAtSlide'] : -1) . ',
-                                ' . (isset($settings['slideDuration']) && $settings['slideDuration'] !== '' ? 'delay: ' . $settings['slideDuration'] . ',' : '') . '
-                                responsiveLevels: [' . (isset($settings['responsiveLevels']) && $settings['responsiveLevels'] !== '' ? $settings['responsiveLevels'] : '') . '],
-                                visibilityLevels: [' . (isset($settings['visibilityLevels']) && $settings['visibilityLevels'] !== '' ? $settings['visibilityLevels'] : '') . '],
-                                gridwidth: [' . (isset($settings['gridwidth']) && $settings['gridwidth'] !== '' ? $settings['gridwidth'] : '') . '],
-                                gridheight: [' . (isset($settings['gridheight']) && $settings['gridheight'] !== '' ? $settings['gridheight'] : '') . '],
-                                hideSliderAtLimit: ' . (isset($settings['hideSliderAtLimit']) && $settings['hideSliderAtLimit'] !== '' ? $settings['hideSliderAtLimit'] : 0) . ',
-                                debugMode: ' . (!empty($settings['debugMode']) ? 'true' : 'false') . ",
-                                onInit: function() {
-                                    jQuery('#rev_slider_" . $uid . "').removeClass('revslider-pending');
-                                },
+        $jsFolderPath = (string)($settings['jsFolderPath'] ?? 'fileadmin/revolution-slider/js/');
+        $stopAtSlide = -1;
+        if (
+            !empty($settings['stopLoop'])
+            && isset($settings['stopAtSlide'])
+            && $settings['stopAtSlide'] !== ''
+            && $settings['stopAtSlide'] !== '-1'
+            && $settings['stopAtSlide'] !== '0'
+        ) {
+            $parsedStopAtSlide = $this->sanitizeInteger($settings['stopAtSlide']);
+            if ($parsedStopAtSlide !== null && $parsedStopAtSlide > 0) {
+                $stopAtSlide = $parsedStopAtSlide;
+            }
+        }
 
-                                /* basic navigation arrows and bullets */
-                                navigation: {
-                                    keyboardNavigation: '" . (!empty($settings['keyboardNavigation']) ? 'on' : 'off') . "',
-                                    keyboard_direction: '" . ($settings['keyboard_direction'] ?? 'horizontal') . "',
-                                    mouseScrollNavigation: '" . (!empty($settings['mouseScrollNavigation']) ? 'on' : 'off') . "',
-                                    onHoverStop: '" . (!empty($settings['onHoverStop']) ? 'on' : 'off') . "',
-                                    touch: {
-                                        touchenabled: '" . (!empty($settings['touchenabled']) ? 'on' : 'off') . "',
-                                        swipe_threshold: 75,
-                                        swipe_min_touches: 1,
-                                        swipe_direction: 'horizontal',
-                                        drag_block_vertical: true
-                                    },
-                                    arrows: {
-                                        enable: " . (!empty($settings['arrowsEnable']) ? 'true' : 'false') . ',
-                                        hide_onleave: ' . (!empty($settings['arrowsHideOnleave']) ? 'true' : 'false') . ",
-                                        style: '" . ($settings['arrowsStyle'] ?? '') . "'
-                                        " . (($customSettings['arrowsStyle']['tmp'] ?? '') !== '' ? ', tmp: ' . $customSettings['arrowsStyle']['tmp'] : '') . '
-                                    },
-                                    bullets: {
-                                        enable: ' . (!empty($settings['bulletsEnable']) ? 'true' : 'false') . ",
-                                        hide_onleave: false,
-                                        style: '" . ($settings['bulletsStyle'] ?? '') . "',
-                                        " . (($customSettings['bulletsStyle']['tmp'] ?? '') !== '' ? 'tmp: ' . $customSettings['bulletsStyle']['tmp'] . ',' : '') . "
-                                        h_align: 'center',
-                                        v_align: 'bottom',
-                                        h_offset: 0,
-                                        v_offset: 20,
-                                        space: 5
-                                    }
-                                }";
+        $config = [
+            'sliderLayout' => $this->sanitizeSelect(
+                (string)($settings['sliderLayout'] ?? 'auto'),
+                self::ALLOWED_SLIDER_LAYOUTS,
+                'auto'
+            ),
+            'sliderType' => 'standard',
+            'shadow' => (isset($settings['shadow']) && $settings['shadow'] !== '') ? 'spinner1' : 'spinner0',
+            'spinner' => !empty($settings['spinner']) ? 'spinner3' : 'off',
+            'stopLoop' => !empty($settings['stopLoop']) ? 'on' : 'off',
+            'stopAfterLoops' => !empty($settings['stopLoop']) ? 0 : -1,
+            'stopAtSlide' => $stopAtSlide,
+            'responsiveLevels' => $this->sanitizeIntegerList($settings['responsiveLevels'] ?? ''),
+            'visibilityLevels' => $this->sanitizeIntegerList($settings['visibilityLevels'] ?? ''),
+            'gridwidth' => $this->sanitizeIntegerList($settings['gridwidth'] ?? ''),
+            'gridheight' => $this->sanitizeIntegerList($settings['gridheight'] ?? ''),
+            'hideSliderAtLimit' => $this->sanitizeInteger($settings['hideSliderAtLimit'] ?? 0) ?? 0,
+            'debugMode' => !empty($settings['debugMode']),
+            'navigation' => [
+                'keyboardNavigation' => !empty($settings['keyboardNavigation']) ? 'on' : 'off',
+                'keyboard_direction' => $this->sanitizeSelect(
+                    (string)($settings['keyboard_direction'] ?? 'horizontal'),
+                    self::ALLOWED_KEYBOARD_DIRECTIONS,
+                    'horizontal'
+                ),
+                'mouseScrollNavigation' => !empty($settings['mouseScrollNavigation']) ? 'on' : 'off',
+                'onHoverStop' => !empty($settings['onHoverStop']) ? 'on' : 'off',
+                'touch' => [
+                    'touchenabled' => !empty($settings['touchenabled']) ? 'on' : 'off',
+                    'swipe_threshold' => 75,
+                    'swipe_min_touches' => 1,
+                    'swipe_direction' => 'horizontal',
+                    'drag_block_vertical' => true,
+                ],
+                'arrows' => [
+                    'enable' => !empty($settings['arrowsEnable']),
+                    'hide_onleave' => !empty($settings['arrowsHideOnleave']),
+                    'style' => $this->sanitizeNavStyle((string)($settings['arrowsStyle'] ?? '')),
+                ],
+                'bullets' => [
+                    'enable' => !empty($settings['bulletsEnable']),
+                    'hide_onleave' => false,
+                    'style' => $this->sanitizeNavStyle((string)($settings['bulletsStyle'] ?? '')),
+                    'h_align' => 'center',
+                    'v_align' => 'bottom',
+                    'h_offset' => 0,
+                    'v_offset' => 20,
+                    'space' => 5,
+                ],
+            ],
+        ];
 
-        return "function nsRevolutionSliderInit_" . $uid . "() {
-    var \$slider = jQuery('#rev_slider_" . $uid . "');
-    if (!\$slider.length) {
+        if (isset($settings['slideDuration']) && $settings['slideDuration'] !== '') {
+            $delay = $this->sanitizeInteger($settings['slideDuration']);
+            if ($delay !== null && $delay > 0) {
+                $config['delay'] = $delay;
+            }
+        }
+
+        $arrowsTmp = (string)($customSettings['arrowsStyle']['tmp'] ?? '');
+        if ($arrowsTmp !== '') {
+            $config['navigation']['arrows']['tmp'] = $arrowsTmp;
+        }
+        $bulletsTmp = (string)($customSettings['bulletsStyle']['tmp'] ?? '');
+        if ($bulletsTmp !== '') {
+            $config['navigation']['bullets']['tmp'] = $bulletsTmp;
+        }
+
+        $configJson = json_encode(
+            $config,
+            JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE
+        );
+        if ($configJson === false) {
+            $configJson = '{}';
+        }
+
+        $jsFolderPathJson = json_encode(
+            $jsFolderPath,
+            JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE
+        );
+        if ($jsFolderPathJson === false) {
+            $jsFolderPathJson = '""';
+        }
+
+        return 'function nsRevolutionSliderInit_' . $uid . '() {
+    var $slider = jQuery("#rev_slider_' . $uid . '");
+    if (!$slider.length) {
         return;
     }
-    if (typeof jQuery.fn.revolution !== 'function') {
-        console.error('[ns_revolution_slider] Revolution Slider library not loaded. Install JS/CSS to " . $jsFolderPath . "');
-        \$slider.removeClass('revslider-pending').addClass('revslider-fallback').show();
+    if (typeof jQuery.fn.revolution !== "function") {
+        console.error("[ns_revolution_slider] Revolution Slider library not loaded. Install JS/CSS to " + ' . $jsFolderPathJson . ');
+        $slider.removeClass("revslider-pending").addClass("revslider-fallback").show();
         return;
     }
-    \$slider.show();
-    \$slider.revolution({
-                                " . $revolutionConfig . "
-                            });
-    \$slider.removeClass('revslider-pending');
+    var config = ' . $configJson . ';
+    config.onInit = function() {
+        jQuery("#rev_slider_' . $uid . '").removeClass("revslider-pending");
+    };
+    $slider.show();
+    $slider.revolution(config);
+    $slider.removeClass("revslider-pending");
 }
-if (document.readyState === 'complete') {
-    nsRevolutionSliderInit_" . $uid . "();
+if (document.readyState === "complete") {
+    nsRevolutionSliderInit_' . $uid . '();
 } else {
-    window.addEventListener('load', nsRevolutionSliderInit_" . $uid . ");
-}";
+    window.addEventListener("load", nsRevolutionSliderInit_' . $uid . ');
+}';
     }
 
     protected function hasValidBoxPosition(string $position): bool
@@ -337,6 +420,153 @@ if (document.readyState === 'complete') {
         }
 
         return str_starts_with($position, '[') || is_numeric($position);
+    }
+
+    /**
+     * Reject empty paths (would scan the public root) and path traversal.
+     * Keeps normal relative folders such as fileadmin/revolution-slider/js/.
+     */
+    protected function normalizePublicRelativeDirectory(string $path, string $publicPath): ?string
+    {
+        $path = str_replace('\\', '/', trim($path));
+        $path = trim($path, '/');
+        if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.(/|$)#', $path) === 1) {
+            return null;
+        }
+
+        $absolute = $publicPath . '/' . $path;
+        if (!is_dir($absolute)) {
+            return null;
+        }
+
+        $realDir = realpath($absolute);
+        $realPublic = realpath($publicPath);
+        if ($realDir === false || $realPublic === false) {
+            return null;
+        }
+        if ($realDir === $realPublic) {
+            return null;
+        }
+        if (!str_starts_with($realDir, $realPublic . DIRECTORY_SEPARATOR)) {
+            return null;
+        }
+
+        $relative = substr($realDir, strlen($realPublic) + 1);
+
+        return str_replace('\\', '/', $relative) . '/';
+    }
+
+    /**
+     * Keep custom CSS file paths under the public web path without traversal.
+     */
+    protected function normalizePublicRelativeFile(string $path, string $publicPath): ?string
+    {
+        $path = str_replace('\\', '/', trim($path));
+        $path = ltrim($path, '/');
+        if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.(/|$)#', $path) === 1) {
+            return null;
+        }
+
+        $absolute = $publicPath . '/' . $path;
+        if (!is_file($absolute)) {
+            return null;
+        }
+
+        $realFile = realpath($absolute);
+        $realPublic = realpath($publicPath);
+        if ($realFile === false || $realPublic === false) {
+            return null;
+        }
+        if (!str_starts_with($realFile, $realPublic . DIRECTORY_SEPARATOR)) {
+            return null;
+        }
+
+        $relative = substr($realFile, strlen($realPublic) + 1);
+
+        return str_replace('\\', '/', $relative);
+    }
+
+    /**
+     * Restrict jQuery to a file under EXT:ns_revolution_slider/Resources/Public/.
+     */
+    protected function normalizeExtensionPublicRelativeFile(string $path): string
+    {
+        $path = str_replace('\\', '/', trim($path));
+        $path = ltrim($path, '/');
+        if ($path === '' || str_contains($path, "\0") || preg_match('#(^|/)\.\.(/|$)#', $path) === 1) {
+            return self::DEFAULT_JQUERY_FILE;
+        }
+        if (!preg_match('#^[A-Za-z0-9._/-]+$#', $path)) {
+            return self::DEFAULT_JQUERY_FILE;
+        }
+        // Keep existing TypoScript that still points at the old filename working.
+        if ($path === self::LEGACY_JQUERY_FILE) {
+            return self::DEFAULT_JQUERY_FILE;
+        }
+
+        return $path;
+    }
+
+    /**
+     * @param list<string> $allowed
+     */
+    protected function sanitizeSelect(string $value, array $allowed, string $default): string
+    {
+        return in_array($value, $allowed, true) ? $value : $default;
+    }
+
+    /**
+     * Navigation skin names become CSS filenames; allow only a safe token.
+     */
+    protected function sanitizeNavStyle(string $value): string
+    {
+        $value = trim($value);
+        if ($value === '' || preg_match('/^[A-Za-z0-9_-]+$/', $value) !== 1) {
+            return '';
+        }
+
+        return $value;
+    }
+
+    protected function sanitizeInteger(mixed $value): ?int
+    {
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_string($value)) {
+            $value = trim($value);
+            if ($value !== '' && preg_match('/^-?\d+$/', $value) === 1) {
+                return (int)$value;
+            }
+        }
+        if (is_float($value) && floor($value) === $value) {
+            return (int)$value;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return list<int>
+     */
+    protected function sanitizeIntegerList(mixed $value): array
+    {
+        if ($value === null || $value === '') {
+            return [];
+        }
+        $parts = preg_split('/\s*,\s*/', trim((string)$value)) ?: [];
+        $integers = [];
+        foreach ($parts as $part) {
+            if ($part === '') {
+                continue;
+            }
+            $integer = $this->sanitizeInteger($part);
+            if ($integer !== null) {
+                $integers[] = $integer;
+            }
+        }
+
+        return $integers;
     }
 
     /**
@@ -431,9 +661,6 @@ if (document.readyState === 'complete') {
                 $customSettings['arrowsStyle']['tmp'] = '';
                 break;
         }
-        if ($customSettings['arrowsStyle']['tmp'] !== '') {
-            $customSettings['arrowsStyle']['tmp'] = "'" . $customSettings['arrowsStyle']['tmp'] . "'";
-        }
         switch ($settings['bulletsStyle'] ?? '') {
             case 'hades':
                 $customSettings['bulletsStyle']['tmp'] = '<span class="tp-bullet-image"></span>';
@@ -459,9 +686,6 @@ if (document.readyState === 'complete') {
             default:
                 $customSettings['bulletsStyle']['tmp'] = '';
                 break;
-        }
-        if ($customSettings['bulletsStyle']['tmp'] !== '') {
-            $customSettings['bulletsStyle']['tmp'] = "'" . $customSettings['bulletsStyle']['tmp'] . "'";
         }
         return $customSettings;
     }
