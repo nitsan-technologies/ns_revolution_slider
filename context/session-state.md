@@ -61,3 +61,9 @@ Short log of recent work. Keep only what the next session needs; move lasting fa
 - F-03: bundled jQuery 2.1.4 → 3.7.1; `includeJquery` still defaults to on; legacy TypoScript path
   `Js/jquery-2.1.4.min.js` remaps to 3.7.1.
 - F-04: `slider` action is cacheable (`configurePlugin` non-cacheable list empty).
+
+## 2026-11-27 — Residual Low findings (kit 0.2.3)
+
+- Font-size FlexForm values → `buildResponsiveSizeAttribute()` (integer tokens only; same four-slot
+  Revolution shape). Optional `customStyle` → `sanitizeInlineCss()` before `addInlineStyleSheet`.
+- Added `CHANGELOG.md` for 13.0.2 remediations + regression checklist.

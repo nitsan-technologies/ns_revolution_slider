@@ -38,18 +38,19 @@ Animation ids 1–32 map to `data-frames` presets in `Templates/Slider/Slider.ht
 1. Per slide: `slide_effect` and the three animations of the Slide Item record win when set.
 2. FlexForm snake_case keys (`slide_duration`, `slide_effect`, `*_animation`) win over the TypoScript
    camelCase defaults (`slideDuration`, `slideEffect`, `*Animation`).
-3. Colours always come from the FlexForm (default `#fff`); sizes are built as JS arrays from the FlexForm.
+3. Colours always come from the FlexForm (default `#fff`); sizes are built as Revolution
+   `data-fontsize` lists from integer-sanitised FlexForm values.
 
 TypoScript `plugin.tx_nsrevolutionslider_slider.settings` (static template or site set):
 `includeJquery` (1), `jQueryFile` (setup only, `Js/jquery-3.7.1.min.js`), `jsFolderPath` (default
 `fileadmin/revolution-slider/js/`), `cssFolderPath` (`fileadmin/revolution-slider/css/`), `customStyleFilePath`
 (empty), `slideDuration` (2000), `slideEffect` (`fade`), `headlineAnimation` / `descriptionAnimation` /
-`buttonAnimation` (1). `SliderController` also reads `settings.customStyle` (added as inline CSS), but no
-TypoScript, constant or site setting defines it. `persistence.storagePid` (empty constant) is set but irrelevant
-(records are loaded with `findByUid`). `loadMinimalPageTemplate` is a top-level constant, see `core.md` known
-issues. The site set defines the view paths, the settings above except `jQueryFile`, and
-`loadMinimalPageTemplate` in `settings.definitions.yaml`; `storagePid` exists only as a classic constant (the
-set's `constants.typoscript` imports the classic file).
+`buttonAnimation` (1). `SliderController` also reads optional TypoScript `settings.customStyle` (inline CSS
+after stripping style/script breakout constructs); no constant or site setting defines it.
+`persistence.storagePid` (empty constant) is set but irrelevant (records are loaded with `findByUid`).
+`loadMinimalPageTemplate` is a top-level constant, see `core.md` known issues. The site set defines the view
+paths, the settings above except `jQueryFile`, and `loadMinimalPageTemplate` in `settings.definitions.yaml`;
+`storagePid` exists only as a classic constant (the set's `constants.typoscript` imports the classic file).
 
 ## Frontend flow (`SliderController`)
 

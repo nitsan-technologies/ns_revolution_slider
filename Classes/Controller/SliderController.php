@@ -178,9 +178,22 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings['descriptionAnimation'] = ($settings['description_animation'] ?? false) ? $settings['description_animation'] : ($settings['descriptionAnimation'] ?? '');
         $settings['buttonAnimation'] = ($settings['button_animation'] ?? false) ? $settings['button_animation'] : ($settings['buttonAnimation'] ?? '');
 
-        $settings['headlineSize'] = "['" . ($settings['headline_size_desktop'] ?? '') . "', '" . ($settings['headline_size_tablet'] ?? '') . "', '" . ($settings['headline_size_tablet'] ?? '') . "', '" . ($settings['headline_size_mobile'] ?? '') . "']";
-        $settings['descriptionSize'] = "['" . ($settings['description_size_desktop'] ?? '') . "','" . ($settings['description_size_tablet'] ?? '') . "','" . ($settings['description_size_tablet'] ?? '') . "','" . ($settings['description_size_mobile'] ?? '') . "']";
-        $settings['buttonTextSize'] = "['" . ($settings['button_text_size_desktop'] ?? '') . "','" . ($settings['button_text_size_tablet'] ?? '') . "','" . ($settings['button_text_size_tablet'] ?? '') . "','" . ($settings['button_text_size_mobile'] ?? '') . "']";
+        // Keep the historical four-slot shape (desktop, tablet, tablet, mobile) Revolution expects.
+        $settings['headlineSize'] = $this->buildResponsiveSizeAttribute(
+            (string)($settings['headline_size_desktop'] ?? ''),
+            (string)($settings['headline_size_tablet'] ?? ''),
+            (string)($settings['headline_size_mobile'] ?? '')
+        );
+        $settings['descriptionSize'] = $this->buildResponsiveSizeAttribute(
+            (string)($settings['description_size_desktop'] ?? ''),
+            (string)($settings['description_size_tablet'] ?? ''),
+            (string)($settings['description_size_mobile'] ?? '')
+        );
+        $settings['buttonTextSize'] = $this->buildResponsiveSizeAttribute(
+            (string)($settings['button_text_size_desktop'] ?? ''),
+            (string)($settings['button_text_size_tablet'] ?? ''),
+            (string)($settings['button_text_size_mobile'] ?? '')
+        );
 
         //Slider logic
         $slides = false;
@@ -260,13 +273,13 @@ class SliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'slides' => $slides
             ]
         );
-        $settings['customStyle'] = isset($settings['customStyle']) ? $settings['customStyle'] : '';
-        if ($settings['customStyle']) {
+        $customStyle = $this->sanitizeInlineCss((string)($settings['customStyle'] ?? ''));
+        if ($customStyle !== '') {
             $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid . '_style';
 
             $assetCollector->addInlineStyleSheet(
                 $uniqueId,
-                $settings['customStyle']
+                $customStyle
             );
         }
         $uniqueId = $this->request->getControllerExtensionKey() . '_' . $uid;
@@ -544,6 +557,51 @@ if (document.readyState === "complete") {
         }
 
         return null;
+    }
+
+    /**
+     * Build Revolution data-fontsize value: ['desktop','tablet','tablet','mobile'].
+     * Only integer tokens are kept; invalid FlexForm input becomes an empty slot.
+     */
+    protected function buildResponsiveSizeAttribute(string $desktop, string $tablet, string $mobile): string
+    {
+        $slots = [
+            $this->sanitizeSizeToken($desktop),
+            $this->sanitizeSizeToken($tablet),
+            $this->sanitizeSizeToken($tablet),
+            $this->sanitizeSizeToken($mobile),
+        ];
+
+        return "['" . implode("', '", $slots) . "']";
+    }
+
+    protected function sanitizeSizeToken(string $value): string
+    {
+        $integer = $this->sanitizeInteger($value);
+
+        return $integer !== null ? (string)$integer : '';
+    }
+
+    /**
+     * Strip constructs that can break out of an inline <style> block.
+     * Normal CSS rules are left unchanged.
+     */
+    protected function sanitizeInlineCss(string $css): string
+    {
+        $css = trim($css);
+        if ($css === '') {
+            return '';
+        }
+
+        $css = str_replace("\0", '', $css);
+        // Drop full or partial style/script tags that can break out of <style>.
+        $css = preg_replace('#</?\s*(?:style|script)\b[^>]*>?#i', '', $css) ?? '';
+        $css = preg_replace('/expression\s*\(/i', '', $css) ?? '';
+        $css = preg_replace('/-moz-binding\s*:/i', '', $css) ?? '';
+        $css = preg_replace('/\bbehavior\s*:/i', '', $css) ?? '';
+        $css = preg_replace('/javascript\s*:/i', '', $css) ?? '';
+
+        return trim($css);
     }
 
     /**
